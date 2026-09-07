@@ -51,10 +51,6 @@ const AUDIO_TRACKS = [
     videoMatch: 'VoiceMultimodal',
   },
   {
-    audioFile: 'sharedstate-angular.m4a',
-    videoMatch: 'SharedState',
-  },
-  {
     audioFile: 'thread-angular.m4a',
     videoMatch: 'Threads',
   },
