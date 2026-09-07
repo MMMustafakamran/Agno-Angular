@@ -18,6 +18,11 @@
  * `ci/lib/mux.mjs`; the holds below are the script's beats, kept short on
  * purpose — earlier cuts lingered and read as a stall rather than a point.
  *
+ * Before any of that, the take stops on the harness's own /a2ui notes route,
+ * marks the reconstructed `a2uiConfigForFeature` block and writes down that the
+ * guide never declares the catalogs it returns, so that code was written here.
+ * See actions/catalog-code.ts.
+ *
  * The prompt in `pages.config.ts` is deliberately not sent any more: asking the
  * agent produced a paragraph of prose, which showed the symptom but not the
  * cause. The cause is on this page and can be pointed at.
@@ -27,6 +32,10 @@ import { type Page } from 'playwright';
 import { humanGlide, sleep } from '../core/overlays/cursor';
 import { ensureOverlays } from '../core/overlays/taskbar';
 import { type PageActionHandler, type PageRecordConfig } from '../core/types';
+import {
+  CATALOG_CODE_NOTE,
+  showReconstructedCatalogCode,
+} from './catalog-code';
 import {
   closeNotepadNote,
   openNotepadWindow,
@@ -466,10 +475,37 @@ async function clearSelection(page: Page): Promise<void> {
     .catch(() => {});
 }
 
+/**
+ * Types the catalog-code note beside the highlighted snippet on the notes route.
+ *
+ * Its own window, separate from NOTE_LINES below: that one is about what the
+ * guide leaves out, this one about what was written here instead, and running
+ * them together would blur two claims into one paragraph.
+ */
+async function writeCatalogCodeNote(page: Page): Promise<void> {
+  await openNotepadWindow(page, 'a2ui-catalogs.txt', {
+    top: '150px',
+    right: '48px',
+    width: '560px',
+    height: '380px',
+    fontSize: '20px',
+  });
+  await typeInNotepad(page, CATALOG_CODE_NOTE, 1600, 260);
+  await sleep(3500);
+  await closeNotepadNote(page);
+}
+
 export const runA2uiAction: PageActionHandler = async (
   page: Page,
   config: PageRecordConfig,
 ) => {
+  // The harness's own code first, while the page is still on the demo route.
+  // The tour below proves the three catalogs are never declared in the guide;
+  // this shows the block that stands in for them here and says, in writing,
+  // that it was written rather than copied. No return to the demo afterwards —
+  // the next thing this take does is navigate to the guide anyway.
+  await showReconstructedCatalogCode(page, config, writeCatalogCodeNote);
+
   console.log(`   📖 Reading the guide itself: ${config.docUrl}`);
 
   await page.goto(config.docUrl, {
