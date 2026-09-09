@@ -230,21 +230,19 @@ export const PAGES = definePages([
     ],
     // A second IDE tab, because the diagnostics strip is the thing that makes
     // this clip diagnosable and it is not the guide's code.
-    // Four turns, not one. `prompts` is read in phase order by
-    // actions/shared-state.action.ts: baseline before any write, then after
-    // priority=high, then after priority=low, then the read-only context.
-    // Asking the same question across two different written values is what
-    // separates a real read of agent state from a word echoed out of the
-    // question -- the old single "high" turn could not tell those apart.
+    // Three turns. `prompts` is read in phase order by
+    // actions/shared-state.action.ts: after priority=high, then after
+    // priority=low, then the read-only context. Asking the same question across
+    // two different written values is what separates a real read of agent state
+    // from a word echoed out of the question -- the old single "high" turn could
+    // not tell those apart.
     // `prompt` mirrors prompts[0], the convention the doctor enforces: the
     // single-prompt field is always the first turn, never a different one.
-    prompt:
-      'Before I touch anything, what priority is my workspace on right now?',
+    prompt: 'What is the priority set to right now?',
     prompts: [
-      'Before I touch anything, what priority is my workspace on right now?',
-      'I just changed it. What is it set to now?',
-      'Changed it once more. And now?',
-      'Remind me: what is my username, my timezone, and my workspace priority?',
+      'What is the priority set to right now?',
+      'And now? What is the priority?',
+      'Which timezone am I on?',
     ],
     waitAfterPromptMs: 4000,
   },

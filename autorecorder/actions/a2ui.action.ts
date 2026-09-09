@@ -498,13 +498,19 @@ async function writeCatalogCodeNote(page: Page): Promise<void> {
 export const runA2uiAction: PageActionHandler = async (
   page: Page,
   config: PageRecordConfig,
+  rootPath: string,
 ) => {
-  // The harness's own code first, while the page is still on the demo route.
-  // The tour below proves the three catalogs are never declared in the guide;
-  // this shows the block that stands in for them here and says, in writing,
-  // that it was written rather than copied. No return to the demo afterwards —
-  // the next thing this take does is navigate to the guide anyway.
-  await showReconstructedCatalogCode(page, config, writeCatalogCodeNote);
+  // The harness's own code first, opened as a source file in the editor. The
+  // tour below proves the three catalogs are never declared in the guide; this
+  // shows the block that stands in for them here and says, in writing, that it
+  // was written rather than copied. No return to the demo afterwards — the next
+  // thing this take does is navigate to the guide anyway.
+  await showReconstructedCatalogCode(
+    page,
+    config,
+    rootPath,
+    writeCatalogCodeNote,
+  );
 
   console.log(`   📖 Reading the guide itself: ${config.docUrl}`);
 
