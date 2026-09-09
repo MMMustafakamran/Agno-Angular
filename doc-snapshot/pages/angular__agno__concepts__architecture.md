@@ -1,6 +1,6 @@
 # Architecture
 
-> How CopilotKit's pieces fit together — a frontend, a runtime in your app server, and an agent backend, all talking AG-UI.
+> How CopilotKit's pieces fit together
 
 CopilotKit is a three-layer stack — **frontend, runtime, agent** — connected by the open **[AG-UI](/angular/agno/agentic-protocols/ag-ui)** event protocol. The runtime lives in your own application server, so the only thing between your UI and your agent is a wire format you can inspect.
 

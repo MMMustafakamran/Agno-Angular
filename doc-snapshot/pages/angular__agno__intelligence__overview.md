@@ -1,8 +1,10 @@
 # CopilotKit Intelligence
 
-> CopilotKit Intelligence overview for CopilotKit — features, cloud-hosted and self-hosted deployment options, threads, hosted inspection, and production operations.
+> CopilotKit Intelligence adds persistent threads, memory, analytics, automatic learning, and production operations on top of the runtime you already run.
 
 
+
+<IntelligenceOverview />
 
 ## What is CopilotKit Intelligence?
 
@@ -14,7 +16,10 @@ Ready to connect an existing app? Follow the [CopilotKit Intelligence quickstart
 
 <Callout type="info" title="See this in Inspector">
   Open Inspector on localhost. Go to **Learning**.
-  Memory and learning tools for this session appear here.
+  Review published Skills, their supporting Insights, and the Thread evidence
+  behind each pattern. Inspector also shows when new Threads are ready for a
+  Learning run; start runs and review Skill candidates in the Intelligence web
+  app.
 
   More detail: [Inspector](/angular/agno/inspector).
 </Callout>
@@ -25,9 +30,18 @@ Ready to connect an existing app? Follow the [CopilotKit Intelligence quickstart
 | Capability | What it gives you | Deeper dive |
 |---|---|---|
 | Durable threads and persistence | Resumable conversations that survive reloads, devices, and browser sessions. | [Threads](/angular/agno/guides/threads-memory-attachments-headless) and [Threads & Persistence Architecture](/angular/agno/intelligence/threads-explained) |
+| Memory | Durable facts and preferences that can be recalled across conversations. | [Memories & Recall](/angular/agno/intelligence/memories) |
+| Analytics | See what your agents do and where users get value, from the same interaction data. | [Analytics](https://www.copilotkit.ai/copilotkit-intelligence#analytics-insights) |
+| Automatic learning | Agents improve from real usage. No fine-tuning pipeline required. | [Learning](/angular/agno/learning) |
 | Cloud-hosted Intelligence features | Projects, project API keys, conversation history, thread inspection, and plan management. | [Cloud-hosted CopilotKit Intelligence](/angular/agno/intelligence/managed-intelligence-platform) |
 | Platform-gated UI capabilities | Platform-gated UI surfaces such as Fully Headless Chat UI. | [Fully Headless Chat UI](/angular/agno/guides/threads-memory-attachments-headless) |
 | Self-hosting | The same platform running inside your own Kubernetes cluster, VPC, or data boundary. | [Self-host CopilotKit Intelligence](/angular/agno/intelligence/self-hosting) |
+
+<IntelligenceFeatureCards />
+
+Follow the Intelligence quickstart to connect your runtime and confirm threads work.
+
+[Open the Intelligence quickstart](/angular/agno/intelligence/quickstart)
 
 ## Hosting options
 
@@ -60,6 +74,8 @@ Self-hosted access is available on the Team self-hosted plan or a custom Enterpr
 | Run the platform in your own cluster | [Self-host CopilotKit Intelligence](/angular/agno/intelligence/self-hosting) |
 | Understand the runtime/platform architecture | [CopilotKit Intelligence architecture](/angular/agno/intelligence/intelligence-platform) |
 | Add persistent conversations to an app | [Threads](/angular/agno/guides/threads-memory-attachments-headless) |
+| Give an agent durable context across conversations | [Memories & Recall](/angular/agno/intelligence/memories) |
+| Turn real usage into reusable agent behavior | [Learning](/angular/agno/learning) |
 | Understand thread replay and realtime sync | [Threads & Persistence Architecture](/angular/agno/intelligence/threads-explained) |
 
 ## FAQs
