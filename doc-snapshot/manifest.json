@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "docsRoot": "https://docs.copilotkit.ai/angular/agno",
-  "syncedAt": "2026-09-09T07:59:33.281Z",
+  "syncedAt": "2026-09-10T08:50:48.620Z",
   "pages": {
     "/angular/agno": {
       "file": "angular__agno.md",
@@ -156,13 +156,13 @@
     },
     "/angular/agno/build-with-agents": {
       "file": "angular__agno__build-with-agents.md",
-      "sha256": "de22e582d7d4ae692aaed789fc983e89b8f6d164fdc61521fbd672d48940c746",
-      "bytes": 19704,
-      "lines": 568,
+      "sha256": "33a0062dd214138757a23cae697c4126e2f9037e06f50fd6b59315c897ef393d",
+      "bytes": 19931,
+      "lines": 579,
       "routes": [],
       "status": "ok",
       "age": 0,
-      "date": "Sun, 30 Aug 2026 13:42:59 GMT"
+      "date": "Thu, 10 Sep 2026 08:50:48 GMT"
     },
     "/angular/agno/intelligence/threads-explained": {
       "file": "angular__agno__intelligence__threads-explained.md",
