@@ -15,9 +15,6 @@
     "drift": "node ci/check-doc-drift.mjs",
     "drift:sync": "node ci/check-doc-drift.mjs --update",
     "ci:pages": "node ci/list-pages.mjs",
-    "results:compare": "node ci/compare-results.mjs",
-    "results:seed": "node ci/compare-results.mjs --seed",
-    "results:accept": "node ci/compare-results.mjs --accept",
     "verify": "npx copilotkit@latest verify --runtime-url http://localhost:8200/api/copilotkit",
     "verify:round-trip": "npx copilotkit@latest verify --runtime-url http://localhost:8200/api/copilotkit --round-trip"
   }
