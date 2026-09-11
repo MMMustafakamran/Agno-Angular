@@ -300,7 +300,6 @@ read first, so an uncommented placeholder there shadows a real key at the root.
 by `concurrently`. They are uploaded with the CI artifacts.
 
 **Recorder aborts on preflight** — the app was still doing its first load. The
-warmup step covers the usual routes; a page added to `WARMUP_ROUTES` in
 `lib/config.mjs` gets the same treatment.
 
 **Runtime up, agent silent** — the runtime answers on 8200 whether or not it can
