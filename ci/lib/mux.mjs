@@ -54,15 +54,6 @@ const AUDIO_TRACKS = [
     audioFile: 'thread-angular.m4a',
     videoMatch: 'Threads',
   },
-  {
-    // The A2UI clip is a narrated read of the guide's undefined catalog
-    // identifiers, so it is voiceover-first: the pauses in
-    // autorecorder/actions/a2ui.action.ts are the script's timing. The track is
-    // not committed yet — a missing file is filtered out below, so this entry
-    // is inert until the recording is dropped into autorecorder/audio/.
-    audioFile: 'a2ui-angular.m4a',
-    videoMatch: 'A2ui',
-  },
 ];
 
 function hasFfmpeg() {

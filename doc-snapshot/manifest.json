@@ -470,5 +470,12 @@
       "https://docs.copilotkit.ai/reference/angular/public-api",
       "https://docs.copilotkit.ai/reference/angular/services/CopilotKit"
     ]
+  },
+  "coverage": {
+    "ignoreRoutes": [
+      "/a2ui",
+      "/attachments",
+      "/memory"
+    ]
   }
 }
