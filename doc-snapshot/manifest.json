@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "docsRoot": "https://docs.copilotkit.ai/angular/agno",
-  "syncedAt": "2026-09-10T08:50:48.620Z",
+  "syncedAt": "2026-09-14T07:09:39.265Z",
   "pages": {
     "/angular/agno": {
       "file": "angular__agno.md",
@@ -156,13 +156,13 @@
     },
     "/angular/agno/build-with-agents": {
       "file": "angular__agno__build-with-agents.md",
-      "sha256": "33a0062dd214138757a23cae697c4126e2f9037e06f50fd6b59315c897ef393d",
-      "bytes": 19931,
-      "lines": 579,
+      "sha256": "53faefc50ccdbda60e88d5902871547f0423c53ef9a4a7f65f004cee2714d3ce",
+      "bytes": 19730,
+      "lines": 578,
       "routes": [],
       "status": "ok",
       "age": 0,
-      "date": "Thu, 10 Sep 2026 08:50:48 GMT"
+      "date": "Mon, 14 Sep 2026 07:09:39 GMT"
     },
     "/angular/agno/intelligence/threads-explained": {
       "file": "angular__agno__intelligence__threads-explained.md",
@@ -206,13 +206,13 @@
     },
     "/angular/agno/intelligence/connect-your-runtime": {
       "file": "angular__agno__intelligence__connect-your-runtime.md",
-      "sha256": "39209b58c869048140aee40e4ffbbb089221c8cb46f655b750aa5b2bf7982f9e",
-      "bytes": 4160,
-      "lines": 109,
+      "sha256": "4ee1a3f9e13bbcd2e946676013b32ca0f43482786325e5561abe9bfa0674a1e4",
+      "bytes": 5441,
+      "lines": 135,
       "routes": [],
       "status": "ok",
       "age": 0,
-      "date": "Fri, 04 Sep 2026 08:37:28 GMT"
+      "date": "Mon, 14 Sep 2026 07:09:39 GMT"
     },
     "/angular/agno/intelligence/self-hosting": {
       "file": "angular__agno__intelligence__self-hosting.md",
