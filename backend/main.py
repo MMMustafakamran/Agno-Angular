@@ -33,7 +33,7 @@ def get_weather(city: str):
 
 
 agent = Agent(
-    model=OpenAIChat(id="gpt-5.6-luna"),
+    model=OpenAIChat(id="gpt-5.4-mini"),
     # Matches the WorkspaceState shape the shared-state guide's component reads.
     session_state={"notes": [], "priority": "normal"},
     add_session_state_to_context=True,    # let the model see it
