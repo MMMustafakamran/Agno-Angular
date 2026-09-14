@@ -55,7 +55,7 @@ Copilot Runtime  ·  localhost:8200        &#8592; Node, frontend/server.ts
 Agno AgentOS  ·  localhost:8000           &#8592; Python / FastAPI
   &#124;  AgentOS(agents=[agent], interfaces=[AGUI(agent=agent)])
   v
-OpenAI  (gpt-4o)</code></pre>
+OpenAI  (gpt-5.6-luna)</code></pre>
 
         <p class="mt-3 text-sm text-slate-700">
           Three processes, not two. Unlike the React quickstart — where the
