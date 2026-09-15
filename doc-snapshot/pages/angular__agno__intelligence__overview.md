@@ -32,7 +32,7 @@ Ready to connect an existing app? Follow the [CopilotKit Intelligence quickstart
 | Durable threads and persistence | Resumable conversations that survive reloads, devices, and browser sessions. | [Threads](/angular/agno/guides/threads-memory-attachments-headless) and [Threads & Persistence Architecture](/angular/agno/intelligence/threads-explained) |
 | Memory | Durable facts and preferences that can be recalled across conversations. | [Memories & Recall](/angular/agno/intelligence/memories) |
 | Analytics | See what your agents do and where users get value, from the same interaction data. | [Analytics](https://www.copilotkit.ai/copilotkit-intelligence#analytics-insights) |
-| Automatic learning | Agents improve from real usage. No fine-tuning pipeline required. | [Learning](/angular/agno/learning) |
+| Automatic learning | Agents improve from real usage. No fine-tuning pipeline required. | [Learning](/angular/agno/learning) and [Automatic skill delivery](/angular/agno/intelligence/learned-skills) |
 | Cloud-hosted Intelligence features | Projects, project API keys, conversation history, thread inspection, and plan management. | [Cloud-hosted CopilotKit Intelligence](/angular/agno/intelligence/managed-intelligence-platform) |
 | Platform-gated UI capabilities | Platform-gated UI surfaces such as Fully Headless Chat UI. | [Fully Headless Chat UI](/angular/agno/guides/threads-memory-attachments-headless) |
 | Self-hosting | The same platform running inside your own Kubernetes cluster, VPC, or data boundary. | [Self-host CopilotKit Intelligence](/angular/agno/intelligence/self-hosting) |
@@ -75,7 +75,7 @@ Self-hosted access is available on the Team self-hosted plan or a custom Enterpr
 | Understand the runtime/platform architecture | [CopilotKit Intelligence architecture](/angular/agno/intelligence/intelligence-platform) |
 | Add persistent conversations to an app | [Threads](/angular/agno/guides/threads-memory-attachments-headless) |
 | Give an agent durable context across conversations | [Memories & Recall](/angular/agno/intelligence/memories) |
-| Turn real usage into reusable agent behavior | [Learning](/angular/agno/learning) |
+| Turn real usage into reusable agent behavior | [Learning](/angular/agno/learning) and [Automatic skill delivery](/angular/agno/intelligence/learned-skills) |
 | Understand thread replay and realtime sync | [Threads & Persistence Architecture](/angular/agno/intelligence/threads-explained) |
 
 ## FAQs
