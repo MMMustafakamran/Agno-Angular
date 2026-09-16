@@ -235,13 +235,15 @@ export const PAGES = definePages([
     extraTabs: [
       {
         filePath: 'frontend/src/app/features/threads/threads-demo.component.ts',
-        startLine: 10,
-        endLine: 35,
+        startLine: 24,
+        endLine: 47,
       },
     ],
-    // Thread endpoints are licensed. Unlicensed, the hand-built list stays empty
-    // and the drawer renders its locked state — which is the expected result,
-    // and what this recording documents. The chat beside it answers normally.
+    // Both surfaces work: the runtime now passes `intelligence`, so the
+    // hand-built list and the drawer resolve against the platform. What this
+    // records is that the guide never says that is required — it teaches
+    // `injectThreads` and `CopilotThreadsDrawer` as drop-ins, and never
+    // mentions CopilotKitIntelligence or a project API key.
     prompt: 'In one line, what are threads for?',
     waitAfterPromptMs: 4000,
   },
