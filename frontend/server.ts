@@ -14,11 +14,22 @@
  * https://docs.copilotkit.ai/angular/agno/backend/copilot-runtime
  */
 import { createServer } from "node:http";
-import { CopilotRuntime } from "@copilotkit/runtime/v2";
+import { CopilotRuntime, CopilotKitIntelligence } from "@copilotkit/runtime/v2";
 import { createCopilotNodeListener } from "@copilotkit/runtime/v2/node";
 import { AgnoAgent } from "@ag-ui/agno";
 
 const agentUrl = process.env["AGNO_AGENT_URL"] ?? "http://localhost:8000/agui";
+
+/**
+ * Intelligence client, verbatim from
+ * https://docs.copilotkit.ai/angular/agno/intelligence/connect-your-runtime
+ * ("Wire the runtime") and the Intelligence quickstart's step 2.
+ *
+ * `apiUrl`/`wsUrl` default to the managed platform, so both stay unset.
+ */
+const intelligence = new CopilotKitIntelligence({
+  apiKey: process.env["CPK_INTELLIGENCE_API_KEY"]!,
+});
 
 const runtime = new CopilotRuntime({
   agents: {
@@ -26,6 +37,7 @@ const runtime = new CopilotRuntime({
     support: new AgnoAgent({ url: agentUrl }),
   },
   a2ui: {},
+  intelligence,
   // Threads are per-user. Without this every visitor shares one history.
   identifyUser: (request) => ({
     id: request.headers.get("x-user-id") ?? "anonymous",
