@@ -437,6 +437,9 @@ jobs:
       # not scaled. See autorecorder/core/overlays/human.ts (PACE).
       AUTORECORD_PACE: '0.85'
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      # Intelligence project key: the runtime passes `intelligence`, and
+      # CopilotKitIntelligence throws at construction when it is blank.
+      CPK_INTELLIGENCE_API_KEY: ${{ secrets.CPK_INTELLIGENCE_API_KEY }}
       # The tool sleeps this long before returning. Without it it answers in
       # ~23ms — about one frame — so a tool renderer's in-progress state never
       # gets painted and the recording shows only the finished card.
