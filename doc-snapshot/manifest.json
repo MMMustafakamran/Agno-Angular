@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "docsRoot": "https://docs.copilotkit.ai/angular/agno",
-  "syncedAt": "2026-09-15T09:10:03.549Z",
+  "syncedAt": "2026-09-16T06:11:12.341Z",
   "pages": {
     "/angular/agno": {
       "file": "angular__agno.md",
@@ -186,13 +186,13 @@
     },
     "/angular/agno/intelligence/overview": {
       "file": "angular__agno__intelligence__overview.md",
-      "sha256": "a399cbadcc42c685dcf9dcd2d65e282dd4d0ced6843d86b6920ac8d806d827eb",
-      "bytes": 6696,
-      "lines": 94,
+      "sha256": "2bc7c7f1385b0bf06f074244e6ba75685177273cb30e2f72263f9eca80cd7730",
+      "bytes": 8850,
+      "lines": 108,
       "routes": [],
       "status": "ok",
       "age": 0,
-      "date": "Tue, 15 Sep 2026 09:10:03 GMT"
+      "date": "Wed, 16 Sep 2026 06:11:12 GMT"
     },
     "/angular/agno/intelligence/managed-intelligence-platform": {
       "file": "angular__agno__intelligence__managed-intelligence-platform.md",
@@ -206,13 +206,13 @@
     },
     "/angular/agno/intelligence/connect-your-runtime": {
       "file": "angular__agno__intelligence__connect-your-runtime.md",
-      "sha256": "4ee1a3f9e13bbcd2e946676013b32ca0f43482786325e5561abe9bfa0674a1e4",
-      "bytes": 5441,
-      "lines": 135,
+      "sha256": "2733d10ed7896569c30f6d6023bda485b29b4de2b538900c5992788c215820a2",
+      "bytes": 7499,
+      "lines": 181,
       "routes": [],
       "status": "ok",
       "age": 0,
-      "date": "Mon, 14 Sep 2026 07:09:39 GMT"
+      "date": "Wed, 16 Sep 2026 06:11:12 GMT"
     },
     "/angular/agno/intelligence/self-hosting": {
       "file": "angular__agno__intelligence__self-hosting.md",
@@ -236,13 +236,13 @@
     },
     "/angular/agno/copilot-runtime": {
       "file": "angular__agno__copilot-runtime.md",
-      "sha256": "8c8824ee5c1fa16fa0d3d897c690395106846427ad31c381eab52fd9f645733e",
-      "bytes": 7447,
-      "lines": 195,
+      "sha256": "5e3190c966c269a6478caa8f525d7824976d04548bd91c44b2200016ef493034",
+      "bytes": 7508,
+      "lines": 197,
       "routes": [],
       "status": "ok",
       "age": 0,
-      "date": "Sun, 30 Aug 2026 13:42:59 GMT"
+      "date": "Wed, 16 Sep 2026 06:11:12 GMT"
     },
     "/angular/agno/ag-ui": {
       "file": "angular__agno__ag-ui.md",

@@ -1,6 +1,6 @@
 # CopilotKit Intelligence
 
-> CopilotKit Intelligence adds persistent threads, memory, analytics, automatic learning, and production operations on top of the runtime you already run.
+> CopilotKit Intelligence adds persistent Rich Threads, messaging Channels, memory, analytics, and automatic learning. Import supported LangGraph and Google ADK history, then synchronize future CopilotKit runs.
 
 
 
@@ -8,7 +8,7 @@
 
 ## What is CopilotKit Intelligence?
 
-CopilotKit Intelligence is CopilotKit's production layer for durable threads, persistence, hosted inspection, and operational visibility. It sits beside your CopilotKit runtime and gives production agentic applications shared infrastructure without changing the frontend SDK, AG-UI protocol, or agent framework you use.
+CopilotKit Intelligence is CopilotKit's production layer for persistent Rich Threads, memory, analytics, automatic learning, and messaging Channels. It sits beside your CopilotKit runtime and gives production agentic applications shared infrastructure without changing the frontend SDK, AG-UI protocol, or agent framework you use.
 
 Start here when you are deciding what the platform gives you and where it should run. The rest of the Intelligence docs are deeper dives into the specific feature or hosting path you choose.
 
@@ -30,6 +30,8 @@ Ready to connect an existing app? Follow the [CopilotKit Intelligence quickstart
 | Capability | What it gives you | Deeper dive |
 |---|---|---|
 | Durable threads and persistence | Resumable conversations that survive reloads, devices, and browser sessions. | [Threads](/angular/agno/guides/threads-memory-attachments-headless) and [Threads & Persistence Architecture](/angular/agno/intelligence/threads-explained) |
+| Existing conversation history | Import supported LangGraph threads or Google ADK sessions as Rich Threads, then synchronize future CopilotKit-mediated runs. | [LangGraph history](/angular/langgraph-python/threads-import) and [Google ADK history](/angular/google-adk/threads-import) |
+| Channels | Run your agent in messaging channels through managed Intelligence connections. Managed Slack is available now; managed Teams is a controlled integration target. | [Slack](/slack) and [Microsoft Teams](/teams) |
 | Memory | Durable facts and preferences that can be recalled across conversations. | [Memories & Recall](/angular/agno/intelligence/memories) |
 | Analytics | See what your agents do and where users get value, from the same interaction data. | [Analytics](https://www.copilotkit.ai/copilotkit-intelligence#analytics-insights) |
 | Automatic learning | Agents improve from real usage. No fine-tuning pipeline required. | [Learning](/angular/agno/learning) and [Automatic skill delivery](/angular/agno/intelligence/learned-skills) |
@@ -42,6 +44,15 @@ Ready to connect an existing app? Follow the [CopilotKit Intelligence quickstart
 Follow the Intelligence quickstart to connect your runtime and confirm threads work.
 
 [Open the Intelligence quickstart](/angular/agno/intelligence/quickstart)
+
+## Already have conversations in LangGraph or Google ADK?
+
+If you are adding a user-facing app to an agent that already has conversation history, you do not need to start with an empty thread list. Import supported history into CopilotKit Intelligence as Rich Threads, then let users open and continue those conversations in your CopilotKit app.
+
+- [Import LangGraph threads](/angular/langgraph-python/threads-import) from LangGraph Server, LangGraph Platform, or LangSmith Deployment thread and run APIs. Standalone LangChain message stores, LangSmith traces, and embedded checkpointers without those APIs are not supported import sources.
+- [Import Google ADK sessions](/angular/google-adk/threads-import) from database session stores or Vertex/Agent Engine session history. In-memory sessions cannot be exported.
+
+Historical import is a one-time operation, not a continuous mirror of every change in your source store. Future CopilotKit-mediated runs synchronize with Intelligence and continue through your framework's native persistence path when it remains configured with durable storage. Follow your framework's guide for agent mapping and thread continuity.
 
 ## Hosting options
 
@@ -74,6 +85,9 @@ Self-hosted access is available on the Team self-hosted plan or a custom Enterpr
 | Run the platform in your own cluster | [Self-host CopilotKit Intelligence](/angular/agno/intelligence/self-hosting) |
 | Understand the runtime/platform architecture | [CopilotKit Intelligence architecture](/angular/agno/intelligence/intelligence-platform) |
 | Add persistent conversations to an app | [Threads](/angular/agno/guides/threads-memory-attachments-headless) |
+| Let users open existing LangGraph conversations in a CopilotKit app | [Synchronize LangGraph Threads](/angular/langgraph-python/threads-import) |
+| Bring existing ADK session history into a CopilotKit app | [Synchronize ADK Threads](/angular/google-adk/threads-import) |
+| Make an agent available in Slack or Microsoft Teams | [Slack](/slack) and [Microsoft Teams](/teams), including provider availability |
 | Give an agent durable context across conversations | [Memories & Recall](/angular/agno/intelligence/memories) |
 | Turn real usage into reusable agent behavior | [Learning](/angular/agno/learning) and [Automatic skill delivery](/angular/agno/intelligence/learned-skills) |
 | Understand thread replay and realtime sync | [Threads & Persistence Architecture](/angular/agno/intelligence/threads-explained) |
