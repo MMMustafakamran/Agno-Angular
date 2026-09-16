@@ -239,11 +239,9 @@ export const PAGES = definePages([
         endLine: 47,
       },
     ],
-    // Both surfaces work: the runtime now passes `intelligence`, so the
-    // hand-built list and the drawer resolve against the platform. What this
-    // records is that the guide never says that is required — it teaches
-    // `injectThreads` and `CopilotThreadsDrawer` as drop-ins, and never
-    // mentions CopilotKitIntelligence or a project API key.
+    // Both surfaces work: frontend/server.ts passes `intelligence`, so the
+    // hand-built list and the drawer resolve real threads. The guide never
+    // says that is required; that finding is reported, not typed on screen.
     prompt: 'In one line, what are threads for?',
     waitAfterPromptMs: 4000,
   },

@@ -6,8 +6,8 @@
  * muxed the same track onto the already-muxed file. Muxing happens once, where
  * the video is produced; the workflow just installs ffmpeg and lets this run.
  *
- * Five pages carry a voiceover: Frontend Tools & Generative UI, Voice &
- * multimodal, Shared State, Threads and A2UI. The tracks live in
+ * Two pages carry a voiceover: Frontend Tools & Generative UI and Voice &
+ * multimodal. The tracks live in
  * `autorecorder/audio/` and are shared verbatim by the Angular repos — the
  * narration is about the CopilotKit concept, not the agent framework behind it,
  * and all of them now run the same handler for these pages, so one recording
@@ -33,7 +33,7 @@ import { AUDIO_DIR, VIDEOS_DIR } from './config.mjs';
  *
  * The mapping is explicit rather than inferred from filenames, so a renamed
  * demo drops its voiceover visibly instead of quietly muxing it onto the wrong
- * clip. All five matches are unique across this repo's `videoName`s.
+ * clip. Both matches are unique across this repo's `videoName`s.
  *
  * @type {{ audioFile: string, videoMatch: string }[]}
  */
@@ -50,10 +50,9 @@ const AUDIO_TRACKS = [
     audioFile: 'angular- voice and attachments.m4a',
     videoMatch: 'VoiceMultimodal',
   },
-  {
-    audioFile: 'thread-angular.m4a',
-    videoMatch: 'Threads',
-  },
+  // No Threads track. thread-angular.m4a narrates the locked-threads take; the
+  // page now films working threads, so that voiceover no longer lines up and
+  // the clip stays silent.
 ];
 
 function hasFfmpeg() {
