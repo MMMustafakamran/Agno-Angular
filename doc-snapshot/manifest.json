@@ -1,31 +1,31 @@
 {
   "schema": 1,
   "docsRoot": "https://docs.copilotkit.ai/angular/agno",
-  "syncedAt": "2026-09-16T06:11:12.341Z",
+  "syncedAt": "2026-09-17T07:24:55.661Z",
   "pages": {
     "/angular/agno": {
       "file": "angular__agno.md",
-      "sha256": "506e08e9992bd02d0a66a54ff95b8f773007977176bc4f096dd38e810418333d",
-      "bytes": 7131,
-      "lines": 185,
+      "sha256": "571db1cf532866066f1574282fc576149de33a515c4203fb03105d8b98e49d93",
+      "bytes": 7445,
+      "lines": 191,
       "routes": [
         "/"
       ],
       "status": "ok",
       "age": 0,
-      "date": "Fri, 04 Sep 2026 07:57:42 GMT"
+      "date": "Thu, 17 Sep 2026 07:24:55 GMT"
     },
     "/angular/agno/quickstart": {
       "file": "angular__agno__quickstart.md",
-      "sha256": "506e08e9992bd02d0a66a54ff95b8f773007977176bc4f096dd38e810418333d",
-      "bytes": 7131,
-      "lines": 185,
+      "sha256": "571db1cf532866066f1574282fc576149de33a515c4203fb03105d8b98e49d93",
+      "bytes": 7445,
+      "lines": 191,
       "routes": [
         "/quickstart"
       ],
       "status": "ok",
       "age": 0,
-      "date": "Fri, 04 Sep 2026 07:57:42 GMT"
+      "date": "Thu, 17 Sep 2026 07:24:55 GMT"
     },
     "/angular/agno/using-these-docs": {
       "file": "angular__agno__using-these-docs.md",
@@ -206,13 +206,13 @@
     },
     "/angular/agno/intelligence/connect-your-runtime": {
       "file": "angular__agno__intelligence__connect-your-runtime.md",
-      "sha256": "2733d10ed7896569c30f6d6023bda485b29b4de2b538900c5992788c215820a2",
-      "bytes": 7499,
-      "lines": 181,
+      "sha256": "56b22eb35dfbfd8c81f9107680ac191799bae65d3c768eb9f8f4980f93e48bb7",
+      "bytes": 7756,
+      "lines": 189,
       "routes": [],
       "status": "ok",
       "age": 0,
-      "date": "Wed, 16 Sep 2026 06:11:12 GMT"
+      "date": "Thu, 17 Sep 2026 07:24:55 GMT"
     },
     "/angular/agno/intelligence/self-hosting": {
       "file": "angular__agno__intelligence__self-hosting.md",
@@ -266,13 +266,13 @@
     },
     "/angular/agno/telemetry": {
       "file": "angular__agno__telemetry.md",
-      "sha256": "c744bc6226c62419a9dc6bd837b640fd386b9a6b04743b31c3f7a9e36d53c325",
-      "bytes": 3778,
-      "lines": 75,
+      "sha256": "74d5a6f9e787f88c4dc19d5fc2fe7da896de6b477e56befb7d1dd0323a7eaaf9",
+      "bytes": 3326,
+      "lines": 66,
       "routes": [],
       "status": "ok",
       "age": 0,
-      "date": "Tue, 15 Sep 2026 09:10:03 GMT"
+      "date": "Thu, 17 Sep 2026 07:24:55 GMT"
     },
     "/angular/agno/agentic-protocols": {
       "file": "angular__agno__agentic-protocols.md",
