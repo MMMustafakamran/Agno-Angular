@@ -310,6 +310,23 @@ Verified 2026-08-12 against a live stack (real OpenAI key, no license key).
 | `/angular/agno/guides/threads-…-headless` | `/headless` | ✅ Working | Shares the `default` conversation with the other demos. |
 | `/angular/agno/inspector` | `/inspector` | ✅ Working | Verified live: element mounts, panel opens, System Health *Healthy*, `RUN_FINISHED` in Recent activity after a real run. Not reproducible on 0.3.1 — Known issues #12; launcher position caveat #15. |
 | `/angular/agno/cli` | — | 🚧 Not started | No route. The new `verify` section is exercised through `npm run verify` instead; findings in Known issues #12. |
+| `/angular/agno/intelligence/quickstart` | — | 📖 Reference | Already implemented by `frontend/server.ts` (`CopilotKitIntelligence` + `identifyUser`, commit `6c5eb2a`). Snippet titled as a Next.js route file — Known issues #24. |
+| `/angular/agno/intelligence/memories` | `/memory` | ⚠️ Partial | The page's Angular path is `injectMemories()`, which `/memory` already mounts. Premium; recording stopped (`756ec4b`). |
+| `/angular/agno/intelligence/learned-skills` | — | ❌ Broken | No Agno adapter, and every Python package it names is 404 on PyPI — Known issues #26. |
+| `/angular/agno/learning` | — | ⚠️ Partial | `getLearningContainerId` typechecks on runtime 1.72.0; the snippet's `agents` and `identifyUser` are undefined — #27. Needs a dashboard-created container. |
+| `/angular/agno/backend/copilot-runtime` | — | 📖 Reference | `server.ts` already follows it (`a2ui: {}`, `intelligence`, `identifyUser`). |
+| `/angular/agno/backend/agent-runner` | — | 📖 Reference | All five TS snippets compile verbatim on 1.72.0; `runner` + `intelligence` is a type error and throws the quoted message, as documented. `server.ts` sets no runner. |
+| `/angular/agno/backend/runtime-endpoints` | — | ⚠️ Partial | `/info` and `inspector-metadata` (200, `no-store, private`, V1 body) probed and match. `/run` on this Intelligence runtime returns JSON, not the SSE the table promises — #25. |
+| `/angular/agno/backend/ag-ui` | — | 📖 Reference | Tracked; no code to run. |
+| `/angular/agno/backend/custom-agent` | — | 📖 Reference | Tracked. Links to a dead page — #23. |
+| `/angular/agno/backend/self-managed-agents` | — | 📖 Reference | Tracked. |
+| `/angular/agno/agentic-protocols/ag-ui` | — | 📖 Reference | Concept page, no code. |
+| `/angular/agno/runtime-server-adapter` | — | 📖 Reference | `server.ts` is its "Node.js HTTP" shape (`createCopilotNodeListener`). |
+| `/angular/agno/deploy/agentcore` | — | 📖 Reference | AWS deployment; not testable locally. Links to a dead page — #23. |
+| `/angular/agno/troubleshooting/debug-mode` | — | ⚠️ Partial | `debug` defaults table matches 1.72.0 exactly. On this Intelligence runtime `debug: true` logged only `Agent run started` — #25. |
+| `/angular/agno/troubleshooting/event-inspector` | — | ✅ Working | Every claim probed and true: root path 404s with `{"error":"Not found"}`, basePath answers `: connected`, and the stream stays empty on an Intelligence run, as its warning says. |
+| `/angular/agno/vs-code-extension` | — | 📖 Reference | Editor extension; tracked. |
+| `/angular/agno/contributing/code-contributions/package-linking` | — | 📖 Reference | Contributor setup. |
 
 **Legend:** ✅ Working · ⚠️ Partial (blocked by something outside this repo) · 📖 Reference · ❌ Broken · 🚧 Not started
 
@@ -659,6 +676,91 @@ prose drift on top.
 
 Retargeted in `frontend/scripts/sync-docs.ts`, `doc-snapshot/manifest.json`, and
 the six `doc-snapshot/pages/angular__agno__intelligence__*.md` filenames.
+
+**22. Seventeen live pages are missing from the section's sitemap**
+
+`sitemap.xml` lists 4 URLs under `/angular/agno`. Twenty-five pages this repo
+tracks are live (every one hashes clean) but absent from it, and 17 further live
+pages were reachable **only** by following links from tracked pages. The drift
+gate's link scan (`ci/lib/linked-pages.mjs`, added in `3f19fe2`) found 13 on
+2026-09-18; tracking those surfaced 4 more (`backend/ag-ui`,
+`backend/custom-agent`, `backend/self-managed-agents`, `vs-code-extension`).
+The 13 alone held the nightly gate shut all day (`STATE: drift`,
+`should_record=false`) while every tracked page matched.
+
+All 17 are now in `frontend/scripts/sync-docs.ts` and `doc-snapshot/`
+(46 pages); the gate exits 0.
+
+**23. Two in-section links 404**
+
+- [AWS AgentCore](https://docs.copilotkit.ai/angular/agno/deploy/agentcore)
+  links its "full-stack example" to `/angular/agno/agentcore/full-stack-example`.
+- [Custom agent](https://docs.copilotkit.ai/angular/agno/backend/custom-agent)
+  links "Advanced Configuration" to `/angular/agno/advanced-configuration`.
+
+Both markdown endpoints return 404, per the drift checker's dead-link scan.
+
+**24. Angular pages title their runtime code as a Next.js route file**
+
+Twenty snippets across eight Angular pages carry
+`title="app/api/copilotkit/[[...slug]]/route.ts"` (or `.../route.ts`):
+`backend/copilot-runtime` (5), `copilot-runtime` (4), `backend/runtime-endpoints` (3),
+`backend/agent-runner` (3), `deploy/agentcore` (2), `troubleshooting/debug-mode`,
+`intelligence/quickstart`, `intelligence/connect-your-runtime`. An Angular app has
+no such file — the Angular quickstart runs the runtime as its own Node server
+(`frontend/server.ts` here). `runtime-server-adapter`'s two are excluded: they sit
+in its own Next.js section, where they belong. A reader has to infer that each
+snippet goes into the Node server instead.
+
+**25. On an Intelligence runtime, `/run` is not an SSE stream — two pages assume it is**
+
+Probed on `@copilotkit/runtime` **1.72.0** with this repo's `server.ts`
+(`/info` reports `"mode": "intelligence"`). `POST /api/copilotkit/agent/default/run`
+returns a JSON body, not SSE:
+
+```json
+{"threadId":"…","runId":"…","joinToken":"…",
+ "realtime":{"clientUrl":"wss://realtime.intelligence.copilotkit.ai/client","topic":"thread:…"}}
+```
+
+- [Runtime HTTP endpoints](https://docs.copilotkit.ai/angular/agno/backend/runtime-endpoints)
+  describes that route as "the response is an SSE stream of AG-UI events" and
+  never mentions the join-token response.
+- [Debug Mode](https://docs.copilotkit.ai/angular/agno/troubleshooting/debug-mode)
+  never mentions Intelligence. Its sample log is an SSE lifecycle
+  (`SSE stream opened` → `Event emitted` → `SSE stream completed`). With its
+  `debug: true` added, this runtime logged one line for a run: `Agent run started`.
+  Not verified: whether per-event lines appear once a browser joins the realtime
+  channel (a curl caller cannot).
+- Only [AG-UI Event Inspector](https://docs.copilotkit.ai/angular/agno/troubleshooting/event-inspector)
+  warns about this, and its warning is accurate: `/cpk-debug-events` answered
+  `: connected` and carried nothing across the run.
+
+Also seen: the thread id must be a UUID. A non-UUID `threadId` fails with
+`{"error":"Failed to initialize thread"}` after Intelligence returns
+`400 VALIDATION_ERROR`; no page states the constraint.
+
+**26. Learned skill delivery has no Agno path, and its Python packages do not exist**
+
+[Automatic learned skill delivery](https://docs.copilotkit.ai/angular/agno/intelligence/learned-skills)
+is published under `/angular/agno`, but its adapter table lists LangGraph
+Python/TS, Mastra, Google ADK, and Microsoft Agent Framework — no Agno row, and
+"agno" appears only in link URLs. It says "Python uses
+`copilotkit-intelligence-runtime`"; that and both Python adapters
+(`copilotkit-intelligence-langgraph`, `copilotkit-intelligence-adk`) return
+**404** on PyPI as of 2026-09-18. The TypeScript adapters are published
+(`@copilotkit/intelligence-langgraph` / `-mastra` 1.71.2), and the .NET one only
+as `0.1.0-rc.1`. The page gives no install commands. This repo's backend is
+Python Agno, so nothing on the page can be followed here.
+
+**27. The Learning snippet uses two identifiers it never defines**
+
+[Learning](https://docs.copilotkit.ai/angular/agno/learning)'s runtime snippet
+passes `agents` and `identifyUser` as shorthand; compiled verbatim, `tsc` fails
+with `TS18004` for both. The `getLearningContainerId` option itself typechecks
+on 1.72.0. Its example routes on `agentId === "expense-agent"`, which matches
+no agent this repo registers, and a container must first be created in the
+Intelligence dashboard — so no Thread here is assigned.
 
 ---
 
