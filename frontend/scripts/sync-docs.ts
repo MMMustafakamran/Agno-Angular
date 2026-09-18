@@ -49,7 +49,6 @@ const DOC_PAGES = [
   { docPath: '/angular/agno/deploy/agentcore', routes: [] },
   { docPath: '/angular/agno/intelligence/learned-skills', routes: [] },
   { docPath: '/angular/agno/intelligence/memories', routes: ['/memory'] },
-  { docPath: '/angular/agno/intelligence/quickstart', routes: [] },
   { docPath: '/angular/agno/learning', routes: [] },
   { docPath: '/angular/agno/runtime-server-adapter', routes: [] },
   { docPath: '/angular/agno/troubleshooting/debug-mode', routes: [] },

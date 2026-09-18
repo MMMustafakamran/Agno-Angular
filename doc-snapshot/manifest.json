@@ -396,16 +396,6 @@
       "age": 0,
       "date": "Fri, 18 Sep 2026 10:25:00 GMT"
     },
-    "/angular/agno/intelligence/quickstart": {
-      "file": "angular__agno__intelligence__quickstart.md",
-      "sha256": "fe9057c021e636d20419f7ec044746e45e1a0a6280e961a5c3347c2af621887a",
-      "bytes": 5999,
-      "lines": 158,
-      "routes": [],
-      "status": "ok",
-      "age": 0,
-      "date": "Fri, 18 Sep 2026 10:25:00 GMT"
-    },
     "/angular/agno/learning": {
       "file": "angular__agno__learning.md",
       "sha256": "573995ebb608ab79b5439e71367d29d33722018a71d7f36069f5e031d04f8bb5",
@@ -640,7 +630,8 @@
       "https://docs.copilotkit.ai/reference/angular/functions/registerRenderToolCall",
       "https://docs.copilotkit.ai/reference/angular/production-lifecycle",
       "https://docs.copilotkit.ai/reference/angular/public-api",
-      "https://docs.copilotkit.ai/reference/angular/services/CopilotKit"
+      "https://docs.copilotkit.ai/reference/angular/services/CopilotKit",
+      "https://docs.copilotkit.ai/angular/agno/intelligence/quickstart"
     ]
   },
   "coverage": {

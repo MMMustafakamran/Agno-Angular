@@ -302,7 +302,7 @@ Verified 2026-08-12 against a live stack (real OpenAI key, no license key).
 | `/angular/agno/guides/frontend-tools-generative-ui` | `/frontend-tools-generative-ui` | ⚠️ Partial | `registerRenderToolCall` verified over the wire: `getWeather` called with `{"city":"Tokyo"}`. The guide’s new first section, `registerComponent`, is mounted and runs on `^0.5.1`, and its published snippet is wrong four ways — Known issues #19. `registerFrontendTool` samples shown, not mounted — see Known issues #4. |
 | `/angular/agno/guides/a2ui` | `/a2ui` | ⚠️ Partial | Inert without a frontend catalog — that, not the runtime middleware, is the switch. See Known issues #2. |
 | `/angular/agno/guides/voice-multimodal` | `/voice-multimodal` | ⚠️ Partial | Attachments work. Transcription unavailable by design — `audioFileTranscriptionEnabled: false`. |
-| `/angular/agno/guides/human-in-the-loop` | `/human-in-the-loop` | ✅ Working | Verified: `requestApproval` emitted with **no** tool result, run pauses awaiting the browser. Interrupt half idle — agent emits none. |
+| `/angular/agno/guides/human-in-the-loop` | `/human-in-the-loop` | ⚠️ Partial | Works when the model chooses to ask: `requestApproval` emitted with **no** tool result, run pauses awaiting the browser. The model often answers without asking — Known issues #28. Interrupt half idle — agent emits none. |
 | `/angular/agno/guides/shared-state` | `/shared-state` | ✅ Working | Round-trip verified across two written values, with a harness-only diagnostics strip logging every `store().state()` transition. Agent state starts `{}` and loses `notes` on first write — Known issues #16. |
 | `/angular/agno/guides/threads-…-headless` | `/threads` | ⚠️ Partial | Premium. `/info` reports `threadEndpoints.mutations: false`. |
 | `/angular/agno/guides/threads-…-headless` | `/memory` | ⚠️ Partial | Premium; runtime provides no memory routes, so the fallback renders. |
@@ -310,7 +310,6 @@ Verified 2026-08-12 against a live stack (real OpenAI key, no license key).
 | `/angular/agno/guides/threads-…-headless` | `/headless` | ✅ Working | Shares the `default` conversation with the other demos. |
 | `/angular/agno/inspector` | `/inspector` | ✅ Working | Verified live: element mounts, panel opens, System Health *Healthy*, `RUN_FINISHED` in Recent activity after a real run. Not reproducible on 0.3.1 — Known issues #12; launcher position caveat #15. |
 | `/angular/agno/cli` | — | 🚧 Not started | No route. The new `verify` section is exercised through `npm run verify` instead; findings in Known issues #12. |
-| `/angular/agno/intelligence/quickstart` | — | 📖 Reference | Already implemented by `frontend/server.ts` (`CopilotKitIntelligence` + `identifyUser`, commit `6c5eb2a`). Snippet titled as a Next.js route file — Known issues #24. |
 | `/angular/agno/intelligence/memories` | `/memory` | ⚠️ Partial | The page's Angular path is `injectMemories()`, which `/memory` already mounts. Premium; recording stopped (`756ec4b`). |
 | `/angular/agno/intelligence/learned-skills` | — | ❌ Broken | No Agno adapter, and every Python package it names is 404 on PyPI — Known issues #26. |
 | `/angular/agno/learning` | — | ⚠️ Partial | `getLearningContainerId` typechecks on runtime 1.72.0; the snippet's `agents` and `identifyUser` are undefined — #27. Needs a dashboard-created container. |
@@ -688,8 +687,11 @@ gate's link scan (`ci/lib/linked-pages.mjs`, added in `3f19fe2`) found 13 on
 The 13 alone held the nightly gate shut all day (`STATE: drift`,
 `should_record=false`) while every tracked page matched.
 
-All 17 are now in `frontend/scripts/sync-docs.ts` and `doc-snapshot/`
-(46 pages); the gate exits 0.
+Sixteen of them are now in `frontend/scripts/sync-docs.ts` and `doc-snapshot/`
+(45 pages); the gate exits 0. The seventeenth, `intelligence/quickstart`, is
+deliberately not tracked — dropped fleet-wide as in the React repos (`108c1ed`),
+its URL listed in `sitemap.knownUnmapped` so the gate does not report it as new.
+`server.ts` still wires `CopilotKitIntelligence` per `connect-your-runtime`.
 
 **23. Two in-section links 404**
 
@@ -702,11 +704,11 @@ Both markdown endpoints return 404, per the drift checker's dead-link scan.
 
 **24. Angular pages title their runtime code as a Next.js route file**
 
-Twenty snippets across eight Angular pages carry
+Nineteen snippets across seven tracked Angular pages carry
 `title="app/api/copilotkit/[[...slug]]/route.ts"` (or `.../route.ts`):
 `backend/copilot-runtime` (5), `copilot-runtime` (4), `backend/runtime-endpoints` (3),
 `backend/agent-runner` (3), `deploy/agentcore` (2), `troubleshooting/debug-mode`,
-`intelligence/quickstart`, `intelligence/connect-your-runtime`. An Angular app has
+`intelligence/connect-your-runtime` (the untracked `intelligence/quickstart` has one more). An Angular app has
 no such file — the Angular quickstart runs the runtime as its own Node server
 (`frontend/server.ts` here). `runtime-server-adapter`'s two are excluded: they sit
 in its own Next.js section, where they belong. A reader has to infer that each
@@ -761,6 +763,33 @@ with `TS18004` for both. The `getLearningContainerId` option itself typechecks
 on 1.72.0. Its example routes on `agentId === "expense-agent"`, which matches
 no agent this repo registers, and a container must first be created in the
 Intelligence dashboard — so no Thread here is assigned.
+
+**28. Whether the approval card appears is the model's call, and the guide gives no way to make it reliable**
+
+[Human-in-the-loop and interrupts](https://docs.copilotkit.ai/angular/agno/guides/human-in-the-loop)
+frames the tool path as the one to use "when the model should decide whether to
+ask", then registers `requestApproval` with only a one-line description ("Ask
+the user before a consequential action"). It says nothing about prompting,
+instructions, or tool choice — nothing that makes the model ask.
+
+In practice it often does not. The recorder sends "Please delete my account.
+Check with me before you actually do it." — an explicit request to be asked —
+and `backend/main.py` additionally instructs the agent to call `requestApproval`
+for consequential actions (not in the guide). On `gpt-5.4-mini`, runs on
+2026-09-18:
+
+| Repo · attempt | Card shown? |
+|---|---|
+| Agno-angular · 1 | ❌ agent answered without calling `requestApproval` |
+| Agno-angular · 2 | ✅ |
+| MsPy-angular · 2 | ❌ same |
+| MsPy-angular · 1, DeepAgentspy-angular · 1 | ✅ |
+
+A reader following the guide gets a feature that failed 2 of 5 takes today,
+with nothing in the guide to diagnose it by. Deliberately left as-is here:
+forcing the call (`tool_choice`, a stronger prompt) would turn a coin flip into
+a guaranteed green clip and hide this. A take where the card never appears is
+kept as evidence, not retried until it passes.
 
 ---
 
