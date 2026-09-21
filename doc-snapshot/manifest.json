@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "docsRoot": "https://docs.copilotkit.ai/angular/agno",
-  "syncedAt": "2026-09-21T07:26:34.470Z",
+  "syncedAt": "2026-09-21T09:03:32.252Z",
   "pages": {
     "/angular/agno": {
       "file": "angular__agno.md",
@@ -348,13 +348,13 @@
     },
     "/angular/agno/backend/runtime-endpoints": {
       "file": "angular__agno__backend__runtime-endpoints.md",
-      "sha256": "488c2cee289def2615ddebd4fbe2ea5955105629c7f682e6e655df9fde48c881",
-      "bytes": 23673,
+      "sha256": "a219e85438464591818ce6d526da7f47e0d05f31dd69241f72277a205dd89e0b",
+      "bytes": 23768,
       "lines": 574,
       "routes": [],
       "status": "ok",
       "age": 0,
-      "date": "Mon, 21 Sep 2026 07:26:34 GMT"
+      "date": "Mon, 21 Sep 2026 09:03:32 GMT"
     },
     "/angular/agno/contributing/code-contributions/package-linking": {
       "file": "angular__agno__contributing__code-contributions__package-linking.md",

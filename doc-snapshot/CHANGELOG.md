@@ -11,6 +11,19 @@ weeks between changes does not expire anything.
 
 ## 2026-09-21
 
+### 09:03 UTC — 1 page, highest severity low · _npm run drift:sync_
+
+**Low — /angular/agno/backend/runtime-endpoints**
+
+`/angular/agno/backend/runtime-endpoints` · `angular__agno__backend__runtime-endpoints.md`
+
+Prose / text phrasing updated. Hash 488c2cee ➔ a219e854.
+
+````diff
+- | `POST /api/copilotkit/agent/:agentId/stop/:threadId` | Stop an in-progress run on a given thread.                                                                                                                                                                   |
++ | `POST /api/copilotkit/agent/:agentId/stop/:threadId` | Stop the in-progress run on a given thread. An optional JSON body `{ "runId": "..." }` stops only that run. A body that is not valid JSON, or carries any other key, is rejected with 400 and stops nothing.                                                                                                |
+````
+
 ### 07:26 UTC — 10 pages, highest severity high · _npm run drift:sync_
 
 **Low — /angular/agno/intelligence/overview**
@@ -179,6 +192,8 @@ Prose / text phrasing updated. Hash bd8791e6 ➔ b0c5b502.
 
 ---
 
+---
+
 ## 2026-09-18
 
 ### 07:46 UTC — 15 pages, highest severity high · _npm run drift:sync_
@@ -270,6 +285,8 @@ Listed upstream, tracked nowhere in this repo. Not snapshotted by this run.
 **New — https://docs.copilotkit.ai/angular/agno/troubleshooting/event-inspector**
 
 Listed upstream, tracked nowhere in this repo. Not snapshotted by this run.
+
+---
 
 ---
 

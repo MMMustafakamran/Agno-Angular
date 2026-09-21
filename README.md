@@ -1083,6 +1083,33 @@ identifier the page never defines, so compiled verbatim it is `TS18004`, the
 same defect as #27 and #31. Nothing was added to `server.ts` for it: this
 harness must not enable a public event feed, and the page does not ask it to.
 
+**36. The stop endpoint's new `runId` body does not exist in the declared runtime**
+
+[Runtime endpoints](https://docs.copilotkit.ai/angular/agno/backend/runtime-endpoints)
+changed its `POST /api/copilotkit/agent/:agentId/stop/:threadId` row on
+2026-09-21, a few hours after the same page's earlier change in this sync. It
+now reads:
+
+> Stop the in-progress run on a given thread. An optional JSON body
+> `{ "runId": "..." }` stops only that run. A body that is not valid JSON, or
+> carries any other key, is rejected with 400 and stops nothing.
+
+None of that holds on the declared `@copilotkit/runtime ^1.70.1` (installed
+1.70.1). `dist/v2/runtime/handlers/handle-stop.mjs` destructures
+`{ runtime, request, agentId, threadId }` and never reads the body: there is no
+`JSON.parse`, no `runId`, and no 400 branch anywhere in the handler. It calls
+`runtime.runner.stop({ threadId })` and returns 404 for an unknown agent, 200
+with `stopped: false` when no run is active, 200 with `stopped: true` otherwise,
+or 500 on a throw.
+
+So a caller following the new row gets the opposite of the documented
+behaviour twice over: a `runId` naming one of several runs is ignored and the
+thread's run is stopped anyway, and a malformed or extra-key body is accepted
+rather than rejected. The page states no version floor, and the severity
+classifier called this LOW because the change is prose in a table cell rather
+than a code fence. Verified by reading the installed bundle; not exercised over
+the wire, since this page has no route here.
+
 ---
 
 ## 11. Troubleshooting
