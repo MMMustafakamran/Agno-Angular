@@ -308,26 +308,40 @@ Verified 2026-08-12 against a live stack (real OpenAI key, no license key).
 | `/angular/agno/guides/threads-…-headless` | `/memory` | ⚠️ Partial | Premium; runtime provides no memory routes, so the fallback renders. |
 | `/angular/agno/guides/threads-…-headless` | `/attachments` | ✅ Working | Picker, drag-and-drop, paste. |
 | `/angular/agno/guides/threads-…-headless` | `/headless` | ✅ Working | Shares the `default` conversation with the other demos. |
-| `/angular/agno/inspector` | `/inspector` | ✅ Working | Verified live: element mounts, panel opens, System Health *Healthy*, `RUN_FINISHED` in Recent activity after a real run. Not reproducible on 0.3.1 — Known issues #12; launcher position caveat #15. |
+| `/angular/agno/inspector` | `/inspector` | ✅ Working | Verified live: element mounts, panel opens, System Health *Healthy*, `RUN_FINISHED` in Recent activity after a real run. Not reproducible on 0.3.1 — Known issues #12; launcher position caveat #15. The manifest carried no `routes` for this page until 2026-09-21, so `check-page-coverage` reported the live `/inspector` route as untracked and the page as unrouted. Both now point at each other. |
 | `/angular/agno/cli` | — | 🚧 Not started | No route. The new `verify` section is exercised through `npm run verify` instead; findings in Known issues #12. |
 | `/angular/agno/intelligence/memories` | `/memory` | ⚠️ Partial | The page's Angular path is `injectMemories()`, which `/memory` already mounts. Premium; recording stopped (`756ec4b`). |
-| `/angular/agno/intelligence/learned-skills` | — | ❌ Broken | No Agno adapter, and every Python package it names is 404 on PyPI — Known issues #26. |
-| `/angular/agno/learning` | — | ⚠️ Partial | `getLearningContainerId` typechecks on runtime 1.72.0; the snippet's `agents` and `identifyUser` are undefined — #27. Needs a dashboard-created container. |
-| `/angular/agno/backend/copilot-runtime` | — | 📖 Reference | `server.ts` already follows it (`a2ui: {}`, `intelligence`, `identifyUser`). |
-| `/angular/agno/backend/agent-runner` | — | 📖 Reference | All five TS snippets compile verbatim on 1.72.0; `runner` + `intelligence` is a type error and throws the quoted message, as documented. `server.ts` sets no runner. |
-| `/angular/agno/backend/runtime-endpoints` | — | ⚠️ Partial | `/info` and `inspector-metadata` (200, `no-store, private`, V1 body) probed and match. `/run` on this Intelligence runtime returns JSON, not the SSE the table promises — #25. |
+| `/angular/agno/intelligence/learned-skills` | — | ❌ Broken | No Agno adapter, and every Python package it names is 404 on PyPI — Known issues #26. The 2026-09-21 sync added a BuiltInAgent row and two BuiltInAgent snippets: `learnedSkills` does not exist on `BuiltInAgent` in the declared `@copilotkit/runtime` 1.70.1, and the factory sample imports `ai` and `@ai-sdk/openai`, which the page never tells you to install (#33, #34). |
+| `/angular/agno/learning` | — | ⚠️ Partial | `getLearningContainerId` typechecks on runtime 1.72.0; the snippet's `agents` and `identifyUser` are undefined — #27. Needs a dashboard-created container. The 2026-09-21 sync added the daily-schedule and skill-delivery steps; its adapter list contradicts the learned-skills table it links to (#34). |
+| `/angular/agno/copilot-runtime` | — | 📖 Reference | Near-duplicate of `backend/copilot-runtime`. Both gained the same "Which name identifies an agent" section on 2026-09-21 (#29), and one more Next.js-titled snippet each (#24). |
+| `/angular/agno/backend/copilot-runtime` | — | 📖 Reference | `server.ts` already follows it (`a2ui: {}`, `intelligence`, `identifyUser`), and registers two agent-map keys (`default`, `support`), which is what the new agent-naming section teaches. Its `CopilotKitAgentDiscoveryError` is not what the Angular surface throws (#29). The new `sseKeepAliveIntervalSeconds` option is absent from the declared runtime (#30). |
+| `/angular/agno/backend/agent-runner` | — | 📖 Reference | All five TS snippets compile verbatim on 1.72.0; `runner` + `intelligence` is a type error and throws the quoted message, as documented. `server.ts` sets no runner, but it does pass `intelligence`, and a `CopilotIntelligenceRuntime` constructs an `IntelligenceAgentRunner` for you (read in 1.70.1's `runtime.mjs`), so the in-memory half of the unauthorized-thread-routes callout added on 2026-09-21 is not this harness. What applies here is its last sentence: `threads/events`, `threads/state` and `agent/stop` read the thread by id alone even on the platform, and `server.ts` guards none of them. Its cross-links point at an Auth section that does not exist (#31), and its 422 claim is reported under a different cause (#32). |
+| `/angular/agno/backend/runtime-endpoints` | — | ⚠️ Partial | `/info` and `inspector-metadata` (200, `no-store, private`, V1 body) probed and match. `/run` on this Intelligence runtime returns JSON, not the SSE the table promises — #25. The new thread-routes table matches `RouteInfo` in 1.70.1 exactly; its `onBeforeHandler` sample uses two identifiers nothing in the section defines (#31, #32). |
 | `/angular/agno/backend/ag-ui` | — | 📖 Reference | Tracked; no code to run. |
-| `/angular/agno/backend/custom-agent` | — | 📖 Reference | Tracked. Links to a dead page — #23. |
+| `/angular/agno/backend/custom-agent` | — | 📖 Reference | Tracked. Links to a dead page — #23. Its factory-context interface was renamed to `BuiltInAgentFactoryContext` with a `learnedSkills` field on 2026-09-21; neither exists in the declared runtime range (#33). |
 | `/angular/agno/backend/self-managed-agents` | — | 📖 Reference | Tracked. |
 | `/angular/agno/agentic-protocols/ag-ui` | — | 📖 Reference | Concept page, no code. |
 | `/angular/agno/runtime-server-adapter` | — | 📖 Reference | `server.ts` is its "Node.js HTTP" shape (`createCopilotNodeListener`). |
 | `/angular/agno/deploy/agentcore` | — | 📖 Reference | AWS deployment; not testable locally. Links to a dead page — #23. |
 | `/angular/agno/troubleshooting/debug-mode` | — | ⚠️ Partial | `debug` defaults table matches 1.72.0 exactly. On this Intelligence runtime `debug: true` logged only `Agent run started` — #25. |
-| `/angular/agno/troubleshooting/event-inspector` | — | ✅ Working | Every claim probed and true: root path 404s with `{"error":"Not found"}`, basePath answers `: connected`, and the stream stays empty on an Intelligence run, as its warning says. |
+| `/angular/agno/troubleshooting/event-inspector` | — | ⚠️ Partial | The claims probed on 2026-09-18 all held: root path 404s with `{"error":"Not found"}`, basePath answers `: connected`, and the stream stays empty on an Intelligence run, as its warning says. The 2026-09-21 rewrite replaced the gate it documents, and the declared runtime implements the old one, so the page's central safety claim is false here (#35). |
+| `/angular/agno/telemetry` | — | 📖 Reference | No route. The 2026-09-21 change is two sentences of prose separating `CPK_INTELLIGENCE_API_KEY` from telemetry identity; consistent with `server.ts`, which uses that key for Intelligence only. |
+| `/angular/agno/intelligence/overview` | — | 📖 Reference | No route. The 2026-09-21 change is one table cell (automatic learning now names BuiltInAgent and framework adapters). Nothing in the harness quotes it. |
 | `/angular/agno/vs-code-extension` | — | 📖 Reference | Editor extension; tracked. |
 | `/angular/agno/contributing/code-contributions/package-linking` | — | 📖 Reference | Contributor setup. |
 
 **Legend:** ✅ Working · ⚠️ Partial (blocked by something outside this repo) · 📖 Reference · ❌ Broken · 🚧 Not started
+
+**On the `[no-route]` lines `npm run drift` prints.** `ci/check-page-coverage.mjs`
+reports every manifest page whose `routes` is empty, and 34 of the 45 tracked
+pages are reference material with no browser surface: runtime and backend
+configuration, deployment, contributor setup, editor tooling, premium platform
+docs. Those are tested by compiling or probing what they publish and writing
+the result here, not by standing up a UI for them, so the empty `routes` is the
+decision rather than an oversight. The list is informational and the drift gate
+still exits 0. A `[no-route]` line is worth acting on only when the page really
+does have an implementation here, which was the case exactly once: `/inspector`
+(see its row above).
 
 ---
 
@@ -704,15 +718,20 @@ Both markdown endpoints return 404, per the drift checker's dead-link scan.
 
 **24. Angular pages title their runtime code as a Next.js route file**
 
-Nineteen snippets across seven tracked Angular pages carry
+Twenty-one snippets across seven tracked Angular pages carry
 `title="app/api/copilotkit/[[...slug]]/route.ts"` (or `.../route.ts`):
-`backend/copilot-runtime` (5), `copilot-runtime` (4), `backend/runtime-endpoints` (3),
+`backend/copilot-runtime` (6), `copilot-runtime` (5), `backend/runtime-endpoints` (3),
 `backend/agent-runner` (3), `deploy/agentcore` (2), `troubleshooting/debug-mode`,
 `intelligence/connect-your-runtime` (the untracked `intelligence/quickstart` has one more). An Angular app has
 no such file — the Angular quickstart runs the runtime as its own Node server
 (`frontend/server.ts` here). `runtime-server-adapter`'s two are excluded: they sit
 in its own Next.js section, where they belong. A reader has to infer that each
 snippet goes into the Node server instead.
+
+The 2026-09-21 sync added one more to each `copilot-runtime` page (19 to 21).
+The section it arrived in does pair that Next.js-titled snippet with a real
+Angular one (`title="src/app/app.component.html"`), so the two halves of one
+example name two different frameworks' files.
 
 **25. On an Intelligence runtime, `/run` is not an SSE stream — two pages assume it is**
 
@@ -755,6 +774,11 @@ Python/TS, Mastra, Google ADK, and Microsoft Agent Framework — no Agno row, an
 as `0.1.0-rc.1`. The page gives no install commands. This repo's backend is
 Python Agno, so nothing on the page can be followed here.
 
+Still true after the 2026-09-21 sync, which added a **BuiltInAgent** row to the
+same table. BuiltInAgent is CopilotKit's own agent, not an adapter for a
+framework backend, so the page's answer for an Agno reader is to stop running
+Agno. See #33 and #34 for what that row costs on the declared versions.
+
 **27. The Learning snippet uses two identifiers it never defines**
 
 [Learning](https://docs.copilotkit.ai/angular/agno/learning)'s runtime snippet
@@ -790,6 +814,274 @@ with nothing in the guide to diagnose it by. Deliberately left as-is here:
 forcing the call (`tool_choice`, a stronger prompt) would turn a coin flip into
 a guaranteed green clip and hide this. A take where the card never appears is
 kept as evidence, not retried until it passes.
+
+### Findings from the 2026-09-21 sync
+
+Ten pages moved upstream. All ten are reference pages with no browser surface
+here, so the findings below are what the sync produced; no route changed.
+
+Every code claim below was checked by compiling the published snippet verbatim
+against the packages in `frontend/node_modules`, in a scratch file outside the
+repo (`tsc --noEmit --strict --module nodenext`, TypeScript 6.0.2). Nothing was
+installed, upgraded or added to the repo to do it. The whole result:
+
+```
+snippets.ts(4,15): error TS2724: '"@copilotkit/runtime/v2"' has no exported member named 'BuiltInAgentFactoryContext'. Did you mean 'AgentFactoryContext'?
+snippets.ts(19,3): error TS2769: No overload matches this call.
+    Object literal may only specify known properties, and 'sseKeepAliveIntervalSeconds' does not exist in type 'CopilotRuntimeOptions'.
+snippets.ts(29,3): error TS2353: Object literal may only specify known properties, and 'learnedSkills' does not exist in type 'BuiltInAgentConfiguration'.
+snippets.ts(44,26): error TS2304: Cannot find name 'resolveUser'.
+snippets.ts(48,21): error TS2304: Cannot find name 'userOwnsThread'.
+snippets.ts(58,33): error TS2304: Cannot find name 'userOwnsThread'.
+ei.ts(2,38): error TS18004: No value exists in scope for the shorthand property 'agents'. Either declare one or provide an initializer.
+```
+
+The agent-naming snippet (`agents: { my_agent: new HttpAgent(...) }`) and
+`debug: true` are the only new code that compiles clean.
+
+Versions pinned for every entry in this block. Declared in
+`frontend/package.json`: `@copilotkit/angular ^0.5.1`,
+`@copilotkit/runtime ^1.70.1`, `@ag-ui/agno ^0.0.5`. Installed in
+`frontend/node_modules`: `@copilotkit/angular` **0.5.1**,
+`@copilotkit/runtime` **1.70.1**, `@copilotkit/core` **1.70.1**,
+`@copilotkit/shared` **1.70.1**, `@ag-ui/agno` **0.0.5**. Resolved by CI on
+2026-09-19 (`ci/resolved-versions.json`): `@copilotkit/angular` **0.5.2**,
+`@copilotkit/runtime` **1.73.0**. Nothing was installed or upgraded to write
+these up: 1.73.0 and 0.5.2 were read with `npm pack` into a scratch directory
+outside the repo.
+
+**29. Both runtime pages now name an error class the Angular surface never throws**
+
+[Copilot Runtime](https://docs.copilotkit.ai/angular/agno/backend/copilot-runtime)
+and its near-duplicate [Copilot Runtime](https://docs.copilotkit.ai/angular/agno/copilot-runtime)
+both gained the section "Which name identifies an agent", word for word. Its
+warning callout says:
+
+> Asking for a name the runtime did not register resolves no agent, and the
+> frontend raises `CopilotKitAgentDiscoveryError`
+
+That class is real but unreachable from here. `@copilotkit/angular` 0.5.1
+throws a plain `Error` from `injectAgentStore`, built from this template in
+`dist/fesm2022/copilotkit-angular.mjs` (read from the bundle, not observed in a
+run):
+
+```
+injectAgentStore: Agent 'x' not found after runtime sync (runtimeUrl=…).
+Known agents: [default, support] Verify your runtime /info and/or
+agents__unsafe_dev_only.
+```
+
+`@copilotkit/core` 1.70.1 throws `new Error("Agent not found: …")`.
+`CopilotKitAgentDiscoveryError` is defined in `@copilotkit/shared` 1.70.1 and
+constructed in exactly one place in the tree, `@copilotkit/runtime`'s v1
+GraphQL `state.resolver`, which the v2 Angular path does not use. 0.5.2 (what
+CI installs) throws the same plain `Error`, so a reader who searches their
+Angular app for the documented class name finds nothing to catch.
+
+The same callout links "Agent discovery failed" to
+`/angular/agno/guides/troubleshooting`, which has no section by that name; the
+closest is "Agent id does not resolve". The React edition of this page links
+the same words to `/agno/troubleshooting/error-reference` instead, so the two
+editions do not agree on where the error is explained.
+
+Not reproduced live: this repo registers `default` and `support` and asks for
+nothing else, and a run needs servers that were not started for this pass.
+
+**30. The new keep-alive option does not exist in the version the page's own quickstart installs**
+
+[Copilot Runtime](https://docs.copilotkit.ai/angular/agno/backend/copilot-runtime)
+gained "Keeping quiet streams alive": the runtime writes a `: keep-alive` SSE
+comment after 15 seconds of silence, tunable with
+`sseKeepAliveIntervalSeconds` (`0` disables it). No version is stated.
+
+`@copilotkit/runtime` 1.70.1, which this repo declares and installs, contains
+neither the option nor the frame. `sseKeepAliveIntervalSeconds` has zero
+occurrences anywhere in its `dist/`, and the snippet `new CopilotRuntime({ agents,
+sseKeepAliveIntervalSeconds: 30 })` fails with `TS2769` / "does not exist in
+type 'CopilotRuntimeOptions'", and its only `keep-alive` strings are the
+HTTP `Connection: keep-alive` response header in three SSE handlers, which is
+a different thing. 1.73.0 adds
+`dist/v2/runtime/handlers/shared/sse-keep-alive.mjs` with
+`KEEP_ALIVE_FRAME = ": keep-alive\n\n"` and
+`DEFAULT_SSE_KEEP_ALIVE_INTERVAL_SECONDS = 15`, and declares
+`sseKeepAliveIntervalSeconds?: number` on both runtime options interfaces. So
+the paragraph is true only from some release between 1.70.1 and 1.73.0 onward,
+and a reader on the version an unpinned install gave this repo gets neither the
+frames nor the option.
+
+`server.ts` does not set it, and the option was not added: setting a field the
+installed types do not have would fail the build, and the page does not ask
+anyone to set it.
+
+**31. Three new links promise a "Thread authorization" section the Auth page does not have**
+
+[Agent runner](https://docs.copilotkit.ai/angular/agno/backend/agent-runner)
+and [Runtime HTTP endpoints](https://docs.copilotkit.ai/angular/agno/backend/runtime-endpoints)
+each gained a warning that thread routes are not authorized for you, and
+between them link three times to `/angular/agno/auth#thread-authorization` for
+"the ownership-table pattern and the `onBeforeHandler` enforcement point" and
+for "the ownership map this example assumes".
+
+[Auth](https://docs.copilotkit.ai/angular/agno/auth) has seven sections and
+none of them is Thread authorization. The word `onBeforeHandler` does not
+appear on it, and threads appear only as two checklist bullets ("Scope thread
+operations to the authenticated user and project"). The page linked to as the
+definition of the pattern does not contain the pattern.
+
+This lands on the new `onBeforeHandler` sample in `runtime-endpoints`, which
+calls `resolveUser(request)` and `userOwnsThread(user.id, …)`. Neither is
+defined in the snippet, on the page, or anywhere in the section, and the
+closing line points at the missing Auth section for them. Compiled verbatim
+that is three `TS2304` errors (`resolveUser` once, `userOwnsThread` twice), the
+same defect class as #27.
+
+The drift checker's dead-link scan resolves page paths only, so a link to a
+live page with a fragment that does not exist passes it. Both dead links it
+does report (#23) are still the only two.
+
+What the sample gets right, checked against `RouteInfo` in 1.70.1: `threadId`
+is present on exactly `agent/stop`, `threads/messages`, `threads/events`,
+`threads/state`, `threads/update` and `threads/archive`, and absent from
+`threads/list`, `threads/clear` and `threads/subscribe`, exactly as the page
+says. `onBeforeHandler` exists with the documented `{ request, route }`
+context and the documented throw-a-`Response` behaviour.
+
+**32. The 422 both pages blame on the runner is reported as a missing Intelligence configuration**
+
+The same two callouts say that a runner keeping no local store, "such as
+`SqliteAgentRunner`", answers the four thread read routes with a `422`.
+
+The status code is right and the explanation a reader will see is not. In both
+1.70.1 and 1.73.0, `v2/runtime/handlers/intelligence/threads.mjs` falls through
+to one body for all four routes:
+
+```
+Missing CopilotKitIntelligence configuration. Thread operations require a
+CopilotKitIntelligence instance to be provided in CopilotRuntime options.
+```
+
+The gate is `supportsLocalThreadEndpoints(runner)`, i.e.
+`runner.ɵsupportsLocalThreadEndpoints === true`, which only
+`InMemoryAgentRunner` sets. So the runner does decide it, as documented, but
+the 422 tells the reader to add Intelligence rather than to change runner, and
+nothing in the response mentions a runner at all. `POST /threads/clear`
+returning 204 unconditionally is accurate (`handleClearThreads` clears only
+when the runner opts in, then returns 204 either way).
+
+Which branch this harness takes: `server.ts` passes `intelligence`, so the
+runtime builds an `IntelligenceAgentRunner` itself and the thread routes go
+down the Intelligence path, not the local-store one. The parts of the two new
+callouts that still apply here are the three routes they say stay unscoped on
+the platform as well (`threads/events`, `threads/state`,
+`agent/:agentId/stop/:threadId`), and `server.ts` adds no hook for them.
+
+Unverified here: `SqliteAgentRunner` itself. It ships in `@copilotkit/sqlite-runner`,
+a package this repo does not install, so only the two runners exported by
+`@copilotkit/runtime/v2` (`InMemoryAgentRunner`, `IntelligenceAgentRunner`)
+were inspected. `AgentCoreRunner`, named in both callouts, is a class the
+reader writes in `deploy/agentcore` (`extends InMemoryAgentRunner`), so it
+inherits the opt-in as claimed.
+
+**33. `BuiltInAgentFactoryContext` and `learnedSkills` are published against a version the pages never name**
+
+[Custom agent](https://docs.copilotkit.ai/angular/agno/backend/custom-agent)
+renamed the factory context and added a field:
+
+```typescript
+interface BuiltInAgentFactoryContext {
+  learnedSkills: BuiltInAgentLearnedSkills; // catalog and read-only AI SDK tools, empty when disabled
+  input: RunAgentInput;        // messages, tools, state, context, threadId, runId, forwardedProps
+  abortController: AbortController;  // for TanStack AI (requires AbortController)
+  abortSignal: AbortSignal;          // preferred for AI SDK, fetch, and custom backends
+}
+```
+
+In `@copilotkit/runtime` 1.70.1 there is no `BuiltInAgentFactoryContext`
+export and no `learnedSkills` field: the type is `AgentFactoryContext`, with
+`input`, `abortController`, `abortSignal` and `interrupt`. 1.73.0 adds
+`type BuiltInAgentFactoryContext = AgentFactoryContext` and the
+`learnedSkills: BuiltInAgentLearnedSkills` field. Neither page states a floor,
+so on the declared range the import
+`import type { BuiltInAgentFactoryContext } from "@copilotkit/runtime/v2"`
+that [learned skills](https://docs.copilotkit.ai/angular/agno/intelligence/learned-skills)
+instructs you to write fails with `TS2724: '"@copilotkit/runtime/v2"' has no
+exported member named 'BuiltInAgentFactoryContext'. Did you mean
+'AgentFactoryContext'?`
+
+The published prose also reads "The factory receives **an**
+`BuiltInAgentFactoryContext`", left as-is here since the snapshot is the
+evidence.
+
+The published interface is also still missing `interrupt`, the fourth field
+both 1.70.1 and 1.73.0 carry on this context and the only way a factory can
+pause a run for human input. The page never mentions it under any name. That
+was true before the rename too; the rename kept it while adding a field.
+
+**34. The BuiltInAgent skill-delivery path and the Learning page that links to it disagree**
+
+[Learned skills](https://docs.copilotkit.ai/angular/agno/intelligence/learned-skills)
+gained a BuiltInAgent adapter row and a BuiltInAgent section with two
+snippets. [Learning](https://docs.copilotkit.ai/angular/agno/learning) gained a
+"Set up automatic skill delivery" step in the same sync, which sends the reader
+to those same examples "for LangGraph Python, LangGraph TypeScript, Mastra,
+Google ADK, or Microsoft Agent Framework". BuiltInAgent, now the first row of
+the table it links to, is not in that list. Agno is in neither (#26).
+
+Three further gaps in the new BuiltInAgent section:
+
+- `learnedSkills` is not a `BuiltInAgent` option in 1.70.1: the classic-mode
+  snippet compiles to `TS2353`, "does not exist in type
+  `BuiltInAgentConfiguration`". It is in 1.73.0. No floor is stated (#33).
+- The factory sample imports `streamText` and `stepCountIs` from `ai` and
+  `openai` from `@ai-sdk/openai`. Neither package is declared in this repo's
+  `frontend/package.json`; both exist only as transitive dependencies of
+  `@copilotkit/runtime`. The page gives no install command for either.
+- Environment names do check out against 1.73.0:
+  `CPK_INTELLIGENCE_API_KEY`, `CPK_INTELLIGENCE_LEARNING_CONTAINER_ID`,
+  `CPK_INTELLIGENCE_SKILLS_REVISION` and the un-prefixed `INTELLIGENCE_API_URL`
+  are all read by the shipped code, and Learning's bash block agrees with
+  learned-skills' own block.
+
+**35. Event Inspector documents a debug-feed gate that the declared runtime inverts**
+
+[AG-UI Event Inspector](https://docs.copilotkit.ai/angular/agno/troubleshooting/event-inspector)
+was rewritten from "disabled when `NODE_ENV=production`" to:
+
+> It is served in exactly two cases: `NODE_ENV` is `development`, or the
+> runtime sets `debug`. Everywhere else it returns 404.
+>
+> An *unset* `NODE_ENV` counts as everywhere else. A plain `node server.js`
+> sets no value, so a self-hosted runtime does not expose the feed by accident.
+
+`@copilotkit/runtime` 1.73.0 implements exactly that
+(`isDebugEventFeedEnabled`: `debug?.enabled` or `NODE_ENV === "development"`).
+The declared and installed 1.70.1 implements the previous gate, in two places:
+
+```js
+// v2/runtime/core/runtime.mjs
+if (process.env.NODE_ENV !== "production") this.debugEventBus = new DebugEventBus();
+// v2/runtime/handlers/handle-debug-events.mjs
+if (process.env.NODE_ENV === "production") return new Response("Not Found", { status: 404 });
+```
+
+So on 1.70.1 both halves of the new text are wrong, and wrong in the unsafe
+direction: an unset `NODE_ENV`, which is exactly how this repo's runtime runs
+(`tsx server.ts`, with no `NODE_ENV` set anywhere in `frontend/package.json`,
+`ci/` or `.github/`), **does** open the feed, which is precisely the accident
+the callout says cannot happen; and `debug: true` does **not** open it on a
+host that sets `NODE_ENV=production`. What comes down the open feed here is a
+separate question, answered by #25: on this Intelligence runtime it stays
+empty. The page states no version floor, so a reader on the
+range this repo declares is told a security property their runtime does not
+have. That is also why the page's status moves from Working to Partial: the
+claims probed on 2026-09-18 were the old ones.
+
+The new snippet is `const runtime = new CopilotRuntime({ agents, debug: true });`.
+`debug: true` is valid (`DebugConfig = boolean | { events?, lifecycle?,
+verbose? }` in `@copilotkit/shared` 1.70.1), but `agents` is shorthand for an
+identifier the page never defines, so compiled verbatim it is `TS18004`, the
+same defect as #27 and #31. Nothing was added to `server.ts` for it: this
+harness must not enable a public event feed, and the page does not ask it to.
 
 ---
 

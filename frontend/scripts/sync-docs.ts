@@ -25,7 +25,7 @@ const DOC_PAGES = [
   { docPath: '/angular/agno/cli', routes: [] },
   { docPath: '/angular/agno/build-with-agents', routes: [] },
   { docPath: '/angular/agno/intelligence/threads-explained', routes: [] },
-  { docPath: '/angular/agno/inspector', routes: [] },
+  { docPath: '/angular/agno/inspector', routes: ['/inspector'] },
   { docPath: '/angular/agno/intelligence/overview', routes: [] },
   { docPath: '/angular/agno/intelligence/managed-intelligence-platform', routes: [] },
   { docPath: '/angular/agno/intelligence/connect-your-runtime', routes: [] },
