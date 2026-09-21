@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "docsRoot": "https://docs.copilotkit.ai/angular/agno",
-  "syncedAt": "2026-09-18T07:46:14.034Z",
+  "syncedAt": "2026-09-21T07:26:34.470Z",
   "pages": {
     "/angular/agno": {
       "file": "angular__agno.md",
@@ -186,13 +186,13 @@
     },
     "/angular/agno/intelligence/overview": {
       "file": "angular__agno__intelligence__overview.md",
-      "sha256": "2bc7c7f1385b0bf06f074244e6ba75685177273cb30e2f72263f9eca80cd7730",
-      "bytes": 8850,
+      "sha256": "b7cae9c5000386f801277c401ffc6c9690bd6256fc90890274b09b84de0aaa8a",
+      "bytes": 8893,
       "lines": 108,
       "routes": [],
       "status": "ok",
       "age": 0,
-      "date": "Wed, 16 Sep 2026 06:11:12 GMT"
+      "date": "Mon, 21 Sep 2026 07:26:34 GMT"
     },
     "/angular/agno/intelligence/managed-intelligence-platform": {
       "file": "angular__agno__intelligence__managed-intelligence-platform.md",
@@ -236,13 +236,13 @@
     },
     "/angular/agno/copilot-runtime": {
       "file": "angular__agno__copilot-runtime.md",
-      "sha256": "5e3190c966c269a6478caa8f525d7824976d04548bd91c44b2200016ef493034",
-      "bytes": 7508,
-      "lines": 197,
+      "sha256": "5249908a06f89b49278f9defcc57241671d3414715ba96499e6ad155ce85a18d",
+      "bytes": 9542,
+      "lines": 247,
       "routes": [],
       "status": "ok",
       "age": 0,
-      "date": "Wed, 16 Sep 2026 06:11:12 GMT"
+      "date": "Mon, 21 Sep 2026 07:26:34 GMT"
     },
     "/angular/agno/ag-ui": {
       "file": "angular__agno__ag-ui.md",
@@ -266,13 +266,13 @@
     },
     "/angular/agno/telemetry": {
       "file": "angular__agno__telemetry.md",
-      "sha256": "74d5a6f9e787f88c4dc19d5fc2fe7da896de6b477e56befb7d1dd0323a7eaaf9",
-      "bytes": 3326,
-      "lines": 66,
+      "sha256": "b668cfa7325a30cd9677d99f085ebdfe20246741f443b3f44ddd1e03cfdb6f3e",
+      "bytes": 3458,
+      "lines": 69,
       "routes": [],
       "status": "ok",
       "age": 0,
-      "date": "Thu, 17 Sep 2026 07:24:55 GMT"
+      "date": "Mon, 21 Sep 2026 07:26:34 GMT"
     },
     "/angular/agno/agentic-protocols": {
       "file": "angular__agno__agentic-protocols.md",
@@ -326,33 +326,33 @@
     },
     "/angular/agno/backend/agent-runner": {
       "file": "angular__agno__backend__agent-runner.md",
-      "sha256": "6f552bcf93005196be3ace0b181473abd138a31fef9c42b43ff7146aa95f9807",
-      "bytes": 12989,
-      "lines": 249,
+      "sha256": "2406f80933a4549449e3ef35299e0a25d2cc57994c177bc4e18e1c3c7a0ebf72",
+      "bytes": 14217,
+      "lines": 270,
       "routes": [],
       "status": "ok",
       "age": 0,
-      "date": "Fri, 18 Sep 2026 10:24:58 GMT"
+      "date": "Mon, 21 Sep 2026 07:26:34 GMT"
     },
     "/angular/agno/backend/copilot-runtime": {
       "file": "angular__agno__backend__copilot-runtime.md",
-      "sha256": "df77cdaebf7ff2c01b2a286f487ed4aa9d32cb906430d7ae884827aa9ef75a8c",
-      "bytes": 15235,
-      "lines": 350,
+      "sha256": "a42a4407d7c710e579d82b4728de655f397f56e47cc3f35f34a292338e8bb3ef",
+      "bytes": 17674,
+      "lines": 404,
       "routes": [],
       "status": "ok",
       "age": 0,
-      "date": "Fri, 18 Sep 2026 10:24:58 GMT"
+      "date": "Mon, 21 Sep 2026 07:26:34 GMT"
     },
     "/angular/agno/backend/runtime-endpoints": {
       "file": "angular__agno__backend__runtime-endpoints.md",
-      "sha256": "3be80bd5a270f45db41f903583bada12ad93b892ff876eeefc7e4e03378e0530",
-      "bytes": 20182,
-      "lines": 500,
+      "sha256": "488c2cee289def2615ddebd4fbe2ea5955105629c7f682e6e655df9fde48c881",
+      "bytes": 23673,
+      "lines": 574,
       "routes": [],
       "status": "ok",
       "age": 0,
-      "date": "Fri, 18 Sep 2026 10:24:58 GMT"
+      "date": "Mon, 21 Sep 2026 07:26:34 GMT"
     },
     "/angular/agno/contributing/code-contributions/package-linking": {
       "file": "angular__agno__contributing__code-contributions__package-linking.md",
@@ -376,13 +376,13 @@
     },
     "/angular/agno/intelligence/learned-skills": {
       "file": "angular__agno__intelligence__learned-skills.md",
-      "sha256": "106a9f9ca7da41a476eb42d37e654a4ee39a7370a6e04060af8437dd8c8ce15f",
-      "bytes": 13615,
-      "lines": 223,
+      "sha256": "d091b61db29160bc2a65620c4243b79e3706196f4fb8b9475cb86e1e5d2aad45",
+      "bytes": 17733,
+      "lines": 287,
       "routes": [],
       "status": "ok",
       "age": 0,
-      "date": "Fri, 18 Sep 2026 10:24:59 GMT"
+      "date": "Mon, 21 Sep 2026 07:26:34 GMT"
     },
     "/angular/agno/intelligence/memories": {
       "file": "angular__agno__intelligence__memories.md",
@@ -398,13 +398,13 @@
     },
     "/angular/agno/learning": {
       "file": "angular__agno__learning.md",
-      "sha256": "573995ebb608ab79b5439e71367d29d33722018a71d7f36069f5e031d04f8bb5",
-      "bytes": 7309,
-      "lines": 151,
+      "sha256": "7a98d8756b520373fff9729d1edb363e090b649e5640354c032615bd15124b33",
+      "bytes": 12665,
+      "lines": 212,
       "routes": [],
       "status": "ok",
       "age": 0,
-      "date": "Fri, 18 Sep 2026 10:25:00 GMT"
+      "date": "Mon, 21 Sep 2026 07:26:34 GMT"
     },
     "/angular/agno/runtime-server-adapter": {
       "file": "angular__agno__runtime-server-adapter.md",
@@ -428,13 +428,13 @@
     },
     "/angular/agno/troubleshooting/event-inspector": {
       "file": "angular__agno__troubleshooting__event-inspector.md",
-      "sha256": "217558a5204618deecc5df8d84c9233ac4921cd424e5cc4e043da4f08c583fd1",
-      "bytes": 5743,
-      "lines": 117,
+      "sha256": "2299868ac77db48f5c609d010994903054a7d5fb0bc11980d02d971fa64ae713",
+      "bytes": 6305,
+      "lines": 125,
       "routes": [],
       "status": "ok",
       "age": 0,
-      "date": "Fri, 18 Sep 2026 10:25:02 GMT"
+      "date": "Mon, 21 Sep 2026 07:26:34 GMT"
     },
     "/angular/agno/backend/ag-ui": {
       "file": "angular__agno__backend__ag-ui.md",
@@ -448,13 +448,13 @@
     },
     "/angular/agno/backend/custom-agent": {
       "file": "angular__agno__backend__custom-agent.md",
-      "sha256": "bd8791e64f217d2cad39e7903cf06514735d2b70bd3fccb0252d8a183a439212",
-      "bytes": 17426,
-      "lines": 555,
+      "sha256": "b0c5b502a3b685e24113191541924a175f55932a2c08228d420ea3c61b674658",
+      "bytes": 17543,
+      "lines": 556,
       "routes": [],
       "status": "ok",
       "age": 0,
-      "date": "Fri, 18 Sep 2026 10:26:32 GMT"
+      "date": "Mon, 21 Sep 2026 07:26:34 GMT"
     },
     "/angular/agno/backend/self-managed-agents": {
       "file": "angular__agno__backend__self-managed-agents.md",

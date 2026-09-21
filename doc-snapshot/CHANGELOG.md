@@ -9,6 +9,176 @@ Holds the 3 most recent dated entries. When a change lands on a fourth
 date, the oldest entry is dropped. Entries are counted, not aged, so a gap of
 weeks between changes does not expire anything.
 
+## 2026-09-21
+
+### 07:26 UTC — 10 pages, highest severity high · _npm run drift:sync_
+
+**Low — /angular/agno/intelligence/overview**
+
+`/angular/agno/intelligence/overview` · `angular__agno__intelligence__overview.md`
+
+Prose / text phrasing updated. Hash 2bc7c7f1 ➔ b7cae9c5.
+
+````diff
+- | Automatic learning | Agents improve from real usage. No fine-tuning pipeline required. | [Learning](/angular/agno/learning) and [Automatic skill delivery](/angular/agno/intelligence/learned-skills) |
++ | Automatic learning | Agents improve from real usage. BuiltInAgent and framework adapters can load published skills automatically. | [Learning](/angular/agno/learning) and [Automatic skill delivery](/angular/agno/intelligence/learned-skills) |
+````
+
+**High — /angular/agno/copilot-runtime**
+
+`/angular/agno/copilot-runtime` · `angular__agno__copilot-runtime.md`
+
+Code fence count changed. Hash 5e3190c9 ➔ 5249908a.
+
+````diff
+- The Copilot Runtime is the backend layer that connects your frontend application to your AI agents. It's set up during the [quickstart](/angular/agno/quickstart) and is the recommended way to use CopilotKit.
+- ## Setting Up the Runtime
+- The runtime is a lightweight server endpoint that you add to your backend:
+- ```npm
++ The Copilot Runtime is the backend layer that connects your frontend application to your AI agents. It's set up during the [quickstart](/angular/agno/quickstart) and is the recommended way to use CopilotKit.
++ ## Setting Up the Runtime
++ The runtime is a lightweight server endpoint that you add to your backend:
++ ```npm
+  … region truncated
+````
+
+**Low — /angular/agno/telemetry**
+
+`/angular/agno/telemetry` · `angular__agno__telemetry.md`
+
+Prose / text phrasing updated. Hash 74d5a6f9 ➔ b668cfa7.
+
+````diff
++ Managed Intelligence starters use `CPK_INTELLIGENCE_API_KEY` for platform access.
++ The project API key is not a telemetry identity.
+````
+
+**Low — /angular/agno/backend/agent-runner**
+
+`/angular/agno/backend/agent-runner` · `angular__agno__backend__agent-runner.md`
+
+Prose / text phrasing updated. Hash 6f552bcf ➔ 2406f809.
+
+````diff
++ <Callout type="warn" title="The in-memory runner records no thread owner">
++ Its store is keyed by `threadId` alone, so the runtime's
++ [thread routes](/angular/agno/backend/runtime-endpoints#thread-routes) cannot tell one
++ caller's threads from another's: `GET /threads/:threadId/messages` returns the
++ history for any id it is given, `GET /threads` lists every thread in the
++ process, and `POST /threads/clear` wipes all of them.
++ That is fine for local development and for a deployment serving one person. If
++ more than one person uses it, authorize those routes yourself before you ship.
+  … region truncated
+````
+
+**High — /angular/agno/backend/copilot-runtime**
+
+`/angular/agno/backend/copilot-runtime` · `angular__agno__backend__copilot-runtime.md`
+
+Code fence count changed. Hash df77cdae ➔ a42a4407.
+
+````diff
+- The Copilot Runtime is the backend layer that connects your frontend application to your AI agents. It's set up during the [quickstart](/angular/agno/quickstart) and is the recommended way to use CopilotKit.
+- ## Setting up the runtime
+- The runtime is a lightweight server endpoint that you add to your backend. Here's a minimal example using Next.js:
+- ```ts title="app/api/copilotkit/[[...slug]]/route.ts" doctest="component"
++ The Copilot Runtime is the backend layer that connects your frontend application to your AI agents. It's set up during the [quickstart](/angular/agno/quickstart) and is the recommended way to use CopilotKit.
++ ## Setting up the runtime
++ The runtime is a lightweight server endpoint that you add to your backend. Here's a minimal example using Next.js:
++ ```ts title="app/api/copilotkit/[[...slug]]/route.ts" doctest="component"
+  … region truncated
+````
+
+**High — /angular/agno/backend/runtime-endpoints**
+
+`/angular/agno/backend/runtime-endpoints` · `angular__agno__backend__runtime-endpoints.md`
+
+Code fence count changed. Hash 3be80bd5 ➔ 488c2cee.
+
+````diff
+- ### Probing the runtime with curl
+- The fastest way to confirm a self-hosted runtime is wired up is to hit `/info`
+- directly:
+- ```bash
++ ### Thread routes
++ The runtime also serves the conversation history behind the threads UI. These
++ routes exist in multi-route mode whichever runner you use:
++ | Method & path | Purpose |
+  … region truncated
+````
+
+**High — /angular/agno/intelligence/learned-skills**
+
+`/angular/agno/intelligence/learned-skills` · `angular__agno__intelligence__learned-skills.md`
+
+Code fence count changed. Hash 106a9f9c ➔ d091b61d.
+
+````diff
+- ## Choose an adapter
+- | Framework                 | Package                                  | Native extension                                                     |
+- | ------------------------- | ---------------------------------------- | -------------------------------------------------------------------- |
+- | LangGraph Python          | `copilotkit-intelligence-langgraph`      | `create_skill_registry_middleware`                                   |
++ <Callout type="info">
++ Start with the [Learning guide](/angular/agno/learning) to collect Threads, configure daily runs, and review Skills. Before connecting an adapter, check that **Skill delivery** is enabled in the container's **Skills** tab. For guided setup, select **Set up skill delivery** there and copy the prompt into your coding agent.
++ </Callout>
++ ## Choose an adapter
+  … region truncated
+````
+
+**High — /angular/agno/learning**
+
+`/angular/agno/learning` · `angular__agno__learning.md`
+
+Code fence count changed. Hash 573995eb ➔ 7a98d875.
+
+````diff
+- ## Start with your coding agent
+- Copy this prompt into your coding agent to inspect your existing app and configure Automatic Learning for one focused workflow. Prefer to work through the setup yourself? Follow the manual steps below.
+- #### Copy this prompt into your coding agent
+- ```text
++ Automatic Learning checks eligible containers on a daily schedule. After you approve a Skill, automatic skill delivery makes it available to connected agents. Scheduling, publication, and delivery are separate: a scheduled run does not approve Skills, and enabling delivery does not connect your agent for you.
++ ## Start with your coding agent
++ Copy this prompt into your coding agent to inspect your existing app and configure Automatic Learning for one focused workflow. Prefer to work through the setup yourself? Follow the manual steps below.
++ #### Copy this prompt into your coding agent
+  … region truncated
+````
+
+**High — /angular/agno/troubleshooting/event-inspector**
+
+`/angular/agno/troubleshooting/event-inspector` · `angular__agno__troubleshooting__event-inspector.md`
+
+Code fence count changed. Hash 217558a5 ➔ 2299868a.
+
+````diff
+- - A CopilotKit runtime running locally in development mode (`NODE_ENV` is **not** `production`)
+- - The [CopilotKit VS Code extension](/angular/agno/vs-code-extension) installed
+- <Callout type="warning">
+- The `/cpk-debug-events` endpoint is disabled when `NODE_ENV=production`. This is intentional — it streams internal event data that should not be exposed in production environments.
++ - A CopilotKit runtime running locally with `NODE_ENV` set to `development`, or with `debug` enabled on the runtime
++ - The [CopilotKit VS Code extension](/angular/agno/vs-code-extension) installed
++ <Callout type="warning">
++ The `/cpk-debug-events` endpoint streams every event of every thread, including full message content, to any subscriber. It is served in exactly two cases: `NODE_ENV` is `development`, or the runtime sets `debug`. Everywhere else it returns 404.
+  … region truncated
+````
+
+**Low — /angular/agno/backend/custom-agent**
+
+`/angular/agno/backend/custom-agent` · `angular__agno__backend__custom-agent.md`
+
+Prose / text phrasing updated. Hash bd8791e6 ➔ b0c5b502.
+
+````diff
+- The factory receives an `AgentFactoryContext` (from `@copilotkit/runtime/v2`):
+- ```typescript
+- interface AgentFactoryContext {
++ The factory receives an `BuiltInAgentFactoryContext` (from `@copilotkit/runtime/v2`):
++ ```typescript
++ interface BuiltInAgentFactoryContext {
++ learnedSkills: BuiltInAgentLearnedSkills; // catalog and read-only AI SDK tools, empty when disabled
+````
+
+---
+
 ## 2026-09-18
 
 ### 07:46 UTC — 15 pages, highest severity high · _npm run drift:sync_
@@ -100,6 +270,8 @@ Listed upstream, tracked nowhere in this repo. Not snapshotted by this run.
 **New — https://docs.copilotkit.ai/angular/agno/troubleshooting/event-inspector**
 
 Listed upstream, tracked nowhere in this repo. Not snapshotted by this run.
+
+---
 
 ---
 
@@ -220,308 +392,5 @@ Listed upstream, tracked nowhere in this repo. Not snapshotted by this run.
 Listed upstream, tracked nowhere in this repo. Not snapshotted by this run.
 
 ---
-
----
-
-## 2026-08-30
-
-### 13:42 UTC — 5 pages, highest severity high
-
-**Low — Angular**
-
-`/angular/agno` · route `/` · under “Getting started”
-
-0 code lines, 2 prose lines changed.
-
-````diff
-          ### Open Inspector and confirm setup
-  
-- Angular does not mount Inspector by default. First follow [Inspector for Angular](/angular/agno/inspector). Then, on localhost, click the Inspector button.
-+ On localhost, click the Inspector button in the corner of the app.
-  
-````
-
-**Low — Angular**
-
-`/angular/agno/quickstart` · route `/quickstart` · under “Getting started”
-
-0 code lines, 2 prose lines changed.
-
-````diff
-          ### Open Inspector and confirm setup
-  
-- Angular does not mount Inspector by default. First follow [Inspector for Angular](/angular/agno/inspector). Then, on localhost, click the Inspector button.
-+ On localhost, click the Inspector button in the corner of the app.
-  
-````
-
-**High — CopilotKit CLI**
-
-`/angular/agno/cli` · under “Verify your setup”
-
-6 code lines, 49 prose lines changed.
-
-````diff
-  
-  For the full adoption flow, see [Import & Synchronize Thread History](/angular/agno/guides/threads-memory-attachments-headless). Source-specific setup lives in [Synchronize ADK threads](/angular/google-adk/threads-import) and [Synchronize LangGraph threads](/angular/langgraph-python/threads-import).
-+ 
-+ ## Verify your setup
-+ 
-+ `verify` answers the question every integration reaches: *is this actually
-+ working?* It checks the wiring from outside the browser, so it is the proof to
-+ reach for on a surface that has no browser at all — React Native, or a runtime
-+ on a remote host.
-+ 
-+ ```bash
-+ npx copilotkit@latest verify
-+ ```
-+ 
-+ It checks that a hosted project is selected, that a project API key
-+ authenticates, that the runtime responds, and that the runtime declares at least
-+ one agent — then reports the runtime version, the agent framework, gateway
-+ wiring, and license state.
-+ 
-+ <Callout type="warn" title="Read the individual checks, not the summary">
-+   Every check reports **PASS**, **FAIL**, or **UNKNOWN**. `UNKNOWN` means the
-+   check could not run. It never means the check passed.
-+ </Callout>
-+ 
-+ To prove the agent actually *runs* rather than that it is *configured*, add
-+ `--round-trip`. It sends one real request through the runtime and reads the
-+ answer back off the thread:
-+ 
-+ ```bash
-+ npx copilotkit@latest verify --round-trip
-+ ```
-+ 
-+ <Callout type="warn" title="What --round-trip does not prove">
-+   It sends a **fixed** prompt and records the answer's character count and any
-+   tool-call names — **never the answer's text**. It proves an answer came back;
-+   it can never tell you what the answer said, so it is no substitute for
-+   checking a response against the data your project actually holds.
-+ 
-+   It also proves an agent answered under the *declared id*, not **which
-+   deployment** answered — a runtime pointed at another project's agent responds
-+   identically.
-+ 
-+   Because it runs the agent, it costs a model call and records a thread. That is
-+   why it is opt-in rather than the default.
-+ </Callout>
-+ 
-+ | Option | What it does |
-+ |---|---|
-+ | `--runtime-url <url>` | The runtime endpoint to probe. Default `http://localhost:3000/api/copilotkit` — pass this whenever your runtime is elsewhere. |
-+ | `--round-trip` | Also run the agent and read its answer back. |
-+ | `--agent <id>` | Which declared agent to run, when the runtime declares several. |
-+ | `--expect-runtime <mode>` | `intelligence` (default) or `oss`. With `oss`, hosted-project and credential checks do not apply. |
-+ | `--timeout <seconds>` | How long to wait for the answer. Default `90`. |
-+ | `--header "<name>: <value>"` | Extra request header, repeatable. Use it when your `identifyUser` reads a session the CLI does not carry. |
-+ | `--json` | Emit a machine-readable payload alone on stdout. |
-+ 
-+ `verify` exits non-zero unless every check passed, so it works as a CI gate.
-  
-````
-
-**Low — Threads & Persistence Architecture**
-
-`/angular/agno/premium/threads-explained` · under “Threads & Persistence Architecture”
-
-0 code lines, 6 prose lines changed.
-
-````diff
-  > Architecture and mental model behind CopilotKit threads: how persistent conversations work, how reconnection replays history, and what to expect from thread lifecycle operations.
-  
-- <OpsPlatformCTA
--   variant="inline"
--   title="Want to see threads in your own app?"
--   body="Persistent threads ship with CopilotKit Intelligence on the free Developer tier."
-+ <IntelligenceOnboardingPrompt
-+   feature="threads"
-    surface="docs_learn_threads"
-````
-
-**High — Inspector**
-
-`/angular/agno/inspector` · under “Production and server rendering”
-
-75 code lines, 82 prose lines changed.
-
-````diff
-  # Inspector
-- 
-- > Mount the CopilotKit Inspector in an Angular application and keep it out of production builds.
-- 
-- The Inspector is a debugging overlay for the live connection between your Angular
-- application and your agents. It opens from a floating launcher and reports what
-- the application and the runtime exchange as a run happens.
-- 
-- Its navigation has three groups — **Threads**, **Agents**, and **Learning** — and
-- opens on Threads, whose contents depend on the runtime's license state. The
-- agent-debugging views sit under Agents:
-- 
-- | View                 | What it shows                                                        |
-- | -------------------- | -------------------------------------------------------------------- |
-- | **AG-UI Events**     | The raw event stream between your application and the agent.          |
-- | **Available Agents** | The agents the runtime advertises to your application.                |
-- | **Agent State**      | The selected agent's state as it updates.                             |
-- | **Frontend Tools**   | The tools you registered, with their parameter schemas.               |
-- | **Context**          | The context you sent to the agent, including readables and documents. |
-- 
-- ## Mount the element
-- 
-- The Inspector is `cpk-web-inspector`, a framework-agnostic web component in
-- `@copilotkit/web-inspector`. `@copilotkit/angular` does not depend on that
-- package and does not mount the element, so an Angular application creates it and
-- supplies the core itself.
-- 
-- Install the package as a dev dependency to keep it out of your production
-- dependency graph:
-- 
-- ```bash
-- npm install --save-dev @copilotkit/web-inspector
-- ```
-- 
-- Add a component that owns the element's lifecycle. It reuses an existing element
-- or creates one after the first browser render, supplies the core, appends the
-- element to `document.body`, and removes it when the component is destroyed:
-- 
-- ```ts title="src/app/web-inspector.ts"
-- import { afterNextRender, Component, DestroyRef, inject } from "@angular/core";
-- import { CopilotKit } from "@copilotkit/angular";
-- import { WEB_INSPECTOR_TAG } from "@copilotkit/web-inspector";
-- import type { WebInspectorElement } from "@copilotkit/web-inspector";
-- 
-- @Component({
--   selector: "app-web-inspector",
--   template: "",
-- })
-- export class WebInspector {
--   readonly #copilotKit = inject(CopilotKit);
--   readonly #destroyRef = inject(DestroyRef);
-  
--   constructor() {
--     afterNextRender(() => {
--       const existing =
--         document.querySelector<WebInspectorElement>(WEB_INSPECTOR_TAG);
--       const inspector =
--         existing ??
--         (document.createElement(WEB_INSPECTOR_TAG) as WebInspectorElement);
-+ > The Inspector mounts itself in Angular applications. What changed, and what to remove if you mounted it by hand.
-  
--       // Supply the application's core instead of letting the element find one.
--       inspector.core = this.#copilotKit.core;
--       inspector.setAttribute("auto-attach-core", "false");
-+ `@copilotkit/angular` mounts the Inspector for you. It depends on
-+ `@copilotkit/web-inspector` directly, so there is nothing to install and no
-+ version to pin — the `CopilotKit` service creates `cpk-web-inspector`, supplies
-+ your application's core, and appends it to `document.body` after the first
-+ browser render.
-  
--       if (!existing) {
--         document.body.appendChild(inspector);
--       }
-+ **[Inspector](/angular/agno/inspector)** is the page to read for what the panes show and how
-+ `enableInspector` controls visibility. Angular sets it through
-+ `provideCopilotKit`:
-  
--       this.#destroyRef.onDestroy(() => {
--         if (inspector.isConnected) {
--           inspector.remove();
--         }
--       });
--     });
--   }
-- }
-+ ```ts title="src/app/app.config.ts"
-+ provideCopilotKit({
-+   runtimeUrl: "http://localhost:8200/api/copilotkit",
-+   enableInspector: false, // hide it during development
-+ });
-  ```
-- 
-- Render the component once, from the root component, behind a development-only
-- `@defer`:
-- 
-- ```ts title="src/app/app.ts"
-- import { Component, isDevMode } from "@angular/core";
-- import { WebInspector } from "./web-inspector";
-  
-- @Component({
--   selector: "app-root",
--   imports: [WebInspector],
--   template: `
--     <!-- your application -->
-+ <Callout type="warn" title="Remove a hand-written mount before upgrading">
-+   `@copilotkit/angular` did not mount the Inspector before **0.4.0**, and this
-+   page previously described a `WebInspector` component that created the element
-+   by hand. If your application still has that component, delete it — along with
-+   its `<app-web-inspector />` usage and any direct `@copilotkit/web-inspector`
-+   dependency in `package.json`.
-  
--     @defer (when isDev) {
--       <app-web-inspector />
--     }
--   `,
-- })
-- export class App {
--   protected readonly isDev = isDevMode();
-- }
-- ```
-+   Leaving it in place is worse than redundant. The framework reuses an existing
-+   `cpk-web-inspector` rather than creating a second one, but the hand-written
-+   component's `DestroyRef.onDestroy` removes that element unconditionally — so
-+   a route change that destroys the component tears out the Inspector the
-+   framework is now driving, and it does not come back without a full reload.
-+ </Callout>
-  
-- ## Supply the application's core
-+ ## Production and server rendering
-  
-- `inspector.core = copilotKit.core` is what makes the Inspector report your
-- application rather than show an empty panel. Without an assigned core, the
-- element searches development globals such as `window.__COPILOTKIT_CORE__` for
-- one. Setting `auto-attach-core="false"` disables that search, so the element
-- observes the core you assigned and nothing else.
-+ Nothing to do for either.
-  
-- Assign `core` directly. It is a property, not an attribute, and
-- `auto-attach-core` is the only attribute the element observes.
-+ The `@copilotkit/web-inspector` import is a dynamic `import()` inside the
-+ service, so the bundler splits it into its own chunk and a production build
-+ never requests it. Mounting runs in `afterNextRender` behind an
-+ `isPlatformBrowser` check, so the element is never created during a server
-+ render. Both matter, because the web component registers itself against
-+ `customElements`, which does not exist on the server.
-  
-  }
-  ```
-- 
-- ## Keep it out of production builds
-- 
-- The element has no production guard of its own, so exclude it in the same place
-- you mount it. `@defer (when isDev)` compiles the component and its
-- `@copilotkit/web-inspector` import into a lazy chunk, and `isDevMode()` returns
-- `false` in a production build, so that chunk is never requested. Removing the
-- component and its `<app-web-inspector />` usage removes the Inspector entirely.
-- 
-- ## Server rendering
-- 
-- `afterNextRender` runs only in the browser, so the element is never created
-- during a server render. The deferred import also keeps the package out of the
-- server bundle. Both matter: the web component registers itself against
-- `customElements`, which does not exist on the server.
-- 
-- ## Clean up on destroy
-- 
-- The element lives in `document.body`, outside the component's own view, so
-- Angular does not remove it. `DestroyRef.onDestroy` removes it explicitly.
-- Without that cleanup, a route change that destroys the component leaves an
-- orphaned panel bound to a core the application no longer uses.
-  
-  ## Next steps
-  
-+ - [Inspector](/angular/agno/inspector)
-  - [Troubleshooting Angular apps](/angular/agno/guides/troubleshooting)
-````
 
 ---

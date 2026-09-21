@@ -2,6 +2,7 @@
 
 > The Copilot Runtime is the backend that connects your frontend to your AI agents, providing authentication, middleware, routing, and more.
 
+
 The Copilot Runtime is the backend layer that connects your frontend application to your AI agents. It's set up during the [quickstart](/angular/agno/quickstart) and is the recommended way to use CopilotKit.
 
 ## Setting up the runtime
@@ -99,6 +100,55 @@ run its own agent instance — construct it inside the request rather than at mo
 or to serialise turns per user. A single shared instance is fine for local development and
 for a single-user surface.
 </Callout>
+
+## Which name identifies an agent
+
+The name you use to address an agent from the frontend must equal a **key of the
+runtime's `agents` map**. That key is the only name the frontend can ask for. An
+agent's own `name`, `id`, or class name is never used for routing, and the two are
+free to differ.
+
+```ts title="app/api/copilotkit/[[...slug]]/route.ts"
+const runtime = new CopilotRuntime({
+  agents: {
+    // `my_agent` is the key — the one string the frontend may ask for.
+    my_agent: new HttpAgent({ url: "http://localhost:8000/" }),
+  },
+});
+```
+
+
+
+
+```html title="src/app/app.component.html"
+<copilot-chat agentId="my_agent" />
+```
+
+
+Most integrations write that key literally in the runtime route, as above, so the
+binding is visible in one file. Some derive it instead, and that is where the rule
+stops being obvious:
+
+- **Mastra** — `MastraAgent.getRemoteAgents` and `getLocalAgents` both build the map
+  from `listAgents()`, which is keyed by the **record key** in
+  `new Mastra({ agents: { ... } })`, not by the agent's `id`. Given
+  `new Agent({ name: "My Agent" })` exported as `myAgent` and registered as
+  `agents: { myAgent }`, the runtime key is `myAgent`.
+- **LangGraph** — `graphId` is a *separate* binding, from the runtime to a key in your
+  deployment's `langgraph.json`. It does not have to equal the runtime's agents-map
+  key, and it is not the name the frontend asks for. The starter template happens to
+  use `sample_agent` for both.
+
+<Callout type="warn" title="An agent's declared name is not its routing key">
+  Asking for a name the runtime did not register resolves no agent, and the frontend
+  raises `CopilotKitAgentDiscoveryError` — see [Agent discovery
+  failed](/angular/agno/guides/troubleshooting). The error message lists the keys the
+  runtime actually returned, which is the quickest way to see the real names.
+</Callout>
+
+To read the registered keys directly, hit `GET {runtimeUrl}/info`. It returns the
+agents the runtime advertises, under exactly the names the frontend must use.
+
 
 ## The default agent
 
@@ -293,6 +343,10 @@ forwardHeaders: { allow: ["authorization", "x-tenant-id"] }
 <Callout type="warn" title="Allowlist mode bypasses the default denylist">
 In allowlist mode the built-in denylist does **not** apply — only your `allow` set (minus your own `deny`) forwards. Don't allow-list protected headers such as `x-copilotcloud-public-api-key` or `x-forwarded-*` unless you truly intend to forward them, since the default protection isn't there to catch them.
 </Callout>
+
+## Keeping quiet streams alive
+
+A run can be silent for a long time while the agent reasons or waits on a slow tool. The runtime writes a `: keep-alive` SSE comment after 15 seconds without output so proxies and browsers with idle timeouts keep the connection open. Comments are transport frames: they never become AG-UI events. Tune or disable this with `sseKeepAliveIntervalSeconds` (`0` disables it).
 
 ## Connecting to an AG-UI agent directly
 
