@@ -180,6 +180,12 @@ export const PAGES = definePages([
       },
     ],
     prompt: 'Please delete my account. Check with me before you actually do it.',
+    // When the agent asks in prose instead of calling requestApproval, the take
+    // answers it so the clip shows where the conversation goes next.
+    prompts: [
+      'Please delete my account. Check with me before you actually do it.',
+      'Yes, delete my account.',
+    ],
     waitAfterPromptMs: 4000,
   },
   {
