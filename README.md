@@ -1110,6 +1110,37 @@ classifier called this LOW because the change is prose in a table cell rather
 than a code fence. Verified by reading the installed bundle; not exercised over
 the wire, since this page has no route here.
 
+### Findings from the 2026-09-22 sync
+
+Ten pages moved; none needs code here. Most of it is renaming: Learning is now
+"Automatic Learning", Memories & Recall is now "User Memories", memory and
+analytics are now "User Memories" and "Product Analytics", and Threads is "Rich
+Threads" wherever a page sends you into Inspector. The drift classifier rated
+`/angular/agno/learning` HIGH only because its changed lines are indented prose
+inside `<Step>` blocks, which it counts as code. Two pages gained real content,
+neither of which has a route here: Intelligence gained an AWS ECS/Fargate
+self-hosting path (`/angular/agno/intelligence/self-hosting-ecs`, acknowledged in
+`sitemap.knownUnmapped`, since nothing here deploys Intelligence), and
+Runtime endpoints and the Runtime server adapter now say `express` is an
+optional peer dependency of `@copilotkit/runtime` that the app must install
+itself (`^4.18.0 || ^5.0.0`). This frontend already declares `express ^5.2.1`
+(installed 5.2.1) for SSR, so nothing changes.
+
+The sitemap now lists 4 URLs under `/angular/agno` and 41 tracked pages are
+missing from it, but every one of them still resolves and hashed normally in
+this run, so this is the sitemap shrinking, not pages being removed.
+
+**37. Quickstart now sends you to an Inspector tab that does not exist**
+
+[Quickstart](https://docs.copilotkit.ai/angular/agno/quickstart) and the landing
+page now say to open **Rich Threads** in Inspector, and Automatic Learning and
+the Intelligence overview say to go to **Automatic Learning**. The Inspector
+still labels those tabs `Threads` and `Learning`: `label: "Threads"` and
+`label: "Learning"` in `@copilotkit/web-inspector` 1.70.1 (installed, not
+declared) and in 1.73.0 (latest on npm, read from the tarball). The React
+`/agno/inspector` page still uses the old names while `/deepagents/inspector`
+has switched (checked 2026-09-22), so the rename is also applied unevenly.
+
 ---
 
 ## 11. Troubleshooting

@@ -174,8 +174,8 @@ Pass the bare websocket base: the client appends `/runner` and `/client` itself,
 and prepends `/api` to every REST call. Passing `apiUrl: ".../api"` produces
 double-prefixed `/api/api/threads`.
 
-See [Self-host CopilotKit Intelligence](/angular/agno/intelligence/self-hosting) for the full
-deployment path.
+For the full deployment path, follow [Kubernetes and Helm](/angular/agno/intelligence/self-hosting)
+or [AWS ECS/Fargate](/angular/agno/intelligence/self-hosting-ecs).
 
 ## Troubleshooting
 

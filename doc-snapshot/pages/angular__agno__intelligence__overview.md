@@ -1,6 +1,6 @@
 # CopilotKit Intelligence
 
-> CopilotKit Intelligence adds persistent Rich Threads, messaging Channels, memory, analytics, and automatic learning. Import supported LangGraph and Google ADK history, then synchronize future CopilotKit runs.
+> CopilotKit Intelligence adds persistent Rich Threads, messaging Channels, User Memories, Product Analytics, and Automatic Learning. Import supported LangGraph and Google ADK history, then synchronize future CopilotKit runs.
 
 
 
@@ -8,14 +8,14 @@
 
 ## What is CopilotKit Intelligence?
 
-CopilotKit Intelligence is CopilotKit's production layer for persistent Rich Threads, memory, analytics, automatic learning, and messaging Channels. It sits beside your CopilotKit runtime and gives production agentic applications shared infrastructure without changing the frontend SDK, AG-UI protocol, or agent framework you use.
+CopilotKit Intelligence is CopilotKit's production layer for persistent Rich Threads, User Memories, Product Analytics, Automatic Learning, and messaging Channels. It sits beside your CopilotKit runtime and gives production agentic applications shared infrastructure without changing the frontend SDK, AG-UI protocol, or agent framework you use.
 
 Start here when you are deciding what the platform gives you and where it should run. The rest of the Intelligence docs are deeper dives into the specific feature or hosting path you choose.
 
 Ready to connect an existing app? Follow the [CopilotKit Intelligence quickstart](/angular/agno/intelligence/quickstart) to store and inspect your first thread.
 
 <Callout type="info" title="See this in Inspector">
-  Open Inspector on localhost. Go to **Learning**.
+  Open Inspector on localhost. Go to **Automatic Learning**.
   Review published Skills, their supporting Insights, and the Thread evidence
   behind each pattern. Inspector also shows when new Threads are ready for a
   Learning run; start runs and review Skill candidates in the Intelligence web
@@ -29,15 +29,15 @@ Ready to connect an existing app? Follow the [CopilotKit Intelligence quickstart
 
 | Capability | What it gives you | Deeper dive |
 |---|---|---|
-| Durable threads and persistence | Resumable conversations that survive reloads, devices, and browser sessions. | [Threads](/angular/agno/guides/threads-memory-attachments-headless) and [Threads & Persistence Architecture](/angular/agno/intelligence/threads-explained) |
+| Rich Threads | Resumable conversations that survive reloads, devices, and browser sessions. | [Rich Threads](/angular/agno/guides/threads-memory-attachments-headless) and [Threads & Persistence Architecture](/angular/agno/intelligence/threads-explained) |
 | Existing conversation history | Import supported LangGraph threads or Google ADK sessions as Rich Threads, then synchronize future CopilotKit-mediated runs. | [LangGraph history](/angular/langgraph-python/threads-import) and [Google ADK history](/angular/google-adk/threads-import) |
 | Channels | Run your agent in messaging channels through managed Intelligence connections. Managed Slack is available now; managed Teams is a controlled integration target. | [Slack](/slack) and [Microsoft Teams](/teams) |
-| Memory | Durable facts and preferences that can be recalled across conversations. | [Memories & Recall](/angular/agno/intelligence/memories) |
-| Analytics | See what your agents do and where users get value, from the same interaction data. | [Analytics](https://www.copilotkit.ai/copilotkit-intelligence#analytics-insights) |
-| Automatic learning | Agents improve from real usage. BuiltInAgent and framework adapters can load published skills automatically. | [Learning](/angular/agno/learning) and [Automatic skill delivery](/angular/agno/intelligence/learned-skills) |
+| User Memories | Durable facts and preferences that can be recalled across conversations. | [User Memories](/angular/agno/intelligence/memories) |
+| Product Analytics | See what your agents do and where users get value, from the same interaction data. | [Product Analytics](https://www.copilotkit.ai/copilotkit-intelligence#analytics-insights) |
+| Automatic Learning | Agents improve from real usage. BuiltInAgent and framework adapters can load published skills automatically. | [Automatic Learning](/angular/agno/learning) and [Automatic skill delivery](/angular/agno/intelligence/learned-skills) |
 | Cloud-hosted Intelligence features | Projects, project API keys, conversation history, thread inspection, and plan management. | [Cloud-hosted CopilotKit Intelligence](/angular/agno/intelligence/managed-intelligence-platform) |
 | Platform-gated UI capabilities | Platform-gated UI surfaces such as Fully Headless Chat UI. | [Fully Headless Chat UI](/angular/agno/guides/threads-memory-attachments-headless) |
-| Self-hosting | The same platform running inside your own Kubernetes cluster, VPC, or data boundary. | [Self-host CopilotKit Intelligence](/angular/agno/intelligence/self-hosting) |
+| Self-hosting | Run Intelligence in your own Kubernetes cluster or on AWS ECS/Fargate. | [Kubernetes and Helm](/angular/agno/intelligence/self-hosting) or [AWS ECS/Fargate](/angular/agno/intelligence/self-hosting-ecs) |
 
 <IntelligenceFeatureCards />
 
@@ -60,8 +60,9 @@ Historical import is a one-time operation, not a continuous mirror of every chan
 |---|---|---|
 | [Cloud-hosted CopilotKit Intelligence](/angular/agno/intelligence/managed-intelligence-platform) | You want CopilotKit to run the platform for you: hosted projects, API keys, thread history, dashboard inspection, and plan management. | Your app, your runtime, your agent, and your model provider credentials. |
 | [Self-host CopilotKit Intelligence](/angular/agno/intelligence/self-hosting) | You need the platform inside your own VPC, Kubernetes cluster, data residency boundary, or enterprise operations model. | The `copilot-intelligence` Helm release, Postgres, Redis, ingress, OIDC, secrets, upgrades, and monitoring. |
+| [Self-host on AWS ECS/Fargate](/angular/agno/intelligence/self-hosting-ecs) | Your team runs workloads on ECS and needs Intelligence in its AWS account. | The versioned CloudFormation bundle, Fargate services, ALB, PostgreSQL, Redis, OIDC, secrets, upgrades, and monitoring. |
 
-Both options use the same CopilotKit application surface. Your frontend still uses CopilotKit APIs, your runtime still speaks AG-UI, and your agents keep the same framework integration. The deployment choice changes the platform endpoint and credentials your runtime uses.
+These options use the same CopilotKit application surface. Your frontend still uses CopilotKit APIs, your runtime still speaks AG-UI, and your agents keep the same framework integration. The deployment choice changes the platform endpoint and credentials your runtime uses.
 
 ## Plans and access
 
@@ -83,13 +84,14 @@ Self-hosted access is available on the Team self-hosted plan or a custom Enterpr
 | Decide what the platform includes | Stay on this overview. |
 | Connect an app to hosted projects and API keys | [Cloud-hosted CopilotKit Intelligence](/angular/agno/intelligence/managed-intelligence-platform) |
 | Run the platform in your own cluster | [Self-host CopilotKit Intelligence](/angular/agno/intelligence/self-hosting) |
+| Run the platform on AWS ECS/Fargate | [Self-host on AWS ECS/Fargate](/angular/agno/intelligence/self-hosting-ecs) |
 | Understand the runtime/platform architecture | [CopilotKit Intelligence architecture](/angular/agno/intelligence/intelligence-platform) |
-| Add persistent conversations to an app | [Threads](/angular/agno/guides/threads-memory-attachments-headless) |
+| Add persistent conversations to an app | [Rich Threads](/angular/agno/guides/threads-memory-attachments-headless) |
 | Let users open existing LangGraph conversations in a CopilotKit app | [Synchronize LangGraph Threads](/angular/langgraph-python/threads-import) |
 | Bring existing ADK session history into a CopilotKit app | [Synchronize ADK Threads](/angular/google-adk/threads-import) |
 | Make an agent available in Slack or Microsoft Teams | [Slack](/slack) and [Microsoft Teams](/teams), including provider availability |
-| Give an agent durable context across conversations | [Memories & Recall](/angular/agno/intelligence/memories) |
-| Turn real usage into reusable agent behavior | [Learning](/angular/agno/learning) and [Automatic skill delivery](/angular/agno/intelligence/learned-skills) |
+| Give an agent durable context across conversations | [User Memories](/angular/agno/intelligence/memories) |
+| Turn real usage into reusable agent behavior | [Automatic Learning](/angular/agno/learning) and [Automatic skill delivery](/angular/agno/intelligence/learned-skills) |
 | Understand thread replay and realtime sync | [Threads & Persistence Architecture](/angular/agno/intelligence/threads-explained) |
 
 ## FAQs

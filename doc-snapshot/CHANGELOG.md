@@ -9,6 +9,162 @@ Holds the 3 most recent dated entries. When a change lands on a fourth
 date, the oldest entry is dropped. Entries are counted, not aged, so a gap of
 weeks between changes does not expire anything.
 
+## 2026-09-22
+
+### 08:52 UTC — 10 pages, highest severity high · _npm run drift:sync_
+
+**Low — /angular/agno**
+
+`/angular/agno` · route `/` · `angular__agno.md`
+
+Prose / text phrasing updated. Hash 571db1cf ➔ 4fa82280.
+
+````diff
+- 3. Open **Threads**. The list is unlocked (Intelligence is on), or locked with Enable Intelligence (Intelligence is off).
++ 3. Open **Rich Threads**. The list is unlocked (Intelligence is on), or locked with Enable Intelligence (Intelligence is off).
+````
+
+**Low — /angular/agno/quickstart**
+
+`/angular/agno/quickstart` · route `/quickstart` · `angular__agno__quickstart.md`
+
+Prose / text phrasing updated. Hash 571db1cf ➔ 4fa82280.
+
+````diff
+- 3. Open **Threads**. The list is unlocked (Intelligence is on), or locked with Enable Intelligence (Intelligence is off).
++ 3. Open **Rich Threads**. The list is unlocked (Intelligence is on), or locked with Enable Intelligence (Intelligence is off).
+````
+
+**Low — /angular/agno/intelligence/overview**
+
+`/angular/agno/intelligence/overview` · `angular__agno__intelligence__overview.md`
+
+Prose / text phrasing updated. Hash b7cae9c5 ➔ 28835f5e.
+
+````diff
+- > CopilotKit Intelligence adds persistent Rich Threads, messaging Channels, memory, analytics, and automatic learning. Import supported LangGraph and Google ADK history, then synchronize future CopilotKit runs.
+- <IntelligenceOverview />
+- ## What is CopilotKit Intelligence?
+- CopilotKit Intelligence is CopilotKit's production layer for persistent Rich Threads, memory, analytics, automatic learning, and messaging Channels. It sits beside your CopilotKit runtime and gives production agentic applications shared infrastructure without changing the frontend SDK, AG-UI protocol, or agent framework you use.
++ > CopilotKit Intelligence adds persistent Rich Threads, messaging Channels, User Memories, Product Analytics, and Automatic Learning. Import supported LangGraph and Google ADK history, then synchronize future CopilotKit runs.
++ <IntelligenceOverview />
++ ## What is CopilotKit Intelligence?
++ CopilotKit Intelligence is CopilotKit's production layer for persistent Rich Threads, User Memories, Product Analytics, Automatic Learning, and messaging Channels. It sits beside your CopilotKit runtime and gives production agentic applications shared infrastructure without changing the frontend SDK, AG-UI protocol, or agent framework you use.
+  … region truncated
+````
+
+**Low — /angular/agno/intelligence/self-hosting**
+
+`/angular/agno/intelligence/self-hosting` · `angular__agno__intelligence__self-hosting.md`
+
+Prose / text phrasing updated. Hash 37e0d955 ➔ ec86caaa.
+
+````diff
++ <Callout type="info" title="Deploying on AWS ECS/Fargate?">
++ Follow [Self-host Intelligence on AWS ECS/Fargate](/angular/agno/intelligence/self-hosting-ecs) for the versioned CloudFormation bundle, configuration, deployment, and verification steps. This page covers Kubernetes and Helm.
++ </Callout>
+````
+
+**Low — /angular/agno/intelligence/connect-your-runtime**
+
+`/angular/agno/intelligence/connect-your-runtime` · `angular__agno__intelligence__connect-your-runtime.md`
+
+Prose / text phrasing updated. Hash 56b22eb3 ➔ dcb8ce64.
+
+````diff
+- See [Self-host CopilotKit Intelligence](/angular/agno/intelligence/self-hosting) for the full
+- deployment path.
++ For the full deployment path, follow [Kubernetes and Helm](/angular/agno/intelligence/self-hosting)
++ or [AWS ECS/Fargate](/angular/agno/intelligence/self-hosting-ecs).
+````
+
+**Low — /angular/agno/backend/runtime-endpoints**
+
+`/angular/agno/backend/runtime-endpoints` · `angular__agno__backend__runtime-endpoints.md`
+
+Prose / text phrasing updated. Hash a219e854 ➔ 0e91c764.
+
+````diff
++ <Callout type="info" title="Install `express` yourself">
++ `express` is an optional peer dependency of `@copilotkit/runtime`, so it is
++ not installed for you. Run `npm install express` (`^4.18.0 || ^5.0.0`) in the
++ app that mounts the adapter. Calling `createCopilotExpressHandler` without it
++ throws and names the fix. Nothing else in the runtime needs express, so Hono
++ and Next.js apps install nothing.
++ </Callout>
+````
+
+**Low — /angular/agno/intelligence/learned-skills**
+
+`/angular/agno/intelligence/learned-skills` · `angular__agno__intelligence__learned-skills.md`
+
+Prose / text phrasing updated. Hash d091b61d ➔ be54c4ef.
+
+````diff
+- Start with the [Learning guide](/angular/agno/learning) to collect Threads, configure daily runs, and review Skills. Before connecting an adapter, check that **Skill delivery** is enabled in the container's **Skills** tab. For guided setup, select **Set up skill delivery** there and copy the prompt into your coding agent.
+- </Callout>
+- ## Choose an adapter
+- | Framework                 | Package                                  | Native extension                                                     |
++ Start with the [Automatic Learning guide](/angular/agno/learning) to collect Threads, configure daily runs, and review Skills. Before connecting an adapter, check that **Skill delivery** is enabled in the container's **Skills** tab. For guided setup, select **Set up skill delivery** there and copy the prompt into your coding agent.
++ </Callout>
++ ## Choose an adapter
++ | Framework                 | Package                                  | Native extension                                                     |
+  … region truncated
+````
+
+**Medium — /angular/agno/intelligence/memories**
+
+`/angular/agno/intelligence/memories` · route `/memory` · `angular__agno__intelligence__memories.md`
+
+Headings / Structure changed. Hash d4b78dd2 ➔ 9d5f544a.
+
+````diff
+- # Memories & Recall
+- > Give your agents long-term memory across conversations.
+- Threads remember a conversation. Memories remember a person. This page explains
+- what a memory is, how recall selects them, and what has to be true of your
++ # User Memories
++ > Give your agents long-term memory across conversations.
++ Rich Threads remember a conversation. User Memories remember a person. This page explains
++ what a memory is, how recall selects them, and what has to be true of your
+  … region truncated
+````
+
+**High — /angular/agno/learning**
+
+`/angular/agno/learning` · `angular__agno__learning.md`
+
+Code block content changed. Hash 7a98d875 ➔ d1932db5.
+
+````diff
+- # Learning
+- > Turn real application use into evidence-backed Insights and reviewed, reusable Skills.
+- ## Overview
+- Learning turns patterns from real agent runs into reusable Skills. It looks at completed conversations and application interactions in [Rich Threads](/angular/agno/guides/threads-memory-attachments-headless), produces evidence-backed Insights, and proposes instructions you can review before publishing.
++ # Automatic Learning
++ > Turn real application use into evidence-backed Insights and reviewed, reusable Skills.
++ ## Overview
++ Automatic Learning turns patterns from real agent runs into reusable Skills. It looks at completed conversations and application interactions in [Rich Threads](/angular/agno/guides/threads-memory-attachments-headless), produces evidence-backed Insights, and proposes instructions you can review before publishing.
+  … region truncated
+````
+
+**Low — /angular/agno/runtime-server-adapter**
+
+`/angular/agno/runtime-server-adapter` · `angular__agno__runtime-server-adapter.md`
+
+Prose / text phrasing updated. Hash cbe8cd4e ➔ c7733457.
+
+````diff
+- The Express adapter returns an Express `Router` that you mount with `app.use()`.
++ The Express adapter returns a router that you mount with `app.use()`. The value
++ is a real `express.Router()`. Its declared type is `CopilotExpressRouter`, which
++ names no Express major, so it mounts on Express 4 and Express 5 alike.
++ `express` is an optional peer dependency of `@copilotkit/runtime`, so install it
++ in your own app. Both majors are supported.
+````
+
+---
+
 ## 2026-09-21
 
 ### 09:03 UTC — 1 page, highest severity low · _npm run drift:sync_
@@ -194,6 +350,8 @@ Prose / text phrasing updated. Hash bd8791e6 ➔ b0c5b502.
 
 ---
 
+---
+
 ## 2026-09-18
 
 ### 07:46 UTC — 15 pages, highest severity high · _npm run drift:sync_
@@ -287,126 +445,6 @@ Listed upstream, tracked nowhere in this repo. Not snapshotted by this run.
 Listed upstream, tracked nowhere in this repo. Not snapshotted by this run.
 
 ---
-
----
-
----
-
-## 2026-09-17
-
-### 07:24 UTC — 17 pages, highest severity high · _npm run drift:sync_
-
-**Medium — /angular/agno**
-
-`/angular/agno` · route `/` · `angular__agno.md`
-
-Headings / Structure changed. Hash 506e08e9 ➔ 571db1cf.
-
-````diff
-+ ## Start with your coding agent
-+ Use this prompt to connect your Angular app to Copilot Runtime with the selected agent backend, then verify a working conversation. You can also follow the manual steps below.
-+ Ask your coding agent to follow the setup steps on this page for your selected framework and frontend.
-````
-
-**Medium — /angular/agno/quickstart**
-
-`/angular/agno/quickstart` · route `/quickstart` · `angular__agno__quickstart.md`
-
-Headings / Structure changed. Hash 506e08e9 ➔ 571db1cf.
-
-````diff
-+ ## Start with your coding agent
-+ Use this prompt to connect your Angular app to Copilot Runtime with the selected agent backend, then verify a working conversation. You can also follow the manual steps below.
-+ Ask your coding agent to follow the setup steps on this page for your selected framework and frontend.
-````
-
-**High — /angular/agno/intelligence/connect-your-runtime**
-
-`/angular/agno/intelligence/connect-your-runtime` · `angular__agno__intelligence__connect-your-runtime.md`
-
-Code block content changed. Hash 2733d10e ➔ 56b22eb3.
-
-````diff
-- ```ts title="app/api/copilotkit/[[...slug]]/route.ts"
-- import {
-- CopilotRuntime,
-- CopilotKitIntelligence,
-+ ```ts title="app/api/copilotkit/[[...slug]]/route.ts" doctest="component"
-+ import {
-+ BuiltInAgent,
-+ CopilotRuntime,
-  … region truncated
-````
-
-**Medium — /angular/agno/telemetry**
-
-`/angular/agno/telemetry` · `angular__agno__telemetry.md`
-
-Headings / Structure changed. Hash c744bc62 ➔ 74d5a6f9.
-
-````diff
-- supplies the fallback identity and Runtime sends identified events without
-- sampling. Runtime samples events identified by an explicit `telemetryId`
-- or `CPK_TELEMETRY_ID` at the configured rate. With none of these identities,
-- Runtime sends anonymous sampled telemetry.
-+ supplies the fallback identity. With none of these identities, Runtime sends
-+ anonymous telemetry.
-+ The Inspector stores a random browser ID in local storage and sends it directly
-+ with feature-use events. CopilotKit signup links can carry that ID so we can
-  … region truncated
-````
-
-**New — https://docs.copilotkit.ai/angular/agno/agentic-protocols/ag-ui**
-
-Listed upstream, tracked nowhere in this repo. Not snapshotted by this run.
-
-**New — https://docs.copilotkit.ai/angular/agno/backend/agent-runner**
-
-Listed upstream, tracked nowhere in this repo. Not snapshotted by this run.
-
-**New — https://docs.copilotkit.ai/angular/agno/backend/copilot-runtime**
-
-Listed upstream, tracked nowhere in this repo. Not snapshotted by this run.
-
-**New — https://docs.copilotkit.ai/angular/agno/backend/runtime-endpoints**
-
-Listed upstream, tracked nowhere in this repo. Not snapshotted by this run.
-
-**New — https://docs.copilotkit.ai/angular/agno/contributing/code-contributions/package-linking**
-
-Listed upstream, tracked nowhere in this repo. Not snapshotted by this run.
-
-**New — https://docs.copilotkit.ai/angular/agno/deploy/agentcore**
-
-Listed upstream, tracked nowhere in this repo. Not snapshotted by this run.
-
-**New — https://docs.copilotkit.ai/angular/agno/intelligence/learned-skills**
-
-Listed upstream, tracked nowhere in this repo. Not snapshotted by this run.
-
-**New — https://docs.copilotkit.ai/angular/agno/intelligence/memories**
-
-Listed upstream, tracked nowhere in this repo. Not snapshotted by this run.
-
-**New — https://docs.copilotkit.ai/angular/agno/intelligence/quickstart**
-
-Listed upstream, tracked nowhere in this repo. Not snapshotted by this run.
-
-**New — https://docs.copilotkit.ai/angular/agno/learning**
-
-Listed upstream, tracked nowhere in this repo. Not snapshotted by this run.
-
-**New — https://docs.copilotkit.ai/angular/agno/runtime-server-adapter**
-
-Listed upstream, tracked nowhere in this repo. Not snapshotted by this run.
-
-**New — https://docs.copilotkit.ai/angular/agno/troubleshooting/debug-mode**
-
-Listed upstream, tracked nowhere in this repo. Not snapshotted by this run.
-
-**New — https://docs.copilotkit.ai/angular/agno/troubleshooting/event-inspector**
-
-Listed upstream, tracked nowhere in this repo. Not snapshotted by this run.
 
 ---
 

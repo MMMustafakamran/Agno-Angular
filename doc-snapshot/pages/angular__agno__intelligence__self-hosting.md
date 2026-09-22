@@ -2,6 +2,10 @@
 
 > Deploy CopilotKit Intelligence to your own Kubernetes cluster with the copilot-intelligence Helm chart — install, configure, and operate the app-api, app-frontend, and realtime-gateway services with your own Postgres, Redis, ingress, and OIDC provider.
 
+<Callout type="info" title="Deploying on AWS ECS/Fargate?">
+  Follow [Self-host Intelligence on AWS ECS/Fargate](/angular/agno/intelligence/self-hosting-ecs) for the versioned CloudFormation bundle, configuration, deployment, and verification steps. This page covers Kubernetes and Helm.
+</Callout>
+
 ## What is this?
 
 CopilotKit Intelligence — the platform that powers threads, shared state, and the inspector — can be self-hosted on your own Kubernetes cluster using the `copilot-intelligence` Helm chart. You run the control plane and data plane inside your own network boundary; the chart leaves you in charge of identity, storage, and secrets.
