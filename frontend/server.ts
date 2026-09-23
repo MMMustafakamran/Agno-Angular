@@ -23,9 +23,11 @@ const agentUrl = process.env["AGNO_AGENT_URL"] ?? "http://localhost:8000/agui";
 /**
  * Intelligence client, verbatim from
  * https://docs.copilotkit.ai/angular/agno/intelligence/connect-your-runtime
- * ("Wire the runtime") and the Intelligence quickstart's step 2.
+ * ("Wire the runtime") and the Intelligence quickstart's step 2. That source
+ * page was removed on 2026-09-23 and merged into
+ * https://docs.copilotkit.ai/angular/agno/intelligence/quickstart
  *
- * `apiUrl`/`wsUrl` default to the managed platform, so both stay unset.
+ * `apiUrl`/`wsUrl` default to the cloud-hosted platform, so both stay unset.
  */
 const intelligence = new CopilotKitIntelligence({
   apiKey: process.env["CPK_INTELLIGENCE_API_KEY"]!,

@@ -6,7 +6,7 @@
   Follow [Self-host Intelligence on AWS ECS/Fargate](/angular/agno/intelligence/self-hosting-ecs) for the versioned CloudFormation bundle, configuration, deployment, and verification steps. This page covers Kubernetes and Helm.
 </Callout>
 
-## What is this?
+## Overview
 
 CopilotKit Intelligence — the platform that powers threads, shared state, and the inspector — can be self-hosted on your own Kubernetes cluster using the `copilot-intelligence` Helm chart. You run the control plane and data plane inside your own network boundary; the chart leaves you in charge of identity, storage, and secrets.
 

@@ -5,7 +5,7 @@ A navigable, working test harness for the Angular section of the CopilotKit Agno
 | | |
 |---|---|
 | **Doc sync date** | 2026-08-12 (docs last fetched live) |
-| **CopilotKit packages** | `@copilotkit/angular` 0.5.1 · `@copilotkit/runtime` 1.70.1 |
+| **CopilotKit packages** | `@copilotkit/angular` 0.5.2 · `@copilotkit/runtime` 1.73.3 (upgraded 2026-09-23 from 0.5.1 / 1.70.1; `@copilotkit/angular` 0.5.2 still exact-pins `@copilotkit/core`, `shared`, `web-inspector` and `web-components` at 1.70.2) |
 | **AG-UI packages** | `@ag-ui/agno` 0.0.5 |
 | **Frontend** | Angular 22.1.1 · TypeScript 6.0 · Tailwind 4 · zoneless |
 | **Runtime** | Node 24.16.0 · Copilot Runtime v2 Node listener on :8200 |
@@ -304,14 +304,14 @@ Verified 2026-08-12 against a live stack (real OpenAI key, no license key).
 | `/angular/agno/guides/voice-multimodal` | `/voice-multimodal` | ⚠️ Partial | Attachments work. Transcription unavailable by design — `audioFileTranscriptionEnabled: false`. |
 | `/angular/agno/guides/human-in-the-loop` | `/human-in-the-loop` | ⚠️ Partial | Works when the model chooses to ask: `requestApproval` emitted with **no** tool result, run pauses awaiting the browser. The model often answers without asking — Known issues #28. Interrupt half idle — agent emits none. |
 | `/angular/agno/guides/shared-state` | `/shared-state` | ✅ Working | Round-trip verified across two written values, with a harness-only diagnostics strip logging every `store().state()` transition. Agent state starts `{}` and loses `notes` on first write — Known issues #16. |
-| `/angular/agno/guides/threads-…-headless` | `/threads` | ⚠️ Partial | Premium. `/info` reports `threadEndpoints.mutations: false`. |
+| `/angular/agno/guides/threads-…-headless` | `/threads` | ⚠️ Partial | Premium. `/info` reported `threadEndpoints.mutations: false` on runtime 1.70.1; on 1.73.3 (2026-09-23) it reports `list`, `inspect`, `mutations` and `realtimeMetadata` all `true`. Not re-recorded since the upgrade. |
 | `/angular/agno/guides/threads-…-headless` | `/memory` | ⚠️ Partial | Premium; runtime provides no memory routes, so the fallback renders. |
 | `/angular/agno/guides/threads-…-headless` | `/attachments` | ✅ Working | Picker, drag-and-drop, paste. |
 | `/angular/agno/guides/threads-…-headless` | `/headless` | ✅ Working | Shares the `default` conversation with the other demos. |
 | `/angular/agno/inspector` | `/inspector` | ✅ Working | Verified live: element mounts, panel opens, System Health *Healthy*, `RUN_FINISHED` in Recent activity after a real run. Not reproducible on 0.3.1 — Known issues #12; launcher position caveat #15. The manifest carried no `routes` for this page until 2026-09-21, so `check-page-coverage` reported the live `/inspector` route as untracked and the page as unrouted. Both now point at each other. |
 | `/angular/agno/cli` | — | 🚧 Not started | No route. The new `verify` section is exercised through `npm run verify` instead; findings in Known issues #12. |
 | `/angular/agno/intelligence/memories` | `/memory` | ⚠️ Partial | The page's Angular path is `injectMemories()`, which `/memory` already mounts. Premium; recording stopped (`756ec4b`). |
-| `/angular/agno/intelligence/learned-skills` | — | ❌ Broken | No Agno adapter, and every Python package it names is 404 on PyPI — Known issues #26. The 2026-09-21 sync added a BuiltInAgent row and two BuiltInAgent snippets: `learnedSkills` does not exist on `BuiltInAgent` in the declared `@copilotkit/runtime` 1.70.1, and the factory sample imports `ai` and `@ai-sdk/openai`, which the page never tells you to install (#33, #34). |
+| `/angular/agno/intelligence/learned-skills` | — | ❌ Broken | No Agno adapter, and every Python package it names is 404 on PyPI — Known issues #26. The 2026-09-21 sync added a BuiltInAgent row and two BuiltInAgent snippets: `learnedSkills` does not exist on `BuiltInAgent` in the declared `@copilotkit/runtime` 1.70.1, and the factory sample imports `ai` and `@ai-sdk/openai`, which the page never tells you to install (#33, #34). The `learnedSkills` half is resolved at 1.73.3, which this repo now declares. The 2026-09-23 sync uncommented a placeholder revision pin in every example (#40) and its Reuse-client sample sets `apiUrl` without `wsUrl` (#39). |
 | `/angular/agno/learning` | — | ⚠️ Partial | `getLearningContainerId` typechecks on runtime 1.72.0; the snippet's `agents` and `identifyUser` are undefined — #27. Needs a dashboard-created container. The 2026-09-21 sync added the daily-schedule and skill-delivery steps; its adapter list contradicts the learned-skills table it links to (#34). |
 | `/angular/agno/copilot-runtime` | — | 📖 Reference | Near-duplicate of `backend/copilot-runtime`. Both gained the same "Which name identifies an agent" section on 2026-09-21 (#29), and one more Next.js-titled snippet each (#24). |
 | `/angular/agno/backend/copilot-runtime` | — | 📖 Reference | `server.ts` already follows it (`a2ui: {}`, `intelligence`, `identifyUser`), and registers two agent-map keys (`default`, `support`), which is what the new agent-naming section teaches. Its `CopilotKitAgentDiscoveryError` is not what the Angular surface throws (#29). The new `sseKeepAliveIntervalSeconds` option is absent from the declared runtime (#30). |
@@ -326,14 +326,14 @@ Verified 2026-08-12 against a live stack (real OpenAI key, no license key).
 | `/angular/agno/troubleshooting/debug-mode` | — | ⚠️ Partial | `debug` defaults table matches 1.72.0 exactly. On this Intelligence runtime `debug: true` logged only `Agent run started` — #25. |
 | `/angular/agno/troubleshooting/event-inspector` | — | ⚠️ Partial | The claims probed on 2026-09-18 all held: root path 404s with `{"error":"Not found"}`, basePath answers `: connected`, and the stream stays empty on an Intelligence run, as its warning says. The 2026-09-21 rewrite replaced the gate it documents, and the declared runtime implements the old one, so the page's central safety claim is false here (#35). |
 | `/angular/agno/telemetry` | — | 📖 Reference | No route. The 2026-09-21 change is two sentences of prose separating `CPK_INTELLIGENCE_API_KEY` from telemetry identity; consistent with `server.ts`, which uses that key for Intelligence only. |
-| `/angular/agno/intelligence/overview` | — | 📖 Reference | No route. The 2026-09-21 change is one table cell (automatic learning now names BuiltInAgent and framework adapters). Nothing in the harness quotes it. |
+| `/angular/agno/intelligence/overview` | — | 📖 Reference | No route. Rewritten on 2026-09-23 (110 lines to 44): the feature table whose automatic-learning cell changed on 2026-09-21 is gone, as is its "Go to **Automatic Learning**" step (#37). Nothing in the harness quotes it. |
 | `/angular/agno/vs-code-extension` | — | 📖 Reference | Editor extension; tracked. |
 | `/angular/agno/contributing/code-contributions/package-linking` | — | 📖 Reference | Contributor setup. |
 
 **Legend:** ✅ Working · ⚠️ Partial (blocked by something outside this repo) · 📖 Reference · ❌ Broken · 🚧 Not started
 
 **On the `[no-route]` lines `npm run drift` prints.** `ci/check-page-coverage.mjs`
-reports every manifest page whose `routes` is empty, and 34 of the 45 tracked
+reports every manifest page whose `routes` is empty, and 33 of the 44 tracked
 pages are reference material with no browser surface: runtime and backend
 configuration, deployment, contributor setup, editor tooling, premium platform
 docs. Those are tested by compiling or probing what they publish and writing
@@ -513,6 +513,8 @@ The [CLI page](https://docs.copilotkit.ai/angular/agno/cli) says `verify` "exits
 
 The summary block prints `framework  t`. `/api/copilotkit/info` is the source: it reports `"className": "t"` for both agents — a **minified** class name from the runtime bundle, not `AgnoAgent`. The CLI passes it through verbatim, so the field that is supposed to tell you which integration answered is unreadable. Same run reports `generative UI  disabled`, consistent with issue #2.
 
+*Still reproduces on `@copilotkit/runtime` 1.73.3* (2026-09-23): `/info` reports `"version":"1.73.3"` and `"className":"t"` for both agents, and `"openGenerativeUIEnabled": false` (#3).
+
 **15. The launcher corner the page recommends lands on the composer**
 
 The Inspector page's CSS sample moves the launcher bottom-left because that
@@ -690,6 +692,10 @@ prose drift on top.
 Retargeted in `frontend/scripts/sync-docs.ts`, `doc-snapshot/manifest.json`, and
 the six `doc-snapshot/pages/angular__agno__intelligence__*.md` filenames.
 
+One of the six has since gone for good: `connect-your-runtime` 404s at its
+new path too as of 2026-09-23, with no redirect again, and is retired here
+(#38).
+
 **22. Seventeen live pages are missing from the section's sitemap**
 
 `sitemap.xml` lists 4 URLs under `/angular/agno`. Twenty-five pages this repo
@@ -705,7 +711,11 @@ Sixteen of them are now in `frontend/scripts/sync-docs.ts` and `doc-snapshot/`
 (45 pages); the gate exits 0. The seventeenth, `intelligence/quickstart`, is
 deliberately not tracked — dropped fleet-wide as in the React repos (`108c1ed`),
 its URL listed in `sitemap.knownUnmapped` so the gate does not report it as new.
-`server.ts` still wires `CopilotKitIntelligence` per `connect-your-runtime`.
+`server.ts` still wires `CopilotKitIntelligence` as `connect-your-runtime`
+taught; that page was removed on 2026-09-23 and merged into
+`intelligence/quickstart` (#38), so the untracked quickstart is now the only
+live source for that code. The 2026-09-23 sitemap restructure changed how this
+gap presents, not whether it exists (#41).
 
 **23. Two in-section links 404**
 
@@ -716,13 +726,30 @@ its URL listed in `sitemap.knownUnmapped` so the gate does not report it as new.
 
 Both markdown endpoints return 404, per the drift checker's dead-link scan.
 
+Since 2026-09-23 the sitemap lists `/angular/advanced-configuration`
+(framework-less, 200), while the framework-scoped
+`/angular/agno/advanced-configuration` that Custom agent links to still 404s,
+page and `.md` alike (checked 2026-09-23). The drift checker maps shared
+`/angular/X` sitemap entries onto `/angular/agno/X` (#41), so it now lists this
+dead URL as a new upstream page as well; it is acknowledged in
+`sitemap.knownUnmapped` for that reason only, and stays a dead link. Side
+effect: the dead-link scan (`ci/lib/linked-pages.mjs`) skips every URL in
+`knownUnmapped`, so `npm run drift` now prints only
+`agentcore/full-stack-example` under dead links. This entry is the record of
+the second one; re-check it by hand
+(`curl -I https://docs.copilotkit.ai/angular/agno/advanced-configuration`).
+
 **24. Angular pages title their runtime code as a Next.js route file**
 
-Twenty-one snippets across seven tracked Angular pages carry
+Twenty snippets across six tracked Angular pages carry
 `title="app/api/copilotkit/[[...slug]]/route.ts"` (or `.../route.ts`):
 `backend/copilot-runtime` (6), `copilot-runtime` (5), `backend/runtime-endpoints` (3),
-`backend/agent-runner` (3), `deploy/agentcore` (2), `troubleshooting/debug-mode`,
-`intelligence/connect-your-runtime` (the untracked `intelligence/quickstart` has one more). An Angular app has
+`backend/agent-runner` (3), `deploy/agentcore` (2), `troubleshooting/debug-mode` (1).
+`intelligence/connect-your-runtime` carried a twenty-first until it was
+removed on 2026-09-23 (#38). The untracked `intelligence/quickstart` it merged
+into no longer has one: it titles its runtime snippets
+`"Your CopilotKit runtime"` / `"Your runtime server"` (checked live
+2026-09-23). An Angular app has
 no such file — the Angular quickstart runs the runtime as its own Node server
 (`frontend/server.ts` here). `runtime-server-adapter`'s two are excluded: they sit
 in its own Next.js section, where they belong. A reader has to infer that each
@@ -850,6 +877,30 @@ Versions pinned for every entry in this block. Declared in
 these up: 1.73.0 and 0.5.2 were read with `npm pack` into a scratch directory
 outside the repo.
 
+**Re-checked 2026-09-23, after upgrading.** Declared now:
+`@copilotkit/angular ^0.5.2`, `@copilotkit/runtime ^1.73.3`, `@ag-ui/agno ^0.0.5`.
+Installed: `@copilotkit/angular` **0.5.2**, `@copilotkit/runtime` **1.73.3**,
+`@copilotkit/core` / `shared` / `web-inspector` **1.70.2** (exact-pinned by
+`@copilotkit/angular` 0.5.2; the runtime's own nested `shared` is 1.73.3),
+`@ag-ui/agno` **0.0.5**. The same snippets, compiled verbatim the same way
+against the upgraded tree, leave only the undefined-identifier errors:
+`TS18004` for `agents` (#27, #35) and `TS2304` for `resolveUser` /
+`userOwnsThread` (#31). `BuiltInAgentFactoryContext`,
+`sseKeepAliveIntervalSeconds` and `learnedSkills` all compile. Per finding:
+#29 and #32 still reproduce, #30, #33, #35 and #36 no longer reproduce on the
+declared version and are marked resolved-at-version below, #34 is partly
+resolved. Nothing here is deleted: each still documents a page that states no
+version floor, so a reader on 1.70.x still hits it.
+
+One side effect of the upgrade, recorded because the doc snippet causes it:
+`server.ts` copies the quickstart's `apiKey: process.env.CPK_INTELLIGENCE_API_KEY!`.
+On 1.70.1 an unset key constructed a client anyway; on 1.73.3 the constructor
+throws `CopilotKitIntelligence \`apiKey\` is required and cannot be blank` at
+startup. The `!` in the published snippet silences the type checker, so the
+page gives no compile-time hint that the variable is mandatory. The harness
+starts normally with the key set (checked: `/info` answers with
+`"version":"1.73.3"`).
+
 **29. Both runtime pages now name an error class the Angular surface never throws**
 
 [Copilot Runtime](https://docs.copilotkit.ai/angular/agno/backend/copilot-runtime)
@@ -887,6 +938,11 @@ editions do not agree on where the error is explained.
 Not reproduced live: this repo registers `default` and `support` and asks for
 nothing else, and a run needs servers that were not started for this pass.
 
+*Still open at the upgraded versions (2026-09-23):* installed
+`@copilotkit/angular` 0.5.2 has the same `injectAgentStore` template, and
+installed `@copilotkit/core` 1.70.2 the same `Agent not found: …` `Error`;
+neither references `CopilotKitAgentDiscoveryError`.
+
 **30. The new keep-alive option does not exist in the version the page's own quickstart installs**
 
 [Copilot Runtime](https://docs.copilotkit.ai/angular/agno/backend/copilot-runtime)
@@ -912,6 +968,10 @@ frames nor the option.
 `server.ts` does not set it, and the option was not added: setting a field the
 installed types do not have would fail the build, and the page does not ask
 anyone to set it.
+
+*Resolved at `@copilotkit/runtime` 1.73.3* (declared `^1.73.3` since
+2026-09-23): the option is declared in `dist/v2/runtime/core/runtime.d.mts`
+and the snippet compiles. Still no version floor on the page.
 
 **31. Three new links promise a "Thread authorization" section the Auth page does not have**
 
@@ -982,6 +1042,18 @@ were inspected. `AgentCoreRunner`, named in both callouts, is a class the
 reader writes in `deploy/agentcore` (`extends InMemoryAgentRunner`), so it
 inherits the opt-in as claimed.
 
+*Re-checked at `@copilotkit/runtime` 1.73.3 (2026-09-23):* the 422 body is
+unchanged, still the "Missing CopilotKitIntelligence configuration" text for
+all four read routes, so the finding stands. What changed is the other half of
+both callouts: 1.73.3's `handle-stop.mjs` now resolves the user on an
+Intelligence runtime and calls `intelligence.getThread({ threadId, userId })`
+before stopping, answering 403 `Thread access denied` for a thread the user
+cannot see. So `agent/:agentId/stop/:threadId` no longer reads the thread
+by id alone on the platform, while both pages (re-synced the same day) still
+list it beside `threads/events` and `threads/state`, which do (they resolve a
+user and then fetch by `threadId` only). Read from the installed bundle, not
+exercised over the wire.
+
 **33. `BuiltInAgentFactoryContext` and `learnedSkills` are published against a version the pages never name**
 
 [Custom agent](https://docs.copilotkit.ai/angular/agno/backend/custom-agent)
@@ -1017,6 +1089,11 @@ both 1.70.1 and 1.73.0 carry on this context and the only way a factory can
 pause a run for human input. The page never mentions it under any name. That
 was true before the rename too; the rename kept it while adding a field.
 
+*Resolved at `@copilotkit/runtime` 1.73.3* (declared `^1.73.3` since
+2026-09-23) for the export and the field: `BuiltInAgentFactoryContext` is
+exported from `@copilotkit/runtime/v2` and the verbatim import compiles. The
+missing `interrupt` field and the absent version floor still stand.
+
 **34. The BuiltInAgent skill-delivery path and the Learning page that links to it disagree**
 
 [Learned skills](https://docs.copilotkit.ai/angular/agno/intelligence/learned-skills)
@@ -1032,6 +1109,8 @@ Three further gaps in the new BuiltInAgent section:
 - `learnedSkills` is not a `BuiltInAgent` option in 1.70.1: the classic-mode
   snippet compiles to `TS2353`, "does not exist in type
   `BuiltInAgentConfiguration`". It is in 1.73.0. No floor is stated (#33).
+  *Resolved at 1.73.3*, which this repo declares since 2026-09-23: the snippet
+  compiles, including the now-uncommented `revision` line (#40).
 - The factory sample imports `streamText` and `stepCountIs` from `ai` and
   `openai` from `@ai-sdk/openai`. Neither package is declared in this repo's
   `frontend/package.json`; both exist only as transitive dependencies of
@@ -1083,6 +1162,12 @@ identifier the page never defines, so compiled verbatim it is `TS18004`, the
 same defect as #27 and #31. Nothing was added to `server.ts` for it: this
 harness must not enable a public event feed, and the page does not ask it to.
 
+*Resolved at `@copilotkit/runtime` 1.73.3* (declared `^1.73.3` since
+2026-09-23): the installed `core/runtime.mjs` gates the bus on
+`isDebugEventFeedEnabled`, so this repo's unset-`NODE_ENV` runtime no longer
+opens the feed. The `TS18004` on `agents` and the missing version floor still
+stand.
+
 **36. The stop endpoint's new `runId` body does not exist in the declared runtime**
 
 [Runtime endpoints](https://docs.copilotkit.ai/angular/agno/backend/runtime-endpoints)
@@ -1109,6 +1194,11 @@ rather than rejected. The page states no version floor, and the severity
 classifier called this LOW because the change is prose in a table cell rather
 than a code fence. Verified by reading the installed bundle; not exercised over
 the wire, since this page has no route here.
+
+*Resolved at `@copilotkit/runtime` 1.73.3* (declared `^1.73.3` since
+2026-09-23): the installed `handle-stop.mjs` has `parseStopScope`, which
+accepts an optional `runId`, returns 400 for non-JSON bodies and extra keys,
+and passes `runId` to `runner.stop`. Still no version floor on the page.
 
 ### Findings from the 2026-09-22 sync
 
@@ -1140,6 +1230,145 @@ still labels those tabs `Threads` and `Learning`: `label: "Threads"` and
 declared) and in 1.73.0 (latest on npm, read from the tarball). The React
 `/agno/inspector` page still uses the old names while `/deepagents/inspector`
 has switched (checked 2026-09-22), so the rename is also applied unevenly.
+
+*Updated 2026-09-23.* The Intelligence overview was rewritten and no longer
+says "Go to **Automatic Learning**"; only
+[Automatic Learning](https://docs.copilotkit.ai/angular/agno/learning) still
+does. Quickstart and landing page still say "Open **Rich Threads**". On the
+package side the rename has now shipped, but not to Angular:
+`@copilotkit/web-inspector` 1.73.3 (latest on npm, read from the tarball)
+labels the tabs `Rich Threads` and `Automatic Learning`, while
+`@copilotkit/angular` 0.5.2 (latest, installed, declared `^0.5.2`)
+exact-pins `@copilotkit/web-inspector` **1.70.2**, whose installed bundle still
+says `label: "Threads"` / `label: "Learning"`. An Angular reader on the newest
+packages the quickstart installs therefore still sees the old names, and
+cannot reach the new ones by upgrading.
+
+### Findings from the 2026-09-23 sync
+
+Sixteen tracked pages changed and one was removed. Most of the prose change
+is renaming ("managed" is now "cloud-hosted", "durable threads" is now
+"threads", "What is this?" headings became "Overview") and none of it is quoted
+by harness code, so no route changed. The Inspector step "Open **Rich
+Threads**" was already in the quickstart before this sync; the recorder quotes
+only the quickstart's first two Inspector steps
+(`autorecorder/actions/inspector.action.ts`), so there was nothing to re-quote.
+
+The same day this repo upgraded to `@copilotkit/angular` **0.5.2** and
+`@copilotkit/runtime` **1.73.3** (declared `^0.5.2` / `^1.73.3`, installed
+0.5.2 / 1.73.3, with `@copilotkit/core`, `shared` and `web-inspector` at
+1.70.2 because `@copilotkit/angular` 0.5.2 exact-pins them). Every entry below
+is pinned to those versions.
+
+**38. Connect your runtime was removed with no redirect**
+
+[`/angular/agno/intelligence/connect-your-runtime`](https://docs.copilotkit.ai/angular/agno/intelligence/connect-your-runtime)
+returns **404** as a page and as `.md` (checked 2026-09-23), and it is gone from
+the sitemap. Its content, the `CopilotKitIntelligence` client passed to
+`CopilotRuntime`, now lives in
+[Intelligence quickstart](https://docs.copilotkit.ai/angular/agno/intelligence/quickstart)
+step "Connect your runtime", which serves 200. No redirect was left and no note
+says the page moved, which is the same pattern as #21, where this page had
+already moved once (from `premium/`). No tracked page links to the old URL any
+more, so the drift gate's dead-link scan does not catch it; only its
+"removed or renamed" check does, and that exited **2** on this page until it
+was retired.
+
+Retired here: removed from `doc-snapshot/manifest.json` and
+`frontend/scripts/sync-docs.ts`, and its snapshot file deleted. The code in
+`frontend/server.ts` is unchanged; its comment still cites the removed page as
+the source, with a note that it was merged into the Intelligence quickstart,
+because that is where the code was copied from.
+
+**39. Learned skills' "Reuse an Intelligence SDK client" sets `apiUrl` without `wsUrl`**
+
+[Learned skills](https://docs.copilotkit.ai/angular/agno/intelligence/learned-skills)
+gained a section "Reuse an Intelligence SDK client", for a server that "already
+creates an Intelligence client". Its sample:
+
+```typescript
+const intelligence = new CopilotKitIntelligence({
+  apiKey: process.env.CPK_INTELLIGENCE_API_KEY!,
+  apiUrl: process.env.INTELLIGENCE_API_URL,
+});
+```
+
+Two other pages say this is the wrong way to override the host.
+[Runtime endpoints](https://docs.copilotkit.ai/angular/agno/backend/runtime-endpoints)
+says to "override **both together** — setting one alone points the two planes
+at different deployments, which logs a warning", and the Intelligence
+quickstart says "Set both, or set neither". The same page's environment block
+marks `INTELLIGENCE_API_URL` as "Self-hosted deployments only", which is
+exactly when the sample goes wrong. `@copilotkit/runtime` 1.73.3 (installed)
+does what the other pages say: `warnOnPartialHostOverride` in
+`dist/v2/runtime/intelligence-platform/client.mjs` logs that `wsUrl` "falls
+back to the managed default" whenever `apiUrl` is set alone. The skill
+registry itself uses only REST, but the section's premise is a client your
+server already has, and that client is the one passed to `CopilotRuntime`,
+whose realtime connection would go to the cloud-hosted gateway while the API
+calls go to the self-hosted one. The sample compiles verbatim on 1.73.3. The
+warning comes from reading the installed code; it was not triggered here,
+since this repo sets no `INTELLIGENCE_API_URL`.
+
+**40. The placeholder revision pin is now live code in every example**
+
+Before 2026-09-23, Learned skills' one BuiltInAgent example carried
+`// revision: "exact-revision-id", // Optional: pin a published revision.` as a
+comment. Now all eight code examples (TypeScript, Python and .NET) set it
+uncommented, for example `revision: "exact-revision-id", // Optional: pin a
+published revision.`. The new prose says to replace it with a published
+revision ID or remove it.
+
+Copied as published, every example therefore pins a revision that cannot
+exist. By the page's own rules this is worse than it looks:
+
+- "An explicit code value overrides its environment variable", so a reader
+  who sets `CPK_INTELLIGENCE_SKILLS_REVISION`, or leaves it unset to follow the
+  latest published skills as the page and
+  [Automatic Learning](https://docs.copilotkit.ai/angular/agno/learning)
+  recommend, is overridden by the placeholder.
+- "Model work cannot start until a verified snapshot exists", so an
+  unresolvable pin blocks the agent's model work rather than just skipping
+  skills.
+- "Make sure delivery works" begins by telling the reader to remove the
+  `revision` they were just shown.
+
+On `@copilotkit/runtime` 1.73.3 the BuiltInAgent sample compiles verbatim, and
+`getLearnedSkillsSnapshot` sends the string unchanged as `?revision=exact-revision-id`.
+What the platform answers was not checked: this repo has no Learning
+container and no Agno adapter (#26).
+
+**41. The sitemap now lists shared Angular pages only once, without the framework**
+
+Since 2026-09-23, `sitemap.xml` lists the guides that every Angular framework
+shares once, framework-less, as `/angular/X`, and keeps only four
+framework-specific URLs under `/angular/agno`. The framework-scoped copies
+still serve 200 and still sit in the `/angular/agno` sidebar, so the sitemap no
+longer lists the URLs a reader of this section actually lands on. This
+continues #22, where the section's sitemap had already shrunk to 4 URLs and 41
+tracked pages were missing from it.
+
+Two results for this repo:
+
+- `ci/check-doc-drift.mjs` now maps each shared `/angular/X` sitemap entry onto
+  `/angular/agno/X`. Without that, every shared page read as "no longer
+  listed", and pages added upstream went unseen. With it, 18 pages appeared
+  that this repo had never tracked: `advanced-configuration`,
+  `agentic-protocols/{a2a,ag-ui-middleware,index}`, `backend/message-history`,
+  `concepts/{generative-ui-overview,oss-vs-enterprise}`,
+  `contributing/docs-contributions`, `deploy/{aws-lambda,langsmith}`,
+  `intelligence/{analytics,channels,plans}`, `mcp-servers`, `model-selection`,
+  `multi-agent/subagents`, `server-tools` and `webmcp`. They are acknowledged
+  in `sitemap.knownUnmapped` as reference-only pages, not recorded.
+- The mapping is an assumption the sitemap no longer supports: a shared page
+  listed at `/angular/X` does not promise that `/angular/agno/X` serves.
+  `advanced-configuration` is the counterexample: listed at
+  `/angular/advanced-configuration` (200), 404 at `/angular/agno/advanced-configuration`,
+  which is the URL Custom agent links to (#23).
+  Five tracked pages (`cli`, `build-with-agents`, `agentic-protocols`,
+  `contributing/code-contributions/package-linking`, `vs-code-extension`) are
+  still reported as "not in sitemap" after the mapping, yet all of them hash
+  normally at their framework-scoped URLs.
 
 ---
 

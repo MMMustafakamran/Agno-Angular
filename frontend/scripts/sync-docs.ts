@@ -28,7 +28,6 @@ const DOC_PAGES = [
   { docPath: '/angular/agno/inspector', routes: ['/inspector'] },
   { docPath: '/angular/agno/intelligence/overview', routes: [] },
   { docPath: '/angular/agno/intelligence/managed-intelligence-platform', routes: [] },
-  { docPath: '/angular/agno/intelligence/connect-your-runtime', routes: [] },
   { docPath: '/angular/agno/intelligence/self-hosting', routes: [] },
   { docPath: '/angular/agno/intelligence/intelligence-platform', routes: [] },
   { docPath: '/angular/agno/copilot-runtime', routes: [] },

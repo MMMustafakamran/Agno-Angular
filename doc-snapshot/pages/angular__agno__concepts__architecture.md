@@ -63,4 +63,4 @@ Because the contract is a protocol — not an SDK lock-in — you can swap the a
 - **Practical setup** — [Quickstart](/angular/agno/quickstart) wires all three layers in ~10 minutes against the Built-in Agent.
 - **Protocol depth** — [AG-UI documentation](/angular/agno/agentic-protocols/ag-ui) covers every event type, transport option, and middleware hook.
 - **Backend choices** — [Agents & Backends](/) explains the runtime, custom agents, and the trade-offs between Built-in, external frameworks, and bring-your-own.
-- **CopilotKit Intelligence overview** — [CopilotKit Intelligence](/angular/agno/intelligence/overview) covers Threads, Persistence, hosted inspection, and the cloud-hosted-vs-self-hosted decision.
+- **CopilotKit Intelligence overview** — [CopilotKit Intelligence](/angular/agno/intelligence/overview) covers Threads, persistence, inspection, and the cloud-hosted or self-hosted decision.
