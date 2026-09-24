@@ -56,6 +56,28 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "doc-frontend-tools": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/app/app.config.ts",
+                  "with": "src/doc-verbatim/app.config.frontend-tools.ts"
+                }
+              ]
+            },
+            "doc-a2ui": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/doc-verbatim/a2ui.stub.ts",
+                  "with": "src/doc-verbatim/a2ui.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -71,6 +93,12 @@
             },
             "development": {
               "buildTarget": "frontend:build:development"
+            },
+            "doc-frontend-tools": {
+              "buildTarget": "frontend:build:doc-frontend-tools"
+            },
+            "doc-a2ui": {
+              "buildTarget": "frontend:build:doc-a2ui"
             }
           },
           "defaultConfiguration": "development"
