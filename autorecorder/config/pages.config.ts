@@ -181,10 +181,12 @@ export const PAGES = definePages([
     ],
     prompt: 'Please delete my account. Check with me before you actually do it.',
     // When the agent asks in prose instead of calling requestApproval, the take
-    // answers it so the clip shows where the conversation goes next.
+    // answers it -- up to twice -- so the clip shows where the conversation goes
+    // next. Each unanswered turn is named in the verdict (see hitl.action.ts).
     prompts: [
       'Please delete my account. Check with me before you actually do it.',
       'Yes, delete my account.',
+      'Yes, go ahead.',
     ],
     waitAfterPromptMs: 4000,
   },
