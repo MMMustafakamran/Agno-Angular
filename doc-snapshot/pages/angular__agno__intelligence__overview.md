@@ -3,7 +3,6 @@
 > CopilotKit Intelligence adds Rich Threads, User Memories, Automatic Learning, Channels, and Product Analytics to the CopilotKit app you already run.
 
 
-
 <IntelligenceOverview />
 
 ## What is CopilotKit Intelligence?
@@ -14,7 +13,23 @@ Open the page for the one thing you want to add. Each page below owns that topic
 
 Connect an existing app in the [quickstart](/angular/agno/intelligence/quickstart).
 
-<IntelligenceFeatureCards />
+## What Intelligence gives you
+
+- [Rich Threads](/angular/agno/guides/threads-memory-attachments-headless): Save the conversation and open it again on another device.
+- [User Memories](/angular/agno/intelligence/memories): Keep facts about a person after the conversation ends.
+- [Automatic Learning](/angular/agno/learning): Turn real usage into skills you can review and publish.
+- [Product Analytics](/angular/agno/intelligence/analytics): See what people do with your agent.
+- [Channels](/angular/agno/intelligence/channels): Run the same agent in Slack or Microsoft Teams.
+- [Inspector](/angular/agno/inspector): Watch threads, learning, and tool calls from your app on localhost.
+
+## Already have LangGraph threads or ADK sessions?
+
+Import existing history once, then add Rich Threads around your current agent:
+
+- [Import LangGraph threads](/angular/langgraph-python/threads-import) from LangGraph Server, LangGraph Platform, or LangSmith Deployments that expose the LangGraph SDK thread and run APIs. Arbitrary LangChain message stores, LangSmith traces, and embedded checkpointers are not supported sources.
+- [Import Google ADK sessions](/angular/google-adk/threads-import) from supported ADK database session stores or Vertex/Agent Engine session history.
+
+Import copies history; it does not establish ongoing database replication. Future CopilotKit-mediated runs persist to Intelligence and continue through native persistence when your agent remains connected to a durable LangGraph checkpointer or deployment, or an ADK session service with appropriate retention. Keep that native persistence in place.
 
 ## Choose where Intelligence runs
 

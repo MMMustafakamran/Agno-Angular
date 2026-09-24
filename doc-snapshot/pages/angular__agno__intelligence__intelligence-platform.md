@@ -13,7 +13,7 @@ To connect a runtime, follow the [quickstart](/angular/agno/intelligence/quickst
   title="Start with cloud-hosted Intelligence"
   body="Create a project, get a project API key, and inspect the first thread before you decide to self-host."
   ctaLabel="Start cloud-hosted setup"
-  href="https://dashboard.operations.copilotkit.ai/"
+  href="https://intelligence.copilotkit.ai/"
   surface="docs_intelligence_architecture_intro"
 />
 
@@ -49,7 +49,7 @@ The important application-level contract is simple: your app uses the same front
 
 ## Inspection
 
-Open a stored thread in the [cloud-hosted project](/angular/agno/intelligence/managed-intelligence-platform#sign-in-and-create-a-project). API keys and plans live on [Cloud-hosted](/angular/agno/intelligence/managed-intelligence-platform) and [Plans](/angular/agno/intelligence/plans).
+Open a stored thread in the [cloud-hosted project](/angular/agno/intelligence/managed-intelligence-platform#get-started). API keys and plans live on [Cloud-hosted](/angular/agno/intelligence/managed-intelligence-platform) and [Plans](/angular/agno/intelligence/plans).
 
 ## Hosting model
 

@@ -9,6 +9,113 @@ Holds the 3 most recent dated entries. When a change lands on a fourth
 date, the oldest entry is dropped. Entries are counted, not aged, so a gap of
 weeks between changes does not expire anything.
 
+## 2026-09-24
+
+### 07:28 UTC — 6 pages, highest severity high · _npm run drift:sync_
+
+**Low — /angular/agno/cli**
+
+`/angular/agno/cli` · `angular__agno__cli.md`
+
+Prose / text phrasing updated. Hash 52562329 ➔ e5919bb5.
+
+````diff
+- href="https://dashboard.operations.copilotkit.ai/"
++ href="https://intelligence.copilotkit.ai/"
+````
+
+**Medium — /angular/agno/intelligence/overview**
+
+`/angular/agno/intelligence/overview` · `angular__agno__intelligence__overview.md`
+
+Headings / Structure changed. Hash feede64c ➔ acce68d2.
+
+````diff
+- <IntelligenceOverview />
+- ## What is CopilotKit Intelligence?
+- You want Rich Threads, User Memory, Automatic Learning, Channels, and Product Analytics without operating that storage yourself. CopilotKit Intelligence adds that layer to the CopilotKit app you already have. Your frontend, your agent, and your model stay where they are.
+- Open the page for the one thing you want to add. Each page below owns that topic.
++ <IntelligenceOverview />
++ ## What is CopilotKit Intelligence?
++ You want Rich Threads, User Memory, Automatic Learning, Channels, and Product Analytics without operating that storage yourself. CopilotKit Intelligence adds that layer to the CopilotKit app you already have. Your frontend, your agent, and your model stay where they are.
++ Open the page for the one thing you want to add. Each page below owns that topic.
+  … region truncated
+````
+
+**High — /angular/agno/intelligence/managed-intelligence-platform**
+
+`/angular/agno/intelligence/managed-intelligence-platform` · `angular__agno__intelligence__managed-intelligence-platform.md`
+
+Code block content changed. Hash 833914e4 ➔ 04567795.
+
+````diff
+- <OpsPlatformCTA
+- variant="inline"
+- title="Start cloud-hosted setup"
+- body="Sign in, create an organization, then return to the CLI or the web app and select a project."
++ The web app is for the people who build and operate the app. The people who chat with your agent do not sign in there. Your app still identifies those people and passes that identity through the runtime.
++ Compare this deployment with self-hosted on the [architecture page](/angular/agno/intelligence/intelligence-platform).
++ ## Get started
++ Start at [intelligence.copilotkit.ai](https://intelligence.copilotkit.ai) or in the CopilotKit CLI.
+  … region truncated
+````
+
+**Low — /angular/agno/intelligence/intelligence-platform**
+
+`/angular/agno/intelligence/intelligence-platform` · `angular__agno__intelligence__intelligence-platform.md`
+
+Prose / text phrasing updated. Hash 50e9b6c1 ➔ 36df60fc.
+
+````diff
+- href="https://dashboard.operations.copilotkit.ai/"
+- surface="docs_intelligence_architecture_intro"
+- />
+- ## Runtime and platform roles
++ href="https://intelligence.copilotkit.ai/"
++ surface="docs_intelligence_architecture_intro"
++ />
++ ## Runtime and platform roles
+  … region truncated
+````
+
+**Medium — /angular/agno/intelligence/memories**
+
+`/angular/agno/intelligence/memories` · route `/memory` · `angular__agno__intelligence__memories.md`
+
+Headings / Structure changed. Hash b3e9effd ➔ feddeac3.
+
+````diff
+- ## What is a memory?
+- A memory is a short, durable statement about a user or a project, stored outside
+- any single thread. "Prefers concise status updates" is a memory. The forty
+- messages that revealed the preference are a thread.
++ ## Start with your coding agent
++ Copy this prompt into your coding agent to inspect your existing CopilotKit app and configure long-term memory for your users. Prefer to work through the setup yourself? Follow the manual steps below.
++ ### Copy this prompt into your coding agent
++ ```text
+  … region truncated
+````
+
+**Medium — /angular/agno/learning**
+
+`/angular/agno/learning` · `angular__agno__learning.md`
+
+Headings / Structure changed. Hash 24394093 ➔ 6bd439d8.
+
+````diff
+- ## How Automatic Learning works
+- Learning starts with a container, which groups Threads from the same kind of work. Intelligence analyzes completed runs in that container and summarizes recurring patterns as Insights.
+- When a pattern can be reused, Learning proposes a Skill. You review the supporting Threads and decide whether to publish it. A published Skill is a versioned set of instructions that you load into your agent; Learning does not change the model itself.
+- Automatic Learning checks eligible containers on a daily schedule. After you approve a skill, [skill delivery](/angular/agno/intelligence/learned-skills) makes it available to connected agents. A scheduled run does not approve skills. Turning on delivery does not connect your agent for you.
++ ## Start with your coding agent
++ Copy this prompt into your coding agent to inspect your existing app and configure Automatic Learning for one focused workflow. Prefer to work through the setup yourself? Follow the manual steps below.
++ #### Copy this prompt into your coding agent
++ ```text
+  … region truncated
+````
+
+---
+
 ## 2026-09-23
 
 ### 07:50 UTC — 17 pages, highest severity high · _npm run drift:sync_
@@ -287,6 +394,8 @@ Code fence count changed. Hash d1932db5 ➔ 24394093.
 
 ---
 
+---
+
 ## 2026-09-22
 
 ### 08:52 UTC — 10 pages, highest severity high · _npm run drift:sync_
@@ -440,193 +549,6 @@ Prose / text phrasing updated. Hash cbe8cd4e ➔ c7733457.
 + `express` is an optional peer dependency of `@copilotkit/runtime`, so install it
 + in your own app. Both majors are supported.
 ````
-
----
-
----
-
-## 2026-09-21
-
-### 09:03 UTC — 1 page, highest severity low · _npm run drift:sync_
-
-**Low — /angular/agno/backend/runtime-endpoints**
-
-`/angular/agno/backend/runtime-endpoints` · `angular__agno__backend__runtime-endpoints.md`
-
-Prose / text phrasing updated. Hash 488c2cee ➔ a219e854.
-
-````diff
-- | `POST /api/copilotkit/agent/:agentId/stop/:threadId` | Stop an in-progress run on a given thread.                                                                                                                                                                   |
-+ | `POST /api/copilotkit/agent/:agentId/stop/:threadId` | Stop the in-progress run on a given thread. An optional JSON body `{ "runId": "..." }` stops only that run. A body that is not valid JSON, or carries any other key, is rejected with 400 and stops nothing.                                                                                                |
-````
-
-### 07:26 UTC — 10 pages, highest severity high · _npm run drift:sync_
-
-**Low — /angular/agno/intelligence/overview**
-
-`/angular/agno/intelligence/overview` · `angular__agno__intelligence__overview.md`
-
-Prose / text phrasing updated. Hash 2bc7c7f1 ➔ b7cae9c5.
-
-````diff
-- | Automatic learning | Agents improve from real usage. No fine-tuning pipeline required. | [Learning](/angular/agno/learning) and [Automatic skill delivery](/angular/agno/intelligence/learned-skills) |
-+ | Automatic learning | Agents improve from real usage. BuiltInAgent and framework adapters can load published skills automatically. | [Learning](/angular/agno/learning) and [Automatic skill delivery](/angular/agno/intelligence/learned-skills) |
-````
-
-**High — /angular/agno/copilot-runtime**
-
-`/angular/agno/copilot-runtime` · `angular__agno__copilot-runtime.md`
-
-Code fence count changed. Hash 5e3190c9 ➔ 5249908a.
-
-````diff
-- The Copilot Runtime is the backend layer that connects your frontend application to your AI agents. It's set up during the [quickstart](/angular/agno/quickstart) and is the recommended way to use CopilotKit.
-- ## Setting Up the Runtime
-- The runtime is a lightweight server endpoint that you add to your backend:
-- ```npm
-+ The Copilot Runtime is the backend layer that connects your frontend application to your AI agents. It's set up during the [quickstart](/angular/agno/quickstart) and is the recommended way to use CopilotKit.
-+ ## Setting Up the Runtime
-+ The runtime is a lightweight server endpoint that you add to your backend:
-+ ```npm
-  … region truncated
-````
-
-**Low — /angular/agno/telemetry**
-
-`/angular/agno/telemetry` · `angular__agno__telemetry.md`
-
-Prose / text phrasing updated. Hash 74d5a6f9 ➔ b668cfa7.
-
-````diff
-+ Managed Intelligence starters use `CPK_INTELLIGENCE_API_KEY` for platform access.
-+ The project API key is not a telemetry identity.
-````
-
-**Low — /angular/agno/backend/agent-runner**
-
-`/angular/agno/backend/agent-runner` · `angular__agno__backend__agent-runner.md`
-
-Prose / text phrasing updated. Hash 6f552bcf ➔ 2406f809.
-
-````diff
-+ <Callout type="warn" title="The in-memory runner records no thread owner">
-+ Its store is keyed by `threadId` alone, so the runtime's
-+ [thread routes](/angular/agno/backend/runtime-endpoints#thread-routes) cannot tell one
-+ caller's threads from another's: `GET /threads/:threadId/messages` returns the
-+ history for any id it is given, `GET /threads` lists every thread in the
-+ process, and `POST /threads/clear` wipes all of them.
-+ That is fine for local development and for a deployment serving one person. If
-+ more than one person uses it, authorize those routes yourself before you ship.
-  … region truncated
-````
-
-**High — /angular/agno/backend/copilot-runtime**
-
-`/angular/agno/backend/copilot-runtime` · `angular__agno__backend__copilot-runtime.md`
-
-Code fence count changed. Hash df77cdae ➔ a42a4407.
-
-````diff
-- The Copilot Runtime is the backend layer that connects your frontend application to your AI agents. It's set up during the [quickstart](/angular/agno/quickstart) and is the recommended way to use CopilotKit.
-- ## Setting up the runtime
-- The runtime is a lightweight server endpoint that you add to your backend. Here's a minimal example using Next.js:
-- ```ts title="app/api/copilotkit/[[...slug]]/route.ts" doctest="component"
-+ The Copilot Runtime is the backend layer that connects your frontend application to your AI agents. It's set up during the [quickstart](/angular/agno/quickstart) and is the recommended way to use CopilotKit.
-+ ## Setting up the runtime
-+ The runtime is a lightweight server endpoint that you add to your backend. Here's a minimal example using Next.js:
-+ ```ts title="app/api/copilotkit/[[...slug]]/route.ts" doctest="component"
-  … region truncated
-````
-
-**High — /angular/agno/backend/runtime-endpoints**
-
-`/angular/agno/backend/runtime-endpoints` · `angular__agno__backend__runtime-endpoints.md`
-
-Code fence count changed. Hash 3be80bd5 ➔ 488c2cee.
-
-````diff
-- ### Probing the runtime with curl
-- The fastest way to confirm a self-hosted runtime is wired up is to hit `/info`
-- directly:
-- ```bash
-+ ### Thread routes
-+ The runtime also serves the conversation history behind the threads UI. These
-+ routes exist in multi-route mode whichever runner you use:
-+ | Method & path | Purpose |
-  … region truncated
-````
-
-**High — /angular/agno/intelligence/learned-skills**
-
-`/angular/agno/intelligence/learned-skills` · `angular__agno__intelligence__learned-skills.md`
-
-Code fence count changed. Hash 106a9f9c ➔ d091b61d.
-
-````diff
-- ## Choose an adapter
-- | Framework                 | Package                                  | Native extension                                                     |
-- | ------------------------- | ---------------------------------------- | -------------------------------------------------------------------- |
-- | LangGraph Python          | `copilotkit-intelligence-langgraph`      | `create_skill_registry_middleware`                                   |
-+ <Callout type="info">
-+ Start with the [Learning guide](/angular/agno/learning) to collect Threads, configure daily runs, and review Skills. Before connecting an adapter, check that **Skill delivery** is enabled in the container's **Skills** tab. For guided setup, select **Set up skill delivery** there and copy the prompt into your coding agent.
-+ </Callout>
-+ ## Choose an adapter
-  … region truncated
-````
-
-**High — /angular/agno/learning**
-
-`/angular/agno/learning` · `angular__agno__learning.md`
-
-Code fence count changed. Hash 573995eb ➔ 7a98d875.
-
-````diff
-- ## Start with your coding agent
-- Copy this prompt into your coding agent to inspect your existing app and configure Automatic Learning for one focused workflow. Prefer to work through the setup yourself? Follow the manual steps below.
-- #### Copy this prompt into your coding agent
-- ```text
-+ Automatic Learning checks eligible containers on a daily schedule. After you approve a Skill, automatic skill delivery makes it available to connected agents. Scheduling, publication, and delivery are separate: a scheduled run does not approve Skills, and enabling delivery does not connect your agent for you.
-+ ## Start with your coding agent
-+ Copy this prompt into your coding agent to inspect your existing app and configure Automatic Learning for one focused workflow. Prefer to work through the setup yourself? Follow the manual steps below.
-+ #### Copy this prompt into your coding agent
-  … region truncated
-````
-
-**High — /angular/agno/troubleshooting/event-inspector**
-
-`/angular/agno/troubleshooting/event-inspector` · `angular__agno__troubleshooting__event-inspector.md`
-
-Code fence count changed. Hash 217558a5 ➔ 2299868a.
-
-````diff
-- - A CopilotKit runtime running locally in development mode (`NODE_ENV` is **not** `production`)
-- - The [CopilotKit VS Code extension](/angular/agno/vs-code-extension) installed
-- <Callout type="warning">
-- The `/cpk-debug-events` endpoint is disabled when `NODE_ENV=production`. This is intentional — it streams internal event data that should not be exposed in production environments.
-+ - A CopilotKit runtime running locally with `NODE_ENV` set to `development`, or with `debug` enabled on the runtime
-+ - The [CopilotKit VS Code extension](/angular/agno/vs-code-extension) installed
-+ <Callout type="warning">
-+ The `/cpk-debug-events` endpoint streams every event of every thread, including full message content, to any subscriber. It is served in exactly two cases: `NODE_ENV` is `development`, or the runtime sets `debug`. Everywhere else it returns 404.
-  … region truncated
-````
-
-**Low — /angular/agno/backend/custom-agent**
-
-`/angular/agno/backend/custom-agent` · `angular__agno__backend__custom-agent.md`
-
-Prose / text phrasing updated. Hash bd8791e6 ➔ b0c5b502.
-
-````diff
-- The factory receives an `AgentFactoryContext` (from `@copilotkit/runtime/v2`):
-- ```typescript
-- interface AgentFactoryContext {
-+ The factory receives an `BuiltInAgentFactoryContext` (from `@copilotkit/runtime/v2`):
-+ ```typescript
-+ interface BuiltInAgentFactoryContext {
-+ learnedSkills: BuiltInAgentLearnedSkills; // catalog and read-only AI SDK tools, empty when disabled
-````
-
----
 
 ---
 
