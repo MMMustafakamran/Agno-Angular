@@ -49,7 +49,7 @@ export const appConfig: ApplicationConfig = {
     ),
     provideClientHydration(),
     provideCopilotKit({
-      runtimeUrl: 'http://localhost:8200/api/copilotkit',
+      runtimeUrl: 'http://localhost:8210/api/copilotkit',
       // The Inspector mounts itself from 0.4.0 on; `enableInspector` is the
       // only control the page gives you. Left `true` so the launcher is on
       // screen for the /inspector recording — the doc's own sample is the
