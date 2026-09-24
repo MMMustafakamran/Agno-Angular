@@ -25,6 +25,7 @@ backend/agno.db
 autorecorder/node_modules/
 autorecorder/videos/*.webm
 autorecorder/videos/RUN_REPORT.*
+autorecorder/videos/PROBES.*
 autorecorder/videos/logs/
 autorecorder/videos/.temp_chunks/
 

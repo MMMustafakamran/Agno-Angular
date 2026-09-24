@@ -68,6 +68,17 @@
                 }
               ]
             },
+            "doc-frontend-tools-fixed": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/app/app.config.ts",
+                  "with": "src/doc-verbatim/app.config.frontend-tools.fixed.ts"
+                }
+              ]
+            },
             "doc-a2ui": {
               "optimization": false,
               "extractLicenses": false,
@@ -96,6 +107,9 @@
             },
             "doc-frontend-tools": {
               "buildTarget": "frontend:build:doc-frontend-tools"
+            },
+            "doc-frontend-tools-fixed": {
+              "buildTarget": "frontend:build:doc-frontend-tools-fixed"
             },
             "doc-a2ui": {
               "buildTarget": "frontend:build:doc-a2ui"

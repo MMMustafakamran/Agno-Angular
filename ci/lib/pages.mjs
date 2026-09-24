@@ -33,7 +33,7 @@ const PAGES_CONFIG = path.join(RECORDER_DIR, 'config', 'pages.config.ts');
  */
 export const PAGE_GROUPS = {
   getting_started: ['quickstart', 'chat-ui'],
-  generative_ui: ['frontend-tools-generative-ui'],
+  generative_ui: ['frontend-tools-generative-ui', 'frontend-tools-compile', 'a2ui-compile'],
   interaction: ['voice-multimodal', 'human-in-the-loop'],
   shared_state: ['shared-state'],
   threads: ['threads', 'headless'],

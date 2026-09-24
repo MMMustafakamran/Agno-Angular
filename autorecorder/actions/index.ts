@@ -39,6 +39,7 @@ import { type Page } from 'playwright';
 import { waitForPageReady } from './page-ready';
 
 import { runChatUiAction } from './chat-ui.action';
+import { runA2uiCompileAction, runFrontendToolsCompileAction } from './compile-demos.action';
 import { runHeadlessAction } from './headless.action';
 import { runHitlAction } from './hitl.action';
 import { runInspectorAction } from './inspector.action';
@@ -61,6 +62,11 @@ export const ACTION_MAP: Record<string, PageActionHandler> = {
   headless: runHeadlessAction,
   // The Inspector page's own subject is the panel, so the clip has to open it.
   inspector: runInspectorAction,
+  // Demo-script clips (1-Demos/DEMO_SCRIPT.md, clips 3 and 4): the doc's code
+  // compiled through doc-verbatim build configs, errors replayed from a real
+  // `ng serve` capture. See actions/compile-demos.action.ts.
+  'frontend-tools-compile': runFrontendToolsCompileAction,
+  'a2ui-compile': runA2uiCompileAction,
 };
 
 export async function executePageAction(

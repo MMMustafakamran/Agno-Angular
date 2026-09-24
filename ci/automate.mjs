@@ -47,6 +47,7 @@ import {
 import { muxAudioFiles } from './lib/mux.mjs';
 import { generateReport } from './lib/report.mjs';
 import { writeVersionsFile } from './write-versions.mjs';
+import { runProbes, writeProbeReport } from './run-probes.mjs';
 
 const OWN_FLAGS = [
   '--pull',
@@ -56,6 +57,7 @@ const OWN_FLAGS = [
   '--force',
   '--allow-port-reuse',
   '--skip-credential-check',
+  '--skip-probes',
 ];
 
 /**
@@ -103,6 +105,10 @@ const skipInstall = args.includes('--skip-install');
 const ignoreDocDrift = args.includes('--ignore-doc-drift') || args.includes('--force');
 const allowPortReuse = args.includes('--allow-port-reuse');
 const skipCredentialCheck = args.includes('--skip-credential-check');
+// Finding probes compile against the installed tree, which every shard shares,
+// so in CI only shard 1 runs them (SHARD is set by the workflow).
+const skipProbes =
+  args.includes('--skip-probes') || (process.env.SHARD && process.env.SHARD !== '1');
 // `--force` also means "record anyway" to the recorder, so it is forwarded.
 const forwardArgs = args.filter((a) => !OWN_FLAGS.includes(a) || a === '--force');
 
@@ -372,6 +378,18 @@ async function main() {
     // fallback, '// File not found', instead of the versions. This reads
     // node_modules and uv.lock, both present on either path.
     console.log(`  📌 ${writeVersionsFile()}`);
+
+    // Finding probes: does the verbatim doc code for each open finding still
+    // fail the way FINDINGS.md says? Informational, never fatal.
+    if (!skipProbes) {
+      console.log('\n▶ [Step] Running finding probes (ci/findings.probes.mjs)...');
+      try {
+        reportData.probes = await runProbes();
+        writeProbeReport(reportData.probes, { summary: false });
+      } catch (err) {
+        console.log(`  ⚠️ Finding probes could not run: ${err.message || err}`);
+      }
+    }
 
     // 4. Servers — skipped for any port already being served.
     let backendLog = path.join(LOGS_DIR, 'backend.log');

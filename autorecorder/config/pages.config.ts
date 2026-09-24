@@ -286,4 +286,42 @@ export const PAGES = definePages([
     prompt: 'Say hi! I want to watch the events go by in the inspector.',
     waitAfterPromptMs: 4000,
   },
+  // ── Demo-script clips (1-Demos/DEMO_SCRIPT.md) ─────────────────────────────
+  // Not doc-nav pages: findings clips that compile the guide's code verbatim.
+  // The engine intro shows the doc and the WORKING code, and `route` is the
+  // working demo (the engine needs `chatReady` there before the handler runs).
+  // The handler (actions/compile-demos.action.ts) then plays the script:
+  // doc snippet, IDE, the real `ng serve` error, and typed notes. No prompt is
+  // sent; `prompt` only satisfies the registry contract.
+  {
+    id: 'frontend-tools-compile',
+    name: 'Clip 3 - Frontend tools. Compile error (#1)',
+    videoName: 'FrontendToolsCompileError',
+    docPath: 'guides/frontend-tools-generative-ui',
+    route: 'frontend-tools-generative-ui',
+    // The guide's setDashboardFilter, verbatim in the harness...
+    ideFile: 'frontend/src/app/app.config.ts',
+    startLine: 15,
+    endLine: 27,
+    // ...and the page that runs with it.
+    extraTabs: [
+      { filePath: 'frontend/src/app/features/tools/tools-chat.component.ts', startLine: 55, endLine: 77 },
+    ],
+    prompt: 'No prompt: this take compiles the guide code (see actions/compile-demos.action.ts).',
+  },
+  {
+    id: 'a2ui-compile',
+    name: 'Clip 4 - A2UI. Undefined names (#2)',
+    videoName: 'A2uiUndefinedNames',
+    docPath: 'guides/a2ui',
+    route: 'a2ui',
+    // `a2ui` with recovery and no catalog: what the harness can do from the guide.
+    ideFile: 'frontend/src/app/app.config.ts',
+    startLine: 60,
+    endLine: 62,
+    extraTabs: [
+      { filePath: 'frontend/src/app/features/a2ui/a2ui-chat.component.ts', startLine: 1, endLine: 22 },
+    ],
+    prompt: 'No prompt: this take compiles the guide code (see actions/compile-demos.action.ts).',
+  },
 ]);
