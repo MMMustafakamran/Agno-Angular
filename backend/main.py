@@ -53,14 +53,14 @@ agent_os = AgentOS(
     interfaces=[AGUI(agent=agent)],
     cors_allowed_origins=[
         "http://localhost:3000",
-        "http://localhost:4200",
+        "http://localhost:4210",
     ],
 )
 app = agent_os.get_app()
 
 if __name__ == "__main__":
-    # Port is env-driven so this can move off 8000 when something else on the
+    # Port is env-driven so this can move off 8211 when something else on the
     # machine already has it. Default unchanged, so nothing else needs updating
     # for a standard run.
-    agent_os.serve(app="main:app", port=int(os.getenv("AGNO_PORT", "8000")), reload=True)
+    agent_os.serve(app="main:app", port=int(os.getenv("AGNO_PORT", "8211")), reload=True)
 

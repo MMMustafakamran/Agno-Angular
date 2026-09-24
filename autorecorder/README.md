@@ -21,13 +21,13 @@ Both services must be up first — the recorder refuses to start otherwise, beca
 a video of a dead page is worse than no video.
 
 ```bash
-cd backend  && uv run main.py    # Agno AgentOS            :8000
-cd frontend && npm run dev       # Copilot Runtime :8200 + ng serve :4200
+cd backend  && uv run main.py    # Agno AgentOS            :8211
+cd frontend && npm run dev       # Copilot Runtime :8210 + ng serve :4210
 ```
 
 `npm run dev` starts **two** processes. Angular has no server route to host the
 Copilot Runtime, so it runs as its own Node process (`frontend/server.ts`) on
-8200 and the browser posts across origins to it — which is why `runtimeWarmPath`
+8210 and the browser posts across origins to it — which is why `runtimeWarmPath`
 in `project.config.ts` is an absolute URL rather than a path.
 
 Then:

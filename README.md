@@ -8,8 +8,8 @@ A navigable, working test harness for the Angular section of the CopilotKit Agno
 | **CopilotKit packages** | `@copilotkit/angular` 0.5.2 · `@copilotkit/runtime` 1.73.3 (upgraded 2026-09-23 from 0.5.1 / 1.70.1; `@copilotkit/angular` 0.5.2 still exact-pins `@copilotkit/core`, `shared`, `web-inspector` and `web-components` at 1.70.2) |
 | **AG-UI packages** | `@ag-ui/agno` 0.0.5 |
 | **Frontend** | Angular 22.1.1 · TypeScript 6.0 · Tailwind 4 · zoneless |
-| **Runtime** | Node 24.16.0 · Copilot Runtime v2 Node listener on :8200 |
-| **Backend** | Python 3.13.13 · Agno 2.8.7 · FastAPI/AgentOS on :8000 |
+| **Runtime** | Node 24.16.0 · Copilot Runtime v2 Node listener on :8210 |
+| **Backend** | Python 3.13.13 · Agno 2.8.7 · FastAPI/AgentOS on :8211 |
 | **Build status** | No CI. Locally verified: `ng build` ✅ · 14 doc routes + 12 demo routes serve 200 ✅ · live agent run with tool call ✅ · human-in-the-loop pause ✅ · shared-state snapshot ✅ · A2UI **not** observed over the wire ⚠️ (see Known issues) |
 
 ---
@@ -31,14 +31,14 @@ Scope is the eight pages named at build time: the quickstart plus the seven task
 ```
 Browser (Angular 22, zoneless)
   │  @copilotkit/angular — provideCopilotKit, <copilot-chat>, signal APIs
-  │  POST http://localhost:8200/api/copilotkit
+  │  POST http://localhost:8210/api/copilotkit
   ▼
-Copilot Runtime  ·  localhost:8200        ← Node, frontend/server.ts
+Copilot Runtime  ·  localhost:8210        ← Node, frontend/server.ts
   │  agents: { default, support } → new AgnoAgent({ url })
   │  a2ui: {}  → A2UIMiddleware
-  │  POST http://localhost:8000/agui      ← AG-UI over SSE
+  │  POST http://localhost:8211/agui      ← AG-UI over SSE
   ▼
-Agno AgentOS  ·  localhost:8000           ← Python / FastAPI
+Agno AgentOS  ·  localhost:8211           ← Python / FastAPI
   │  AgentOS(agents=[agent], interfaces=[AGUI(agent=agent)])
   ▼
 OpenAI  (gpt-4o)
@@ -101,11 +101,11 @@ Then edit `backend/.env`:
 | Variable | Where | What it does |
 |---|---|---|
 | `OPENAI_API_KEY` | `backend/.env` | **Required.** The model key. |
-| `AGNO_AGENT_URL` | shell for the runtime | Where the runtime finds the agent. Defaults to `http://localhost:8000/agui`. |
-| `PORT` | shell for the runtime | Runtime port. Defaults to `8200`. |
+| `AGNO_AGENT_URL` | shell for the runtime | Where the runtime finds the agent. Defaults to `http://localhost:8211/agui`. |
+| `PORT` | shell for the runtime | Runtime port. Defaults to `8210`. |
 | `COPILOTKIT_TELEMETRY_DISABLED` | shell for the runtime | Opt out of anonymous runtime telemetry. |
 
-> The Angular app's `runtimeUrl` is hardcoded to `http://localhost:8200/api/copilotkit` in `frontend/src/app/app.config.ts`, following the quickstart. If you change `PORT`, change that too.
+> The Angular app's `runtimeUrl` is hardcoded to `http://localhost:8210/api/copilotkit` in `frontend/src/app/app.config.ts`, following the quickstart. If you change `PORT`, change that too.
 
 **5. Update to latest packages (optional)**
 
@@ -157,7 +157,7 @@ conflict above. Not `npm install --legacy-peer-deps` either — it does not fix 
 peer conflict, it hides one, silencing the exact signal this harness reports on.
 Dependabot is the safe alternative if PR-based automation is wanted.
 
-**Default ports:** frontend **4200**, runtime **8200**, agent **8000**.
+**Default ports:** frontend **4210**, runtime **8210**, agent **8211**.
 
 ---
 
@@ -175,7 +175,7 @@ uv run main.py
 Success looks like:
 
 ```
-INFO:     Uvicorn running on http://localhost:8000 (Press CTRL+C to quit)
+INFO:     Uvicorn running on http://localhost:8211 (Press CTRL+C to quit)
 INFO:     Application startup complete.
 ```
 
@@ -189,9 +189,9 @@ npm run dev
 `dev` runs the Copilot Runtime and `ng serve` side by side under `concurrently`, with each line prefixed by which process wrote it. Success looks like:
 
 ```
-[runtime] Copilot Runtime listening at http://localhost:8200/api/copilotkit
-[runtime] Agno agent: http://localhost:8000/agui
-[angular]   ➜  Local:   http://localhost:4200/
+[runtime] Copilot Runtime listening at http://localhost:8210/api/copilotkit
+[runtime] Agno agent: http://localhost:8211/agui
+[angular]   ➜  Local:   http://localhost:4210/
 ```
 
 Ctrl-C stops both. `--kill-others` means a crash in either one takes the other down rather than leaving half a stack running — if the runtime dies you'll see `Sending SIGTERM to other processes..` and the app exits too, instead of a chat that silently can't reach anything.
@@ -199,16 +199,16 @@ Ctrl-C stops both. `--kill-others` means a crash in either one takes the other d
 To run them separately — different terminals, independent restarts — the underlying scripts are still there:
 
 ```bash
-npm run runtime   # Copilot Runtime only, :8200
-npm start         # Angular dev server only, :4200
+npm run runtime   # Copilot Runtime only, :8210
+npm start         # Angular dev server only, :4210
 ```
 
-Open **<http://localhost:4200>**. The Introduction route probes both backends and shows a connection panel — check it first if anything misbehaves.
+Open **<http://localhost:4210>**. The Introduction route probes both backends and shows a connection panel — check it first if anything misbehaves.
 
 The one-command check the quickstart prescribes:
 
 ```bash
-curl -s http://localhost:8200/api/copilotkit/info
+curl -s http://localhost:8210/api/copilotkit/info
 ```
 
 It should list `default` and `support` under `agents`.
@@ -385,12 +385,12 @@ rather drive the recorder by hand against servers you started yourself.
 
 ### How to run
 
-The backend (`:8000`), the Copilot Runtime (`:8200`) and the Angular dev server
-(`:4200`) must all be up — the recorder refuses to start otherwise.
+The backend (`:8211`), the Copilot Runtime (`:8210`) and the Angular dev server
+(`:4210`) must all be up — the recorder refuses to start otherwise.
 
 ```bash
-cd backend  && uv run main.py     # :8000
-cd frontend && npm run dev        # runtime :8200 + ng serve :4200
+cd backend  && uv run main.py     # :8211
+cd frontend && npm run dev        # runtime :8210 + ng serve :4210
 ```
 
 Then:
@@ -433,12 +433,12 @@ Moved to [FINDINGS.md](FINDINGS.md).
 
 | Symptom | Cause | Fix |
 |---|---|---|
-| Chat sends, nothing streams back | Runtime or Agno process down | Check the Introduction route's connection panel; `curl http://localhost:8200/api/copilotkit/info`. |
+| Chat sends, nothing streams back | Runtime or Agno process down | Check the Introduction route's connection panel; `curl http://localhost:8210/api/copilotkit/info`. |
 | `/info` returns nothing | Runtime not started | `npm run runtime` from `frontend/`. |
 | A run starts, then hangs forever | The agent called a browser tool with no registered handler, so no result ever returns | Every tool the agent can call must have a matching `registerFrontendTool` / `registerHumanInTheLoop` mounted. |
 | Tool runs but the custom card doesn't render | Renderer name ≠ tool name | `registerRenderToolCall({ name })` must equal the Agno tool name exactly, including case. |
 | Chat renders unstyled | Missing stylesheet | `@import "@copilotkit/angular/styles.css";` must be in `src/styles.css`. |
-| CORS errors from the browser | Runtime CORS off | Keep `cors: true` in `createCopilotNodeListener`. The Agno process separately allows `localhost:4200` via `cors_allowed_origins`. |
+| CORS errors from the browser | Runtime CORS off | Keep `cors: true` in `createCopilotNodeListener`. The Agno process separately allows `localhost:4210` via `cors_allowed_origins`. |
 | Connection errors mentioning `localhost` | DNS resolving to IPv6 while the server binds IPv4 | Use `127.0.0.1` in `AGNO_AGENT_URL`. |
 | Production build fails on size | CopilotKit pulls in markdown and syntax-highlighting deps | Already raised in `angular.json`; see Known issues #9. |
 | Peer-dependency error on install | `@angular/cdk` major mismatch | Install the matching major, e.g. `@angular/cdk@^22` on Angular 22. |
@@ -499,7 +499,7 @@ agno/
 │
 ├── frontend/                  # Angular 22 app + the Copilot Runtime process
 │   ├── AGENTS.md              # Angular style rules this repo's own code follows
-│   ├── server.ts              # ★ CopilotRuntime + AgnoAgent binding  → :8200
+│   ├── server.ts              # ★ CopilotRuntime + AgnoAgent binding  → :8210
 │   ├── scripts/
 │   │   ├── generate-sources.ts  # ★ reads real files → generated-sources.ts
 │   │   ├── sync-docs.ts         # ★ automated doc-snapshot sync script
@@ -520,7 +520,7 @@ agno/
 │           │       attachments/  headless/
 │           └── pages/               # one page per doc route + demos.ts + status
 │
-└── backend/                   # Python agent — Agno AgentOS over AG-UI  → :8000
+└── backend/                   # Python agent — Agno AgentOS over AG-UI  → :8211
     ├── pyproject.toml
     └── main.py                # ★ agent, getWeather tool, AgentOS + AGUI interface
 ```

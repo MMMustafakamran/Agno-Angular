@@ -449,7 +449,7 @@ jobs:
       # gets painted and the recording shows only the finished card.
       WEATHER_TOOL_DELAY: ${{ vars.WEATHER_TOOL_DELAY || '1.5' }}
       # Where the Copilot Runtime (frontend/server.ts) finds the Agno agent.
-      AGNO_AGENT_URL: http://127.0.0.1:8000/agui
+      AGNO_AGENT_URL: http://127.0.0.1:8211/agui
 
     steps:
       - name: Checkout Code

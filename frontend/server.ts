@@ -18,7 +18,7 @@ import { CopilotRuntime, CopilotKitIntelligence } from "@copilotkit/runtime/v2";
 import { createCopilotNodeListener } from "@copilotkit/runtime/v2/node";
 import { AgnoAgent } from "@ag-ui/agno";
 
-const agentUrl = process.env["AGNO_AGENT_URL"] ?? "http://localhost:8000/agui";
+const agentUrl = process.env["AGNO_AGENT_URL"] ?? "http://localhost:8211/agui";
 
 /**
  * Intelligence client, verbatim from
@@ -47,7 +47,7 @@ const runtime = new CopilotRuntime({
   }),
 });
 
-const port = Number(process.env["PORT"] ?? 8200);
+const port = Number(process.env["PORT"] ?? 8210);
 
 createServer(
   createCopilotNodeListener({

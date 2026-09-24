@@ -433,7 +433,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
         }
       }
 
-      console.log('\n👉 Local markdown files NOT modified. Pass `--update` or visit http://localhost:3000/doc-sync to sync.');
+      console.log('\n👉 Local markdown files NOT modified. Pass `--update` or visit http://localhost:4210/doc-sync to sync.');
       process.exit(2);
     }
   } else {

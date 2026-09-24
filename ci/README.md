@@ -61,25 +61,25 @@ Angular has no server route to host the Copilot Runtime the way a Next app
 does, so this stack is one process longer than its React twin:
 
 ```
-browser ──▶ ng serve :4200 ──▶ Copilot Runtime :8200 ──▶ Agno agent :8000
+browser ──▶ ng serve :4210 ──▶ Copilot Runtime :8210 ──▶ Agno agent :8211
             (frontend)         (frontend/server.ts)      (backend/main.py)
 ```
 
 `npm run dev` inside `frontend/` starts the first two together under
 `concurrently`, which is why the pipeline spawns two processes for three
 services — and why cleanup kills the whole process tree. Killing only the shell
-leaves the runtime and `ng serve` holding 8200 and 4200, and the next run
+leaves the runtime and `ng serve` holding 8210 and 4210, and the next run
 refuses to start on a busy port.
 
 Ports are env-overridable, which is how a run moves off a port another project
 is already holding:
 
 ```bash
-AGNO_PORT=8100 uv run main.py                          # backend
+AGNO_PORT=8219 uv run main.py                          # backend
 PORT=8300 npm run dev                                  # frontend/server.ts, and
                                                        # runtimeUrl in
                                                        # frontend/src/app/app.config.ts,
-                                                       # which hardcodes :8200
+                                                       # which hardcodes :8210
 FRONTEND_PORT=4300 node ci/automate.mjs                # what this pipeline checks
 ```
 
@@ -302,7 +302,7 @@ by `concurrently`. They are uploaded with the CI artifacts.
 **Recorder aborts on preflight** — the app was still doing its first load. The
 `lib/config.mjs` gets the same treatment.
 
-**Runtime up, agent silent** — the runtime answers on 8200 whether or not it can
+**Runtime up, agent silent** — the runtime answers on 8210 whether or not it can
 reach the agent. `warmRuntimeEndpoint` hits `/api/copilotkit/info`, which is the
 request that actually goes through to Agno, so that failure shows up here rather
 than as a demo where nothing ever replies.

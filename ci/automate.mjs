@@ -7,9 +7,9 @@
  * them alive for as long as the recorder needs them.
  *
  * Two spawns, three services: `npm run dev` in frontend/ starts the Copilot
- * Runtime (server.ts, :8200) and `ng serve` (:4200) together under
+ * Runtime (server.ts, :8210) and `ng serve` (:4210) together under
  * concurrently, because Angular has no server route to host the runtime the way
- * a Next app does. The Agno agent (:8000) is the second spawn.
+ * a Next app does. The Agno agent (:8211) is the second spawn.
  *
  * Flags:
  *   --pull               git pull before running
@@ -145,7 +145,7 @@ function cleanup() {
   }
   // The whole tree, not just the shell: `npm run dev` is concurrently, which
   // owns the runtime and ng serve as children. Killing the parent alone leaves
-  // two servers holding 8200 and 4200, and the next run refuses to start.
+  // two servers holding 8210 and 4210, and the next run refuses to start.
   if (frontendProc) {
     killTree(frontendProc);
     frontendProc = null;
@@ -220,7 +220,7 @@ function tailLog(logPath, lines = 25) {
  * `localhost` to `127.0.0.1` and gets a refusal - so a server a browser opens
  * fine polls as dead for the full 180s timeout. Both literals are tried,
  * carrying `Host: localhost:<port>` because Angular's SSRF guard rejects a
- * bracketed-IPv6 Host outright ("Header host with value [::1]:4200 is not
+ * bracketed-IPv6 Host outright ("Header host with value [::1]:4210 is not
  * allowed") - which is a *response*, and would otherwise read as healthy.
  *
  * Non-localhost URLs are returned untouched: 127.0.0.1 needs no help.

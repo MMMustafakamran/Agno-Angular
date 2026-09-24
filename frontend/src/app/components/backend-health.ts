@@ -74,14 +74,14 @@ export class BackendHealth {
   protected readonly probes = signal<Probe[]>([
     {
       label: 'Copilot Runtime',
-      url: 'http://localhost:8200/api/copilotkit/info',
+      url: 'http://localhost:8210/api/copilotkit/info',
       hint: 'Start it with: npm run runtime',
       ok: null,
       detail: '',
     },
     {
       label: 'Agno agent',
-      url: 'http://localhost:8000/status',
+      url: 'http://localhost:8211/status',
       hint: 'Start it with: uv run main.py (from backend/)',
       ok: null,
       detail: '',

@@ -6,8 +6,8 @@
  *
  * Three services, not two. Angular has no server route to host the Copilot
  * Runtime the way a Next app does, so the runtime is its own Node process
- * (frontend/server.ts, port 8200) sitting between `ng serve` (4200) and the
- * Agno agent (8000). `npm run dev` in frontend/ starts the first two together
+ * (frontend/server.ts, port 8210) sitting between `ng serve` (4210) and the
+ * Agno agent (8211). `npm run dev` in frontend/ starts the first two together
  * via concurrently; the agent is started separately.
  */
 import path from 'node:path';
@@ -37,9 +37,9 @@ export const PROJECT_SLUG = 'Agno-angular';
 
 // Env names match the ones the services themselves read (see .env.example), so
 // moving a run off a busy port is one export rather than an edit here.
-export const BACKEND_PORT = Number(process.env.AGNO_PORT || 8000);
-export const RUNTIME_PORT = Number(process.env.PORT || 8200);
-export const FRONTEND_PORT = Number(process.env.FRONTEND_PORT || 4200);
+export const BACKEND_PORT = Number(process.env.AGNO_PORT || 8211);
+export const RUNTIME_PORT = Number(process.env.PORT || 8210);
+export const FRONTEND_PORT = Number(process.env.FRONTEND_PORT || 4210);
 
 /**
  * Agno's AgentOS exposes /status, not /health — the /copilotkit/info path the
@@ -63,7 +63,7 @@ export const FRONTEND_URL = `http://localhost:${FRONTEND_PORT}`;
 /**
  * Hit once before the first prompt of a run.
  *
- * The browser posts across origins to the runtime on 8200, and the first
+ * The browser posts across origins to the runtime on 8210, and the first
  * request there pays for the runtime's connection to the Agno process. /info is
  * a real GET endpoint that exercises exactly that path, so a run that would
  * have failed on a dead agent fails here instead of inside a recording.
